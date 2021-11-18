@@ -6,7 +6,7 @@ import {ViewProfileComponentComponent} from './components/view-profile-component
 
 const routes: Routes = [
   { path: 'postfeed', component: PostFeedComponent },
-  {path: 'view-profile-component', component: ViewProfileComponentComponent}
+  {path: 'viewprofile', component: ViewProfileComponentComponent}
 
 
 ];
