@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 
 import { PostFeedComponent } from './components/post-feed/post-feed.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
@@ -19,9 +20,12 @@ import { ViewProfileComponentComponent } from './components/view-profile-compone
     PostFeedComponent,
     CreatePostComponent,
     PopulateFeedComponent,
-    ViewProfileComponentComponent
+    ViewProfileComponentComponent,
+    LoginComponent
   ],
+  
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
