@@ -1,1 +1,41 @@
 <p>view-profile-component works!</p>
+<button (click)="load()">click me</button>
+<h1>{{user.userId}}</h1>
+
+<p>{{user.email}}</p> 
+<p>{{user.firstname}}</p>
+<p>{{user.lastname}}</p> 
+<p>{{user.birthday}}</p> 
+<p>{{user.revatureJoinDate}}</p>
+<p>{{user.githubUsername}}</p>
+<p>{{user.title}}</p>
+<p>{{user.location}}</p>
+
+<div style="background-color: gray;margin: 15% 10%;">
+       <h1 style="margin-left: 10%;">{{user.firstname}} <br> {{user.lastname}}</h1>
+       <hr style="border-top: 1px dashed black;">
+       <div style="margin: 3% 10%;">
+              <div style="background-color: yellow; display: inline-block;">
+                     <h3>Revature Information</h3>
+                     Title: {{user.title}}
+                     <br>
+                     Revature Join Date: {{user.revatureJoinDate}}
+                     <br>
+                     Birthday: {{user.birthday}}
+              </div>
+              <div style="background-color: yellow;float: right;">
+                     <h3>Contact</h3>
+                     Email: {{user.email}}
+                     <br>
+                     GitHub: {{user.githubUsername}}
+                     <br>
+              </div>
+       </div>
+       <div style="margin: 3% 10%;">
+              <h1>About Me</h1>
+       </div>
+       <div style="margin: 3% 10%;">
+              <h1>Posts</h1>
+       </div>
+</div>
+        

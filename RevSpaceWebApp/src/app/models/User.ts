@@ -6,8 +6,8 @@ export class User {
     email: string;
     firstname: string;
     lastname: string;
-    birthday: bigint;
-    revatureJoinDate: bigint;
+    birthday:  number;
+    revatureJoinDate: number;
     githubUsername: string;
     title: string;
     location: string;
@@ -17,8 +17,8 @@ export class User {
         email: string,
         firstname: string,
         lastname: string,
-        birthday: bigint,
-        revatureJoinDate: bigint,
+        birthday: number,
+        revatureJoinDate: number,
         githubUsername: string,
         title: string,
         location: string, aboutme: string,)
