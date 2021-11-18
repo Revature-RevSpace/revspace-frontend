@@ -32,3 +32,8 @@
   </nav>
 <app-login *ngIf="!isLoggedIn()"></app-login>
 <router-outlet *ngIf="isLoggedIn()"></router-outlet>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<router-outlet></router-outlet>
+<app-edit-user-profile></app-edit-user-profile>
+
