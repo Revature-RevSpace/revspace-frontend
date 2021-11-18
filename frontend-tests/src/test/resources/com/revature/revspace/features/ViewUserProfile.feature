@@ -1,7 +1,16 @@
-Feature: (Example feature definition)
+Feature: view user profile
 
-  Scenario: (Example scenario definition)
-    Given (Example given definition)
-    And (Example and definition)
-    When (Example when definition)
-    Then (Example then definition)
+  Scenario: user profile is displayed without being logged in
+    Given user is not logged in
+    When user clicks link to a user profile
+    Then user profile is shown
+
+  Scenario: user views their own profile
+    Given user is logged in
+    When user clicks on their profile
+    Then user profile is displayed
+
+  Scenario: user views another user profile
+    Given user is logged in
+    When user clocks on another user
+    Then user sees the other user profile displayed
