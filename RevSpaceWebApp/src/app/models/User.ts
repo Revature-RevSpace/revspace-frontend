@@ -1,12 +1,39 @@
 
 
 export class User {
-    
-  userId?: number;
 
-  constructor(userId?: number) {
+    userId: number;
+    email: string;
+    firstname: string;
+    lastname: string;
+    birthday: bigint;
+    revatureJoinDate: bigint;
+    githubUsername: string;
+    title: string;
+    location: string;
+    aboutme: string;
 
-    this.userId = userId;
-  }
+    constructor(userId: number,
+        email: string,
+        firstname: string,
+        lastname: string,
+        birthday: bigint,
+        revatureJoinDate: bigint,
+        githubUsername: string,
+        title: string,
+        location: string, aboutme: string,)
+        {
+            this.userId = userId;
+            this.email = email;
+            this.firstname = firstname;
+            this.lastname = lastname;
+            this.birthday = birthday;
+            this.revatureJoinDate = revatureJoinDate;
+            this.githubUsername = githubUsername;
+            this.title = title;
+            this.location = location;
+            this.aboutme = aboutme;
+    }
+
 
 }
