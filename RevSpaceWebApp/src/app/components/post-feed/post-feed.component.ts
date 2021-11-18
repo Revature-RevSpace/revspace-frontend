@@ -20,7 +20,7 @@ export class PostFeedComponent implements OnInit {
   posts: Array<Post> = [];
   comments: Array<Post> = [];
   postUtil: Array<Object> = [];
-  user: User;
+  user: User = new User();
 
   /*
   postUtil is an array where each element is an object with the following attributes:
