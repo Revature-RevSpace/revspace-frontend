@@ -9,6 +9,7 @@ import { ViewProfileComponentComponent } from './components/view-profile-compone
 import { PostFeedComponent } from './components/post-feed/post-feed.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { PopulateFeedComponent } from './components/populate-feed/populate-feed.component';
+import { ViewProfileComponentComponent } from './components/view-profile-component/view-profile-component.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PopulateFeedComponent } from './components/populate-feed/populate-feed.
     ViewProfileComponentComponent,
     PostFeedComponent,
     CreatePostComponent,
-    PopulateFeedComponent
+    PopulateFeedComponent,
+    ViewProfileComponentComponent
   ],
   imports: [
     BrowserModule,
