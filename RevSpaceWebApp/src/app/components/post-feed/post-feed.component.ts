@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/Post';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-post-feed',
@@ -19,6 +20,7 @@ export class PostFeedComponent implements OnInit {
   posts: Array<Post> = [];
   comments: Array<Post> = [];
   postUtil: Array<Object> = [];
+  user: User;
 
   /*
   postUtil is an array where each element is an object with the following attributes:

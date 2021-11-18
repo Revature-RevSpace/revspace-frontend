@@ -1,10 +1,11 @@
 <p>post-feed works!</p>
 
-<!-- (Team Dylan)
+<!-- (Team Dylan) (gets its own component)
     First we have the write a new post div 
 
 -->
 
+<!-- Rest gets its own component-->
 <!-- (Team Tom)
     Then an ngFor for populating all the posts for what page we're on 
         - one of the divs inside of this div will be a collapsible for the comments
@@ -12,7 +13,18 @@
 
 <!-- (Team Tom)
     Then an ngFor for populating all the comments
-        - calls createComment(childId, parentId) method in component ts that uses parent.appendChild(child) 
+        - calls createComment(childId, parentId) method in component ts that uses .apparentpendChild(child) 
+
+        ngfor (comment in commentList) {
+
+            <div>
+
+                <commentbody>
+                <likebuttom needs infromatio>
+                <respond to comment collapsible>
+
+            </div>
+        }
 -->
 
 <!-- (Team Dylan)
