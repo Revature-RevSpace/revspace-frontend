@@ -12,10 +12,14 @@ import { PostFeedComponent } from './components/post-feed/post-feed.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { PopulateFeedComponent } from './components/populate-feed/populate-feed.component';
 import { ViewProfileComponentComponent } from './components/view-profile-component/view-profile-component.component';
+<<<<<<< HEAD
 import { TopComponent } from './components/top/top.component';
 import { ImageService } from './services/image.service';
 import { DatePipe } from './pipes/date.pipe';
 
+=======
+import { EditUserProfileComponent } from './components/edit-user-profile/edit-user-profile.component';
+>>>>>>> 1a14c4a (Created edit-user-profile component, imported and declared it in app.module)
 
 
 @NgModule({
@@ -25,10 +29,14 @@ import { DatePipe } from './pipes/date.pipe';
     CreatePostComponent,
     PopulateFeedComponent,
     ViewProfileComponentComponent,
+<<<<<<< HEAD
     RegisterFormComponent,
     LoginComponent,
     TopComponent,
     DatePipe,
+=======
+    EditUserProfileComponent
+>>>>>>> 1a14c4a (Created edit-user-profile component, imported and declared it in app.module)
   ],
   
   imports: [
