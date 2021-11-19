@@ -9,15 +9,21 @@ import { PostHttpServiceService } from 'src/app/services/post-http-service.servi
 })
 export class CreatePostComponent implements OnInit {
 
-  postInput: string;
+  expandThis=false;
+  postInput: string;  
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  expand(){
+    this.expandThis=true;
+  }
  
   createPost(){
-
+    
+    alert("Add post");
   }
   
 }

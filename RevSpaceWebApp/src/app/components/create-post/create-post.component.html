@@ -3,18 +3,41 @@
     <div class="main">
     <p id="response"></p>
     <h1 id="createPost">Create Post</h1>
-    <form #createPostForm="ngForm" (ngSubmit)="createPost()">
+
+    <div class="main_post">
+        <form #createPostForm="ngForm" (ngSubmit)="createPost()">
+            <div *ngIf="expandThis">
+            <input type="text" name="title" value="title" placeholder="Title" autocomplete="off">
+            </div>
+            <textarea rows="" column="" name ="postInput" value="postInput" [(ngModel)] = "postInput" (click)="expand()" placeholder="Hey, whats on your mind?"></textarea>
+            <div *ngIf="expandThis">
+            <button id="createPostButton" class ="btn" type="submit">
+                Add Post
+            </button>
+        </div>
+        </form>
+
+        <div class="post">
+            <h1>Title</h1>
+            <br>
+            <p>this is the content</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- <form #createPostForm="ngForm" (ngSubmit)="createPost()">
         <table width="100%">
             <tr>
                 <td></td>
                 <td><input type="text" name="postInput" id="postInput" [(ngModel)] = "postInput"></td>
             </tr>
-            <!--Create Post Button-->
             <tr>
                 <td></td>
                 <td colspan="2"><button id="createPostButton" class="btn btn-color">Post</button></td>
             </tr>
         </table>
-    </form>
+    </form> -->
     </div>
 </div>
