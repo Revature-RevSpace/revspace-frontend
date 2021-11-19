@@ -36,7 +36,7 @@ export class EditUserProfileComponent implements OnInit {
   joinDateInput: Date = new Date('Jan 1, 2010');
   locationInput: String = "";
   aboutMeInput:String = "";
-  birthdayInput: Date  = new Date('Jan 1, 2000');
+  birthdayInput: Date = new Date('Jan 1, 2000');
 
 
   //Sets the input variables equal to the logged in user's current profile data
@@ -59,14 +59,14 @@ export class EditUserProfileComponent implements OnInit {
   //Bundles the input values into a User object, then sends the User object to the service
   //The service will create the request itself
   //Finalize implementation based on what the backend wants for the update request
-  confirmUpdate() {
+  confirmUpdateProfile() {
 
     console.log("Join date representation:");
     console.log(this.joinDateInput);
     console.log((new Date(this.joinDateInput)).getTime());
 
     console.log("Birthday representation:");
-    console.log(this.birthdayInput)
+    console.log(this.birthdayInput);
     console.log((new Date(this.birthdayInput)).getTime());
 
     let fakeUser = {
@@ -81,17 +81,25 @@ export class EditUserProfileComponent implements OnInit {
     };
 
     console.log(fakeUser);
-    
+
+    /* Endpoint/method for put user
+      @PutMapping(value = "/users/{id}", consumes = "application/json")
+      public User updateUser(@PathVariable("id") String id, @RequestBody User newUser)
+    */
 
   }
 
 
 
   //Reset the fields and return to the view user profile screen
-  cancelChanges() {
+  cancelUpdateProfile() {
 
   }
 
+
+  alertLeavingEditScreen() {
+    confirm("LEave the page?");
+  }
   
 
 

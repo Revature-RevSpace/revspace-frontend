@@ -3,12 +3,12 @@
 <div>
 
 
-    <!-- first_name varchar(100) not null -->
+    <!-- first_name varchar(50) not null -->
     <label for="edit-user-first-name-input"> Name: </label>  <br>
     <input id="edit-user-first-name-input" type="text" maxlength="50" [(ngModel)]="firstNameInput">
     <br>
 
-    <!-- last_name varchar(100) not null -->
+    <!-- last_name varchar(50) not null -->
     <label for="edit-user-last-name-input"> Name: </label> <br>
     <input id="edit-user-last-name-input" type="text" maxlength="50" [(ngModel)]="lastNameInput">
     <br>
@@ -44,8 +44,10 @@
     <br>
 
 
-    <button (click)="confirmUpdate()"> Accept changes </button>
-    <button> Cancel changes </button>
+    <button id="edit-user-accept-changes-button" (click)="confirmUpdateProfile()"> Accept changes </button>
+    <button id="edit-user-cancel-changes-button" (click)="cancelUpdateProfile()"> Cancel changes </button>
+
+    <button id="test-button" (click)="alertLeavingEditScreen()"> Leave </button>
 
 </div>
 
