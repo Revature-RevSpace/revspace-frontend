@@ -1,3 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light " style="padding: 1% 2%; background-color: #B9B9BA;font-family: Futura-Std-Book;"  >
+    <div class="container-fluid" style="color: black;">
+      <a class="navbar-brand" href="" style="font-weight: bold;"><img alt="image" src="./assets/img/revaturelogo.png" height="40" width="auto" ></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" style="margin:10px;">
+            <a class="nav-link active" routerLink="">Post Feed</a>
+          </li>
+          <li class="nav-item" style="margin:10px;">
+            <a class="nav-link active" routerLink="">Create a post</a>
+          </li>
+        </ul>
+        <!-- if user is logged in this will disabled -->
+        <!--drop down for user profile-->
+        <div class="dropdown" style="margin-right: 2%;">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Username
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">View Your Profile</a></li>
+              <li><a class="dropdown-item" href="#">Edit Your Profile</a></li>
+              <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
+          </div>
+        
+      </div>
+    </div>
+  </nav>
+
 <app-login>
   
 </app-login>
