@@ -1,4 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/User';
+import { Credential } from 'src/app/models/Credential';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register-form',
@@ -7,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userHttp: UserService, private router: Router) { }
 
   ngOnInit(): void {
    
@@ -15,7 +20,7 @@ export class RegisterFormComponent implements OnInit {
   userFirstName: string;
   userLastName: string;
   userEmail: string;
-  userDob: string;
+  userDob: number; // had to change this to number for now until we figure out how to handle dates
   userPassword: string;
   userConfirmPassword: string;
   userDOBNum: number;
@@ -25,6 +30,7 @@ export class RegisterFormComponent implements OnInit {
   noEmail: string  = "Please Input Valid Email";
   noDob: string = "Please Valid Input Date of Birth";
   correctInfo: boolean;
+ 
 
 
 
@@ -59,10 +65,22 @@ export class RegisterFormComponent implements OnInit {
       console.log(this.userDob);
       console.log(this.userPassword);
       console.log(this.userConfirmPassword);
+
+      this.createUser();
   }
     
   }
 
+  createUser(){
+    let newUser: User = new User(0, this.userEmail, this.userFirstName, this.userLastName, this.userDob, null, '', '', '', '');
+    let newCredential: Credential = new Credential(newUser, this.userPassword);
+    this.userHttp.addUser(newCredential).subscribe (
+      (response) => {
+        console.log(response);
+        setTimeout(() => this.router.navigate(['viewprofile']))  
+      }
+    )
+  }
 
 
 }
