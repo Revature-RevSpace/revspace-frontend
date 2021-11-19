@@ -1,25 +1,32 @@
 <div style="margin: 15% 10%;border-left: #474C55 solid 3px;border-right: #474C55 solid 3px;">
-       <div style="background-color: #FCB414;margin-left: 10%;margin-right: 10%;border-radius: 10px;">
+       <div style="background-color: #FCB414;margin: 2% 10% 2% 10%;border-radius: 10px;">
               <h1 style="padding: 3% 3% 3% 2%;">{{user.firstname}} <br> {{user.lastname}}</h1>
        </div>
        <hr style="border-top: 1px dashed black;margin: 0% 5%;">
        <div style="margin: 2% 10%;">
-              <div style="background-color: #F26925; display: inline-block; padding: 3%;border-radius: 10px;">
-                     <h3>Revature Information</h3>
-                     Title: {{user.title}}
-                     <br>
-                     Revature Join Date: {{user.revatureJoinDate}}
-                     <br>
-                     Birthday: {{user.birthday}}
-                     <br>
-                     Location: {{user.location}}
-              </div>
-              <div style="background-color: #F26925;float: right;padding: 3%;border-radius: 10px;">
-                     <h3>Contact</h3>
-                     Email: {{user.email}}
-                     <br>
-                     GitHub: {{user.githubUsername}}
-                     <br>
+              <div class="row align-items-start">
+                     <div class="col" >
+                            <div style="background-color: #F26925; display: inline-block; padding: 3%;border-radius: 10px;">
+                                   <h3>Revature Information</h3>
+                            Title: {{user.title}}
+                            <br>
+                            Revature Join Date: {{user.revatureJoinDate}}
+                            <br>
+                            Birthday: {{user.birthday}}
+                            <br>
+                            Location: {{user.location}}
+                            </div>
+
+                     </div>
+                     <div class="col" >
+                            <div style="background-color: #F26925;display: inline-block;padding: 3%;border-radius: 10px;">
+                                   <h3>Contact</h3>
+                            Email: {{user.email}}
+                            <br>
+                            GitHub: {{user.githubUsername}}
+                            <br>
+                            </div>
+                     </div>
               </div>
        </div>
        <div style="margin: 2% 10%;background-color: #F26925;padding: 3%;border-radius: 10px;">
@@ -32,4 +39,3 @@
               <h1 style="text-align: center;">Posts</h1>
        </div>
 </div>
-        
