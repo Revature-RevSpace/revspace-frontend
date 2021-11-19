@@ -1,3 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #A98163;padding: 1% 2%;border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="menu">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="contact">Contact Us</a>
+          </li>
+          <!-- if user is manager this will be enabled -->
+          <li class="nav-item" >
+            <a id="ordermanagementID" class="nav-link active" routerLink="ordermanagement">Order Management</a>
+          </li>
+        </ul>
+        <!-- if user is logged in this will disabled -->
+        <div id="loginDiv">
+          <button id="navLogin" routerLink="login"  class="btn" type="button" style="background-color:whitesmoke;margin-right: 15px;">Login</button>
+          <button  class="btn btn-danger" type="button" style="margin-right: 15px;">Logout</button>
+          <span style="margin: 0% 25px;">Hello, </span>
+        </div>
+        
+        <button id="navCart" routerLink="cart" class = "btn" type="button" style="background-color:whitesmoke;">Cart</button>
+      </div>
+    </div>
+  </nav>
+
 <app-login>
   
 </app-login>
