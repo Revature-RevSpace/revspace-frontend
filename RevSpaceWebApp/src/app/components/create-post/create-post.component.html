@@ -8,20 +8,17 @@
 
     <div class="main_post">
         <form>
-            <div *ngIf="expandThis">
-            <input type="text" name="image" placeholder="Image" autocomplete="off">
-            </div>
-            <textarea rows="" column="" name ="postInput" value="postInput" [(ngModel)] = "postInput" (click)="expand()" placeholder="Hey, whats on your mind?"></textarea>
-            <div *ngIf="expandThis">
-            <button class="star">
-                <img src="assets/star.png" alt="" class="star">
-                <!-- <i class="fas fa-star"></i> -->
-            </button>
-            <button id="createPostBtn" (click)="createPost()" class="postbtn">
-                <i class="fas fa-plus"></i>
-            </button>
+            <textarea rows="" column="" name ="postInput" value="postInput" [(ngModel)] = "postInput" (click)="expand()" placeholder="Hey, whats on your mind?" autocomplete="on"></textarea>
+        <div *ngIf="expandThis">
+                <button class="star">
+                    <img src="assets/star.png" alt="" class="star">
+                </button>
             
+                <button id="createPostBtn" (click)="createPost()" class="postbtn">
+                    <i class="fas fa-plus"></i>
+                </button>
         </div>
+
         </form>
         <div class="post">
             <h1>Title</h1>
@@ -31,19 +28,5 @@
         </div>
 
     </div>
-
-
-    <!-- <form #createPostForm="ngForm" (ngSubmit)="createPost()">
-        <table width="100%">
-            <tr>
-                <td></td>
-                <td><input type="text" name="postInput" id="postInput" [(ngModel)] = "postInput"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td colspan="2"><button id="createPostButton" class="btn btn-color">Post</button></td>
-            </tr>
-        </table>
-    </form> -->
     </div>
 </div>

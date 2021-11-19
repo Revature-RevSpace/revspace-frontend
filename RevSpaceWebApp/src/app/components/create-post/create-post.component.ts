@@ -9,6 +9,8 @@ import { PostHttpServiceService } from 'src/app/services/post-http-service.servi
 })
 export class CreatePostComponent implements OnInit {
 
+  
+
   expandThis=false;
   postInput: string;  
 
@@ -20,10 +22,16 @@ export class CreatePostComponent implements OnInit {
   expand(){
     this.expandThis=true;
   }
+
+  // onFileSelected(event){
+  //   console.log(event);
+  // }
  
   createPost(){
     
     alert("Add post");
+
+    console.log(this.postInput);
   }
   
 }
