@@ -1,3 +1,4 @@
+
 *{
     box-sizing: border-box;
     padding: 0;
@@ -7,11 +8,12 @@
 
 form{
     min-height: 50px;
-    color: #ecf0f1;
+    /* color: #ecf0f1; */
     padding: 15px 10px 5px 10px;
     box-shadow: 3px 5px 15px -5px black;
     border-radius: 10px;
     position: relative;
+    background-color: rgb(238, 236, 234);
 }
 
 .main_post{
@@ -25,24 +27,55 @@ form{
     border-radius: 7px;
     box-shadow: 0 2px 5px #ccc;
     padding: 10px;
-    width: 240px;
+    width: 250px;
     margin: 16px;
     float: left;
 }
 
-.btn {
+button {
+    border:none;
+    outline:none;
+}
+
+i .fa-plus {
+    width:30px;
+    height:50px;
+    position:absolute;
+    bottom: 25px;
+}
+
+.postbtn:hover .fa-plus{
+    color:#fff;
+    background:transparent;
+}
+
+.postbtn {
     position: relative;
     float:right;
     margin-right:10px;
-    color: #f4b400;
+    color: white;
     border:none;
     width: 50px;
     height: 50px;
-    background: transparent;
-    cursor:pointer;
+    background: rgb(255, 255, 255);
+    /* cursor:pointer; */
     outline:none;
     box-shadow: 3px 3px 15px -10px rgba(0,0,0,0);
     border-radius: 50%;
+}
+
+.postbtn:hover {
+    background-color: #f48a00;
+}
+
+i .fas,.fa-plus {
+    outline:none;
+    font-size: 30px;
+    font-weight: 600;
+    color:#f48a00;
+    /* cursor:pointer; */
+    /* z-index: 222; */
+    background-color: transparent;
 }
 
 textarea {
@@ -51,11 +84,44 @@ textarea {
     background: transparent;
     border:none;
     outline: none;
-    font-size: 1rem;
+    font-size: 2rem;
     margin: 10px 0;
 }
 
-input title {
+input {
     border:none;
 }
 
+i .fas,.fa-star {
+    outline:none;
+    font-size: 30px;
+    font-weight: 600;
+    color: rgb(70, 100, 125);
+    /* cursor:pointer; */
+    /* z-index: 222; */
+    background-color: transparent;
+}
+
+i .fa-star {
+    width:30px;
+    height:50px;
+    position:absolute;
+    bottom: 25px;
+}
+
+button .star {
+    width:35px;
+    /* font-size: 30px; */
+    font-weight: 600;
+    color: rgb(70, 100, 125);
+    /* cursor:pointer; */
+    /* z-index: 222; */
+    background-color: transparent;
+}
+
+/* .star {
+    width:30px;
+    height:50px;
+    position:absolute;
+    bottom: 25px;
+} */

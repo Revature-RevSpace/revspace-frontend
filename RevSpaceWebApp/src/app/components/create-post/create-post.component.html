@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+
 <!-- Create A Post Form -->
 <div class="container">
     <div class="main">
@@ -5,18 +7,22 @@
     <h1 id="createPost">Create Post</h1>
 
     <div class="main_post">
-        <form #createPostForm="ngForm" (ngSubmit)="createPost()">
+        <form>
             <div *ngIf="expandThis">
-            <input type="text" name="title" value="title" placeholder="Title" autocomplete="off">
+            <input type="text" name="image" placeholder="Image" autocomplete="off">
             </div>
             <textarea rows="" column="" name ="postInput" value="postInput" [(ngModel)] = "postInput" (click)="expand()" placeholder="Hey, whats on your mind?"></textarea>
             <div *ngIf="expandThis">
-            <button id="createPostButton" class ="btn" type="submit">
-                Add Post
+            <button class="star">
+                <img src="assets/star.png" alt="" class="star">
+                <!-- <i class="fas fa-star"></i> -->
             </button>
+            <button id="createPostBtn" (click)="createPost()" class="postbtn">
+                <i class="fas fa-plus"></i>
+            </button>
+            
         </div>
         </form>
-
         <div class="post">
             <h1>Title</h1>
             <br>
