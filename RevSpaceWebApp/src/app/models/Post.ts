@@ -7,14 +7,15 @@ export class Post {
     image: string;
     date: number;
     parentPost: Post
+    body:string;
 
 
   constructor(
-    postId: number, 
-    creatorId: User, 
     image: string, 
     date: number, 
-    parentPost: Post
+    parentPost: Post,
+    postId:number,
+    creatorId: User
 ) {
     this.postId = postId
     this.creatorId = creatorId

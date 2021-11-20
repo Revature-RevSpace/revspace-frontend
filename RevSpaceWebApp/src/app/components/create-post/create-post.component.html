@@ -8,12 +8,17 @@
 
     <div class="main_post">
         <form>
-            <textarea rows="" column="" name ="postInput" value="postInput" [(ngModel)] = "postInput" (click)="expand()" placeholder="Hey, whats on your mind?" autocomplete="on"></textarea>
+            <textarea rows="1" column="4" name ="body" value="body" [(ngModel)] = "body" (click)="expand()" placeholder="Hey, whats on your mind?" autocomplete="on"></textarea>
         <div *ngIf="expandThis">
-                <button class="star">
-                    <img src="assets/star.png" alt="" class="star">
-                </button>
-            
+            <div *ngIf="show">
+                <img class="fitImg" [src]="urllink">
+            </div>
+            <button>
+                <!-- <input #imageInput style="display:none" type="file" (change)="onFileSelected(imageInput)" #fileInput>
+                <button type="button" (click)="fileInput.click()">Choose Image</button>  -->
+                <!-- <input #imageInput type="file" (change)="imageInputChange(imageInput)" accept="image/*">
+                <button (click)="addImage()">Add Image</button> -->
+            </button>
                 <button id="createPostBtn" (click)="createPost()" class="postbtn">
                     <i class="fas fa-plus"></i>
                 </button>

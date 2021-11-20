@@ -17,7 +17,7 @@ form{
 }
 
 .main_post{
-    width: 500px;
+    width: 700px;
     padding: 15px 10px 5px 10px;
     margin: 20px auto;
 }
@@ -92,7 +92,7 @@ input {
     border:none;
 }
 
-i .fas,.fa-star {
+i .fas,.fa-image {
     outline:none;
     font-size: 30px;
     font-weight: 600;
@@ -102,14 +102,14 @@ i .fas,.fa-star {
     background-color: transparent;
 }
 
-i .fa-star {
+i .fa-image {
     width:30px;
     height:50px;
     position:absolute;
     bottom: 25px;
 }
 
-button .star {
+button .image {
     width:35px;
     /* font-size: 30px; */
     font-weight: 600;
@@ -125,3 +125,11 @@ button .star {
     position:absolute;
     bottom: 25px;
 } */
+
+.fitImg{
+    height: 300px;
+    width:500px;
+    display: block;
+    margin-left:auto;
+    margin-right: auto;
+}
