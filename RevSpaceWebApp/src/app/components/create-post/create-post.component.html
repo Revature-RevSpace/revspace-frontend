@@ -3,12 +3,10 @@
 <!-- Create A Post Form -->
 <div class="container">
     <div class="main">
-    <p id="response"></p>
-    <h1 id="createPost">Create Post</h1>
 
     <div class="main_post">
         <form>
-            <textarea rows="1" column="4" name ="body" value="body" [(ngModel)] = "body" (click)="expand()" placeholder="Hey, whats on your mind?" autocomplete="on"></textarea>
+            <textarea rows="" column="" name ="body" value="body" [(ngModel)] = "body" (click)="expand()" placeholder="Hey, whats on your mind?" autocomplete="on"></textarea>
         <div *ngIf="expandThis">
             <div *ngIf="show">
                 <img class="fitImg" [src]="urllink">
