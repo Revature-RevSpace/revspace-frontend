@@ -2,25 +2,27 @@
 *{
     box-sizing: border-box;
     padding: 0;
-    margin: 0;
+    margin: auto;
     font-family: "Josefin Sans", "Arial Narrow";
+}
+
+.main_post{
+    width: 600px;
+    padding: 15px 10px 5px 15px;
+    margin: 30px auto;
 }
 
 form{
     min-height: 50px;
     /* color: #ecf0f1; */
-    padding: 15px 10px 5px 10px;
+    padding: 15px 10px 15px 10px;
     box-shadow: 3px 5px 15px -5px black;
     border-radius: 10px;
     position: relative;
-    background-color: rgb(238, 236, 234);
+    background-color: rgb(240, 239, 239);
 }
 
-.main_post{
-    width: 700px;
-    padding: 15px 10px 5px 10px;
-    margin: 20px auto;
-}
+
 
 .post {
     background: #fff;
