@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
-import { ImageService } from 'src/app/services/image.service';
 import { PostHttpServiceService } from 'src/app/services/post-http-service.service';
 
 
@@ -16,7 +15,7 @@ import { PostHttpServiceService } from 'src/app/services/post-http-service.servi
 })
 export class CreatePostComponent implements OnInit {
 
-  constructor(private http: HttpClient, private imageService:ImageService) { }
+  constructor(private http: HttpClient) { }
 
   // User = new User();
   // post = new Post();
