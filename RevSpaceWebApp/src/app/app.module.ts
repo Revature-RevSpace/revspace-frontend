@@ -12,6 +12,7 @@ import { PostFeedComponent } from './components/post-feed/post-feed.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { PopulateFeedComponent } from './components/populate-feed/populate-feed.component';
 import { ViewProfileComponentComponent } from './components/view-profile-component/view-profile-component.component';
+import { TopComponent } from './components/top/top.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ViewProfileComponentComponent } from './components/view-profile-compone
     PopulateFeedComponent,
     ViewProfileComponentComponent,
     RegisterFormComponent,
-    LoginComponent
+    LoginComponent,
+    TopComponent
   ],
   
   imports: [
