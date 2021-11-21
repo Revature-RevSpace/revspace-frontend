@@ -1,1 +1,20 @@
-<p>create-post works!</p>
+<!-- Create A Post Form -->
+<div class="container">
+    <div class="main">
+    <p id="response"></p>
+    <h1 id="createPost">Create Post</h1>
+    <form #createPostForm="ngForm" (ngSubmit)="createPost()">
+        <table width="100%">
+            <tr>
+                <td></td>
+                <td><input type="text" name="postInput" id="postInput" [(ngModel)] = "postInput"></td>
+            </tr>
+            <!--Create Post Button-->
+            <tr>
+                <td></td>
+                <td colspan="2"><button id="createPostButton" class="btn btn-color">Post</button></td>
+            </tr>
+        </table>
+    </form>
+    </div>
+</div>
