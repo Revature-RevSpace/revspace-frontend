@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from "@angular/common";
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
 import { Like } from 'src/app/models/Like';
@@ -14,11 +15,13 @@ import { LikeHttpServiceService } from 'src/app/services/like-http-service.servi
 export class PopulateFeedComponent implements OnInit {
 
   constructor(private postHttpService: PostHttpServiceService,
-              private likeHttpService: LikeHttpServiceService) { }
+              private likeHttpService: LikeHttpServiceService,
+              @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
     this.nextTen(0);
   }
+
 
   pclArray: Array<Array<Post>> = [];
   posts: Array<Post> = [];
@@ -26,7 +29,7 @@ export class PopulateFeedComponent implements OnInit {
   postUtil: Array<PostUtilObj> = [];
   
 
-  user: User = new User(1,"abc@abc.com","firstname","lastname", 1637264203, 163700000, "gitName", "title", "location", "aboutme");
+  user: User = new User(1,"abc@abc.com","firstName","lastName", 1637264203, 163700000, "gitName", "title", "location", "aboutme");
 
   /*
   postUtil is an array where each element is an object with the following attributes:
@@ -42,15 +45,18 @@ export class PopulateFeedComponent implements OnInit {
 
         console.log(response);
 
-        if(response.status === 200){ //Okay
+        if(response.status == 200){ //Okay
           
-          this.populateArrays(response);
+          this.pclArray = response.body;
 
-        }else if (response.status === 204){ //No more posts to display
+          this.populateArrays(this.pclArray);
+
+
+        }else if (response.status == 204){ //No more posts to display
           
           alert("There are no more posts to display.")
 
-        }else if (response.status === 400){ //Bad request
+        }else if (response.status == 400){ //Bad request
           
           alert("Something went wrong! Call IT support for help.");
         }
@@ -60,45 +66,55 @@ export class PopulateFeedComponent implements OnInit {
 
   populateArrays(pclArray: Array<Array<Post>>) {
 
+    this.calculateLikes(this.pclArray[2]);
+
     for (let newPost of this.pclArray[0]) {
 
+      this.postUtil.push(new PostUtilObj(newPost.postId, 0, 0));
+
       this.posts.push(newPost);
+
+      console.log(newPost.creatorId.firstName);
     }
 
     for (let newComment of this.pclArray[1]) {
 
       this.comments.push(newComment);
-    }
-    
-    this.calculateLikes(this.pclArray[2]);
+    }  
   }
 
   calculateLikes(likesArray: Array<Post>) {
 
     for(let likePost of likesArray){
 
-      let postUtilObj = new PostUtilObj(likePost.postId, likePost.date, 0);
+      this.getPostUtilObj(likePost).numLikes = likePost.date;
 
       if (likePost.creatorId.userId == this.user.userId) {
         
-        postUtilObj.starStyle = "fas fa-star";
+        this.getPostUtilObj(likePost).starStyle = "fas fa-star";
       }
 
-      this.postUtil.push(postUtilObj);
+      //console.log(this.postUtil);
     }
   }
 
   likePost(curPost: Post) {
 
-    this.likeHttpService.likePost();
+    if (!this.alreadyLiked(curPost)){
 
-    this.postUtil.filter(obj => {return obj.postId == curPost.postId})[0].numLikes ++;
-    this.postUtil.filter(obj => {return obj.postId == curPost.postId})[0].starStyle = "fas fa-star";
+      this.likeHttpService.likePost();
+
+    this.getPostUtilObj(curPost).numLikes ++;
+    this.getPostUtilObj(curPost).starStyle = "fas fa-star";
+
+    }
   }
 
   determineStarStyle(curPost: Post): string {
 
-    return this.postUtil.filter(obj => {return obj.postId == curPost.postId})[0].starStyle;
+    //console.log(this.postUtil);
+
+    return this.getPostUtilObj(curPost).starStyle;
   }
 
   alreadyLiked(curPost: Post): boolean {
@@ -106,9 +122,43 @@ export class PopulateFeedComponent implements OnInit {
     return (this.determineStarStyle(curPost) == "fas fa-star");
   }
 
+
+  getPostUtilObj(post: Post): PostUtilObj {
+
+    return this.postUtil.filter(obj => {return obj.postId == post.postId})[0]
+  }
+
+  appendComments() {
+    
+    for (let comment of this.comments) {
+
+      let parent = this.document.getElementById("attach" + comment.parentPost.postId);
+
+
+
+      parent.appendChild(this.document.getElementById("comment" + comment.postId));
+    }
+  }
+
+
+  getIndent(comment: Post): number {
+
+    if (comment.parentPost.comment) {
+
+      return 50;
+
+    } else {
+
+      return 0;
+    }
+  }
+
+
   // createComment(commentId: number, parentId: number) {
 
   // }
+
+  
 
 }
 

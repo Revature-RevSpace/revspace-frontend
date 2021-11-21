@@ -19,7 +19,7 @@ export class ViewProfileComponentComponent implements OnInit {
   }
 
   load():void{
-    this.user.firstname='test';
+    this.user.firstName='test';
 
   }
   // getUser(): User{
