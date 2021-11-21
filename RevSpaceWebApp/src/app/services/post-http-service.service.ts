@@ -22,8 +22,7 @@ export class PostHttpServiceService {
 
     let authHeadersTen = new HttpHeaders({ 'Context-Type': 'application/json', 'Authorization': this.authToken, 'lastPostIdOnThePage': oldestIdString});
 
-    return this.http.get(`http://localhost:8080/posts`, {headers: authHeadersTen}
-    );
+    return this.http.get(`http://localhost:8080/posts`, {headers: authHeadersTen, observe:'response'});
   }
 
   

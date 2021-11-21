@@ -1,3 +1,4 @@
+
 .time {
     font-size: 9px !important
 }
@@ -13,3 +14,44 @@
     width: 100%;
     height: auto
 }
+
+.postButton:hover {
+    background-color: rgb(115, 165, 194);
+    border-radius: 10%;
+}
+
+.postButton {
+
+    margin-left: 25px;
+    margin-right: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    cursor: pointer;
+}
+
+body {
+    background-color: white;
+    font-family: Futura-Std-Book;
+    font-weight: 300
+}
+
+/* div.relative {
+    position: relative;
+    border: 50px solid;
+  } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
