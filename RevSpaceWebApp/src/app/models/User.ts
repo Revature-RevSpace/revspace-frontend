@@ -3,8 +3,8 @@ export class User {
 
     userId: number;
     email: string;
-    firstname: string;
-    lastname: string;
+    firstName: string;
+    lastName: string;
     birthday:  number;
     revatureJoinDate: number;
     githubUsername: string;
@@ -14,8 +14,8 @@ export class User {
 
     constructor(userId: number,
         email: string,
-        firstname: string,
-        lastname: string,
+        firstName: string,
+        lastName: string,
         birthday: number,
         revatureJoinDate: number,
         githubUsername: string,
@@ -24,8 +24,8 @@ export class User {
         {
             this.userId = userId;
             this.email = email;
-            this.firstname = firstname;
-            this.lastname = lastname;
+            this.firstName = firstName;
+            this.lastName = lastName;
             this.birthday = birthday;
             this.revatureJoinDate = revatureJoinDate;
             this.githubUsername = githubUsername;
@@ -33,6 +33,8 @@ export class User {
             this.location = location;
             this.aboutme = aboutme;
     }
+
+ 
 
 
 }
