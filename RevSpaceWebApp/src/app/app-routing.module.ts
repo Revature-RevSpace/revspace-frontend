@@ -8,7 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: 'postfeed', component: PostFeedComponent },
-  {path: 'viewprofile', component: ViewProfileComponentComponent},
+  {path: 'viewprofile/:userId', component: ViewProfileComponentComponent},
   { path: 'register', component: RegisterFormComponent},
   {path: 'login', component:LoginComponent}
 
