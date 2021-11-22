@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
 import { LoginInfo } from './models/LoginInfo';
 import { LoginService } from './services/login.service';
-
-=======
-import { LoginServiceService } from './services/login-service.service';
->>>>>>> b2b7b24 (changed css html)
+import { User } from './models/User';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +10,6 @@ import { LoginServiceService } from './services/login-service.service';
 })
 export class AppComponent {
   title = 'RevSpaceWebApp';
-<<<<<<< HEAD
   constructor(private loginService:LoginService){}
   isLoggedIn()
   {
@@ -27,14 +22,7 @@ export class AppComponent {
   getUserId(){
     let user = this.loginService.getLoginInfo().user;
     return user.userId;
-=======
-  constructor (private loginUser: LoginServiceService){
-    
-  }
-  userLoggedIn(){
-    console.log(this.loginUser.getLoginInfo());
-    return this.loginUser.getLoginInfo();
->>>>>>> b2b7b24 (changed css html)
+
   }
 }
 
