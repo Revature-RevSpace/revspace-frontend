@@ -30,8 +30,4 @@ export class PostHttpServiceService {
     return this.http.post<Post>('http://localhost:8080/posts', post, {headers: this.authHeaders});
   }
 
-  
-
-  
-
 }

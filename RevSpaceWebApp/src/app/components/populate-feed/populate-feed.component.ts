@@ -6,6 +6,7 @@ import { Like } from 'src/app/models/Like';
 import { PostUtilObj } from 'src/app/models/PostUtilObj';
 import { PostHttpServiceService } from 'src/app/services/post-http-service.service';
 import { LikeHttpServiceService } from 'src/app/services/like-http-service.service';
+import { NewPostService } from 'src/app/services/new-post.service';
 
 @Component({
   selector: 'app-populate-feed',
@@ -16,6 +17,7 @@ export class PopulateFeedComponent implements OnInit {
 
   constructor(private postHttpService: PostHttpServiceService,
               private likeHttpService: LikeHttpServiceService,
+              private newPostService: NewPostService,
               @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
@@ -24,7 +26,7 @@ export class PopulateFeedComponent implements OnInit {
 
 
   pclArray: Array<Array<Post>> = [];
-  posts: Array<Post> = [];
+  posts: Array<Post> = this.newPostService.posts;
   comments: Array<Post> = [];
   postUtil: Array<PostUtilObj> = [];
   lastLoadTime: number = 0;
