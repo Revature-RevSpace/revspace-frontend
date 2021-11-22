@@ -27,7 +27,7 @@ import { ImageService } from './services/image.service';
     ViewProfileComponentComponent,
     RegisterFormComponent,
     LoginComponent,
-    TopComponent
+    TopComponent,
   ],
   
   imports: [

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { Credential } from 'src/app/models/Credential';
@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']
 })
+
 export class RegisterFormComponent implements OnInit {
 
   constructor(private userHttp: UserService, private router: Router) { }
@@ -81,7 +82,7 @@ export class RegisterFormComponent implements OnInit {
       (response) => {
         console.log(response);
         this.userId = response.userId;
-        setTimeout(() => this.router.navigate(['viewprofile/' + this.userId]))  
+        setTimeout(() => this.router.navigate([`viewprofile/ + ${this.userId}`]))  
       }
     )
   }
