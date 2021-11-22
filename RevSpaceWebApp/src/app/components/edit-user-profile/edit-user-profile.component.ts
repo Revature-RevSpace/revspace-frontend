@@ -42,6 +42,21 @@ export class EditUserProfileComponent implements OnInit {
   joinDateLimitWarning: Boolean = false;
   birthdayLimitWarning: Boolean = false;
 
+  maxDateVar = new Date(); 
+
+  testLimit() {
+    console.log(this.maxDateVar);
+    console.log(this.joinDateInput);
+    console.log(this.joinDateInput > this.maxDateVar);
+  }
+/*
+    //Min Value for join date
+    let minJoinDate = new Date(2003, 0, 1); 
+    let minJoinDateValue = this.convertToUnixTime(minJoinDate) -this.dateTimezoneOffset;
+    //Min Value for birthday
+    let minBirthday = new Date(maxDate.getFullYear() - 125, 0, 1); 
+    let minBirthdayValue = this.convertToUnixTime(minBirthday) -this.dateTimezoneOffset;
+  */
 
 
 
