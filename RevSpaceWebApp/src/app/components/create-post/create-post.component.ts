@@ -18,17 +18,17 @@ export class CreatePostComponent implements OnInit {
 
   constructor(private http: HttpClient, private imageService:ImageService) { }
 
-  // User = new User();
-  // post = new Post();
-  // urllink:string;
-
   body: string;
   urlLink:string;
-  parentPost:Post;  
   creatorId:User;
   comment:boolean;
   date:number;
+  user: User = new User(1,'email','first','last',10000000,19,'gitur','title','NY','aboutme');
+  post = new Post(this.user,'body','image',1637264203, false);
 
+  
+
+  //NGIFs
   expandThis=false;
   show=false;
 
@@ -44,12 +44,6 @@ export class CreatePostComponent implements OnInit {
   expand(){
     this.expandThis=true;
   }
-
-  //CODE TO BUILD POST OBJ TO SEND
-  // buildObjPost() {
-  //   
-  // }
- 
 
   //CODE FOR IMGBB
   onInput(e: Event){
@@ -71,11 +65,21 @@ export class CreatePostComponent implements OnInit {
       }
   }
 
-  //Adding Post
+  //ADDING POST
   createPost(){
     alert("Add post");
     console.log(this.body);
 
+    this.post ={
+    creatorId: this.user, 
+    body: this.body,
+    image: this.urlLink, 
+    date: new Date().getTime(), 
+    comment: false,
+    parentPost: this.post,
+    postId:0
+    }
+    
 
 
   }
