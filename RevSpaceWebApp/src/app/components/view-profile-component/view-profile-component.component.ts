@@ -22,6 +22,7 @@ export class ViewProfileComponentComponent implements OnInit {
     const userid = Number(routeParams.get('userId'));
     this.userHTTP.getUserById(userid).subscribe(
       (response)=> {
+        console.log(response);
         this.realUser = response;
       }
     )
