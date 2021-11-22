@@ -85,7 +85,6 @@ export class CreatePostComponent implements OnInit {
      this.post.postId = data.postId;
 
      let newPost = new Post(this.user, this.body, this.urlLink, this.post.date, false, null, 0);
-
      newPost.postId = this.post.postId;
 
      console.log(this.newPostService.posts);
@@ -102,7 +101,6 @@ export class CreatePostComponent implements OnInit {
     }, error=> console.log(error));
 
     // window.location.reload();
-
 
     
   }
