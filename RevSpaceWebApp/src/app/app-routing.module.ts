@@ -7,12 +7,9 @@ import {ViewProfileComponentComponent} from './components/view-profile-component
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  {path: '', component:PostFeedComponent},
   { path: 'postfeed', component: PostFeedComponent },
-  {path: 'viewprofile/:userId', component: ViewProfileComponentComponent},
-  { path: 'register', component: RegisterFormComponent},
-  {path: 'login', component:LoginComponent}
-
+  {path: 'viewprofile/:userId', component: ViewProfileComponentComponent}
 ];
 
 @NgModule({

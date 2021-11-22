@@ -20,9 +20,9 @@ export class LoginServiceService {
    * If request is successful, saves the user's auth token and user info
    * @param credentials Credentials object containing a user object -- used to retrieve user's email and password
    */
-  public login(credentials:Credentials)
+  public login(username:string, password:string)
   {
-    const authToken:string = 'Basic ' + btoa(credentials.user.email + ":" + credentials.password);
+    const authToken:string = 'Basic ' + btoa(username + ":" + password);
     const myHeaders:HttpHeaders = new HttpHeaders({
       'Authorization': authToken
     });
