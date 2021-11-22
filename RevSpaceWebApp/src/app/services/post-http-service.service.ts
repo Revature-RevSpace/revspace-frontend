@@ -5,7 +5,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {LoginService} from './login.service';
 import { BackendService } from './backend.service';
-import { Post } from '../models/Post'
 
 @Injectable({
   providedIn: 'root'
