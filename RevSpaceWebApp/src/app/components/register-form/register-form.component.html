@@ -1,9 +1,9 @@
-<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #F26925; color: white;" type="button" id="register" value="Register >">
+<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #F26925; color: white;">
     Register
   </button>
   
   <!-- Modal -->
-  <div data-target = "#modal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -29,7 +29,7 @@
             </div>
             <div class="mb-3">
                 <label for="userDOBValue" class="col-form-label">Date of Birth:</label>
-                <input type="number" class="form-control" id="userDOBValue" placeholder="dd/mm/yyyy" [(ngModel)] = "userDob">  <!-- Had to change this to type = number for now due to the model having number type-->
+                <input type="text" class="form-control" id="userDOBValue" placeholder="dd/mm/yyyy" [(ngModel)] = "userDob">  
                 <span *ngIf = '!userDob; noDob'>{{noDob}}</span>
             </div>
             <div class="mb-3">
