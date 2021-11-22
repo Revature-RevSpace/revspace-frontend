@@ -2,17 +2,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from '../models/Post'
+import { LoginServiceService } from './login-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostHttpServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private loginService: LoginServiceService) { }
 
-  authToken: string = "Basic " + btoa("username1@email.com:Password1");
-
-  //authToken: string = "Basic " + btoa(user.email + user.password);
+  // authToken: string = "Basic " + btoa("username1@email.com:Password1");
+  authToken: string = this.loginService.getLoginInfo().authToken;
 
   
   private authHeaders = new HttpHeaders({ 'Context-Type': 'application/json', 'Authorization': this.authToken});
