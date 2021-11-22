@@ -12,9 +12,9 @@
                                    <h3>Revature Information</h3>
                             Title: {{user.title}}
                             <br>
-                            Revature Join Date: {{user.revatureJoinDate}}
+                            Revature Join Date: <span *ngIf="user.revatureJoinDate"> {{user.revatureJoinDate | date}}</span>
                             <br>
-                            Birthday: {{user.birthday}}
+                            Birthday: {{user.birthday | date}}
                             <br>
                             Location: {{user.location}}
                             </div>
