@@ -59,8 +59,8 @@
 <div *ngFor="let comment of comments; let j = index">
 
     <div 
-    style="position: relative; left: 20px;" 
-
+    style="position: relative;"
+    [style.left.px]="getIndent(comment)" 
     [id]="'comment' + comment.postId"> 
         <!-- <img src="https://i.imgur.com/1YrCKa1.jpg" width="40" class="rounded-image"> -->
         <div class="d-flex flex-column ml-2"> <span class="name">{{comment.creatorId.firstName}} {{comment.creatorId.lastName}}</span> 
