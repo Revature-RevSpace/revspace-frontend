@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginInfo } from './models/LoginInfo';
 import { LoginService } from './services/login.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
