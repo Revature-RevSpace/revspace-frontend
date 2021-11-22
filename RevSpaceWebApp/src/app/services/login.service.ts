@@ -7,7 +7,7 @@ import { User } from '../models/User';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginServiceService {
+export class LoginService {
 
   constructor(
     private http: HttpClient
@@ -18,7 +18,8 @@ export class LoginServiceService {
   /**
    * Requests login validation.
    * If request is successful, saves the user's auth token and user info
-   * @param credentials Credentials object containing a user object -- used to retrieve user's email and password
+   * @param username username
+   * @param password password
    */
   public login(username:string, password:string)
   {

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LoginServiceService } from 'src/app/services/login-service.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import { LoginServiceService } from 'src/app/services/login-service.service';
 
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService:LoginServiceService) { }
+  constructor(private loginService:LoginService) { }
 
   ngOnInit(): void {
   }
