@@ -7,6 +7,8 @@ import { User } from 'src/app/models/User';
 import { ImageService } from 'src/app/services/image.service';
 import { PostHttpServiceService } from 'src/app/services/post-http-service.service';
 import { Form } from '@angular/forms';
+import { LoginServiceService } from 'src/app/services/login-service.service';
+import { NewPostService } from 'src/app/services/new-post.service';
 
 
 @Component({
@@ -16,14 +18,15 @@ import { Form } from '@angular/forms';
 })
 export class CreatePostComponent implements OnInit {
 
-  constructor(private http: HttpClient, private imageService:ImageService, private postService: PostHttpServiceService) { }
+  constructor(private loginService: LoginServiceService, private http: HttpClient, private imageService:ImageService, private postService: PostHttpServiceService, private newPostService: NewPostService) { }
 
   body: string;
   urlLink:string;
   creatorId:User;
   comment:boolean;
   date:number;
-  user: User = new User(1,'email','first','last',10000000,19,'gitur','title','NY','aboutme');
+  user: User = this.loginService.getLoginInfo().user;
+  // user: User = new User(1,'email','first','last',10000000,19,'gitur','title','NY','aboutme');
   post = new Post(this.user,'body','image',1637264203, false);
 
   
@@ -34,7 +37,6 @@ export class CreatePostComponent implements OnInit {
 
   
   ngOnInit(): void {
-    
   }
 
   expand(){
@@ -81,7 +83,13 @@ export class CreatePostComponent implements OnInit {
      console.log(data);
     }, error=> console.log(error));
 
-    window.location.reload();
+    // window.location.reload();
+
+    this.newPostService.posts.unshift(this.post);
+
+    this.body="";
+    this.show=false;
+    this.expandThis=false;
   }
 }
  
