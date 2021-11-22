@@ -5,14 +5,13 @@
 
     <h3 style= "text-align: center;">Login with registered email</h3><br>    
     <div style="text-align: center; margin-bottom: 5%;"  class="login">    
-    <form id="login" method="get" action="login.php">    
         <label>
             <b>
                 Email      
             </b>    
         </label> 
         <br>   
-        <input style="border:5px solid#F26925; background-color: #bbdefb;" type="text"  id="email" placeholder="Email@revature.net">    
+        <input style="border:5px solid#F26925; background-color: #bbdefb;" type="text"  id="email" placeholder="Email@revature.net" [(ngModel)]="username">    
         <br>
         <br>    
         <label>
@@ -21,9 +20,9 @@
             </b>    
         </label>
         <br>    
-        <input style="border:5px solid#F26925; background-color: #bbdefb;" type="Password"  id="password" placeholder="Password">    
+        <input style="border:5px solid#F26925; background-color: #bbdefb;" type="Password"  id="password" placeholder="Password" [(ngModel)]="password">    
         <br>
         <br>    
-        <input  style="background-color: #F26925; color: white;" type="button" id="login" value="Log In >">       
+        <input  style="background-color: #F26925; color: white;" type="button" id="login" value="Log In >" (click)="login()">       
         <!-- Registration Modal -->
         <app-register-form></app-register-form> 

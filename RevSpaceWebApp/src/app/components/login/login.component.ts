@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { LoginServiceService } from 'src/app/services/login-service.service';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService:LoginServiceService) { }
 
   ngOnInit(): void {
   }
 
+  username:string;
+  password:string;
+
+  login()
+  {
+    this.loginService.login(this.username, this.password);
+  }
 }
