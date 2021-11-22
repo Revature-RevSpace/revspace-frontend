@@ -8,5 +8,9 @@
     border-radius: 5px;
 }
 .fullContents {
+<<<<<<< HEAD
     background-color: #FFFFFF;
+=======
+    background-color: #93C5E3;
+>>>>>>> 1f895cb (remove extra bootstrap)
 }
