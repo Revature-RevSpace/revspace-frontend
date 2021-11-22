@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Post } from '../models/Post'
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,12 @@ export class PostHttpServiceService {
 
     return this.http.get(`http://localhost:8080/posts`, {headers: authHeadersTen, observe:'response'});
   }
+
+  addPost(post: Post): Observable<Post> {
+    return this.http.post<Post>('http://localhost:8080/posts', post, {headers: this.authHeaders});
+  }
+
+  
 
   
 
