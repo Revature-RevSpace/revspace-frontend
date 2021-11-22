@@ -1,20 +1,41 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+
 <!-- Create A Post Form -->
 <div class="container">
     <div class="main">
-    <p id="response"></p>
-    <h1 id="createPost">Create Post</h1>
-    <form #createPostForm="ngForm" (ngSubmit)="createPost()">
-        <table width="100%">
-            <tr>
-                <td></td>
-                <td><input type="text" name="postInput" id="postInput" [(ngModel)] = "postInput"></td>
-            </tr>
-            <!--Create Post Button-->
-            <tr>
-                <td></td>
-                <td colspan="2"><button id="createPostButton" class="btn btn-color">Post</button></td>
-            </tr>
-        </table>
-    </form>
+
+    <div class="main_post">
+        <form>
+            <textarea rows="" column="" name ="body" value="body" [(ngModel)] = "body" (click)="expand()" placeholder="Hey, whats on your mind?" autocomplete="on">
+            </textarea>
+            
+
+        <div *ngIf="expandThis">
+            <!-- <div *ngIf="show">
+                <img class="fitImg" [src]="urllink">
+            </div> -->
+          
+                <!-- CODE FOR IMGBB -->
+                <input type="file" style="display:none" (input)="onInput($event)" #fileInput>
+                <button  type="button" (click)="fileInput.click()">
+                        <img class="image" alt="photo" src="/assets/postimage/photo1.png"/>
+                </button>
+
+
+                <!-- CODE FOR ADD POST -->
+                <button id="createPostBtn" (click)="createPost()" class="postbtn">
+                    <i class="fas fa-plus"></i>
+                </button>
+        </div>
+
+        </form>
+        <div class="post">
+            <h1>Title</h1>
+            <br>
+            <p>this is the content</p>
+
+        </div>
+
+    </div>
     </div>
 </div>

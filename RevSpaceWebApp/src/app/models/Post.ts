@@ -8,7 +8,7 @@ export class Post {
     image: string;
     date: number;
     comment: boolean;
-    parentPost: Post
+    parentPost: Post;
 
 
   constructor(
