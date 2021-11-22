@@ -16,6 +16,7 @@ import { TopComponent } from './components/top/top.component';
 import { ImageService } from './services/image.service';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { ImageService } from './services/image.service';
     RegisterFormComponent,
     LoginComponent,
     TopComponent
+
   ],
   
   imports: [
