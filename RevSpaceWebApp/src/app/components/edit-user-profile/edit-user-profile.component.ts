@@ -10,15 +10,6 @@ export class EditUserProfileComponent implements OnInit {
 
   constructor() { 
 
-    let dateObject = new Date();
-    let currentYear = dateObject.getFullYear();
-    let currentMonth = (dateObject.getMonth() + 1).toString().padStart(2, '0');
-    let currentDay = dateObject.getDate().toString().padStart(2, '0');
-
-    this.currentDateString = currentYear + "-" + currentMonth + "-" + currentDay;
-    this.minimumBirthdayString = (currentYear-125) + "-" + currentMonth + "-" + currentDay;
-
-    
   }
 
   ngOnInit(): void {
@@ -47,21 +38,26 @@ export class EditUserProfileComponent implements OnInit {
   //This calculates the timezone offset (in ms), which we apply to the incoming and outgoing date values to prevent the above mis-representation while preserving the correct unix time in the database
   dateTimezoneOffset = 60*1000*this.joinDateInput.getTimezoneOffset();
 
+  //Used to display spans warning the user of date limits
+  joinDateLimitWarning: Boolean = false;
+  birthdayLimitWarning: Boolean = false;
+
+
+
 
   //Converts Date and String data types from the date input tags into unix time (in ms)
   //We need to handle both date and string value types here:
   //Since we provide a date object to the input tags, if left unchanged by the user we get a date back out
   //But if the user changes the value, the tag gives us a string we need to manually parse
-  convertToMSValue(date: any) {
+  convertToUnixTime(date: any) {
 
-    if((typeof date) == (typeof String(1))) {
+    if((typeof date) == (typeof String("I'm a string!"))) {
       //If date is a string:
       //Make a new date object to manupulate (with only day/month/year values)
       let equivalentDate = new Date(1970,0,1);
 
       //Set the date to the user's input and return the equivalent unix time
       let timeValue = equivalentDate.setUTCFullYear(date.substring(0,4), date.substring(5,7)-1, date.substring(8,10));
-      console.log(timeValue);
       return timeValue;
 
     } else {
@@ -102,9 +98,50 @@ export class EditUserProfileComponent implements OnInit {
 
     //Convert the Date objects back into numeric values for database storage
     //Don't forget to undo the timezone value shift from before!
-    let joinDateNumber = this.convertToMSValue(this.joinDateInput) -this.dateTimezoneOffset;
-    let birthdayNumber = this.convertToMSValue(this.birthdayInput) -this.dateTimezoneOffset;
+    let joinDateNumber = this.convertToUnixTime(this.joinDateInput) -this.dateTimezoneOffset;
+    let birthdayNumber = this.convertToUnixTime(this.birthdayInput) -this.dateTimezoneOffset;
 
+
+    //Verify all input values are within tolerances!
+    //Max values for join date and birthday
+    let maxDate = new Date(); 
+    let maxDateValue = this.convertToUnixTime(maxDate) -this.dateTimezoneOffset; 
+    //Min Value for join date
+    let minJoinDate = new Date(2003, 0, 1); 
+    let minJoinDateValue = this.convertToUnixTime(minJoinDate) -this.dateTimezoneOffset;
+    //Min Value for birthday
+    let minBirthday = new Date(maxDate.getFullYear() - 125, 0, 1); 
+    let minBirthdayValue = this.convertToUnixTime(minBirthday) -this.dateTimezoneOffset;
+    
+    
+    
+
+    let failUpdate = false;
+
+    console.log(joinDateNumber);
+    console.log(minJoinDateValue);
+
+    if(joinDateNumber > maxDateValue || joinDateNumber < minJoinDateValue) {
+      console.log("Join Date out of bounds!");
+
+      failUpdate = true;
+      this.joinDateLimitWarning = true;
+    } else {
+      this.joinDateLimitWarning = false;
+    }
+    if(birthdayNumber > maxDateValue || birthdayNumber < minBirthdayValue) {
+      console.log("Birthday out of bounds!");
+      failUpdate = true;
+      this.birthdayLimitWarning = true;
+    } else {
+      this.birthdayLimitWarning = false;
+    }
+ 
+    if(failUpdate) {
+      console.log("Out of bounds - cancelling update");
+      return;
+    }
+    
 
     let fakeUser = {
       firstName: this.firstNameInput,
@@ -135,7 +172,8 @@ export class EditUserProfileComponent implements OnInit {
 
 
   alertLeavingEditScreen() {
-    confirm("Leave the page?");
+    let leaveBoolean = confirm("Leave the page?");
+    console.log(leaveBoolean);
   }
   
 
