@@ -8,20 +8,20 @@
 
 .main_post{
     width: 600px;
-    padding: 15px 10px 5px 15px;
+    padding: 15px;
     margin: 30px auto;
 }
 
 form{
     min-height: 50px;
     /* color: #ecf0f1; */
-    padding: 15px 10px 15px 10px;
+    padding: 15px 10px 0px 10px;
     box-shadow: 3px 5px 15px -5px black;
     border-radius: 10px;
     position: relative;
-    background-color: rgb(240, 239, 239);
+    background-color: rgb(236, 234, 234);
+    border:1px solid orange;
 }
-
 
 
 .post {
@@ -43,12 +43,15 @@ i .fa-plus {
     width:30px;
     height:50px;
     position:absolute;
-    bottom: 25px;
+    bottom: -3px;
 }
 
 .postbtn:hover .fa-plus{
     color:#fff;
     background:transparent;
+}
+.postbtn:hover {
+    background-color: #f45900;
 }
 
 .postbtn {
@@ -66,17 +69,13 @@ i .fa-plus {
     border-radius: 50%;
 }
 
-.postbtn:hover {
-    background-color: #f48a00;
-}
-
 i .fas,.fa-plus {
     outline:none;
     font-size: 30px;
-    font-weight: 600;
-    color:#f48a00;
+    font-weight: 550;
+    color:#f45900;
     /* cursor:pointer; */
-    /* z-index: 222; */
+    /* z-index: 222;  */
     background-color: transparent;
 }
 
@@ -88,10 +87,6 @@ textarea {
     outline: none;
     font-size: 2rem;
     margin: 10px 0;
-}
-
-input {
-    border:none;
 }
 
 i .fas,.fa-image {
@@ -108,11 +103,11 @@ i .fa-image {
     width:30px;
     height:50px;
     position:absolute;
-    bottom: 25px;
+    bottom: 30px;
 }
 
 button .image {
-    width:35px;
+    width:40px;
     /* font-size: 30px; */
     font-weight: 600;
     color: rgb(70, 100, 125);
@@ -134,4 +129,11 @@ button .image {
     display: block;
     margin-left:auto;
     margin-right: auto;
+}
+
+.image{
+    width:30px;
+    height:35px;
+    margin:0px;
+    padding:0px;
 }

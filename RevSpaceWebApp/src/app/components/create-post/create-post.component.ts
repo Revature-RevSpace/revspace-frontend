@@ -1,11 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
+import { ImageService } from 'src/app/services/image.service';
 import { PostHttpServiceService } from 'src/app/services/post-http-service.service';
-
+import { Form } from '@angular/forms';
 
 
 @Component({
@@ -15,11 +16,11 @@ import { PostHttpServiceService } from 'src/app/services/post-http-service.servi
 })
 export class CreatePostComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private imageService:ImageService) { }
 
   // User = new User();
   // post = new Post();
-  urllink:string;
+  // urllink:string;
 
   body: string;
   imgUrlLink:string;
@@ -31,8 +32,8 @@ export class CreatePostComponent implements OnInit {
   expandThis=false;
   show=false;
 
-  private imageFile: File;
-  images:object[] = [];
+  
+
 
   ngOnInit(): void {
     // this.postService.getAllPosts()
@@ -41,23 +42,15 @@ export class CreatePostComponent implements OnInit {
     //     this.allPosts = data;
     //   }, error=> console.log(error));
 
-    // this.getAllImages();
+   
   }
 
   expand(){
     this.expandThis=true;
   }
 
-  // onFileSelected(event){
-  //   console.log(event);
-  //   const formdata = new FormData()
-  //   formdata.append("image", event.target.files[0])
-
-    // let headers = new Headers({'authorization': 'Client-ID 44360ac4578102b'});
-    // this.http.post('https://api.imgur.com/3/image', this.imageFile, {headers: headers})
-
  
-
+  //CODE TO JUST SHOW IMAGE WHILE USER SELECTS IT
     // this.imgUrlLink = event.target.files[0].name;
     // console.log(this.imgUrlLink);
 
@@ -68,12 +61,11 @@ export class CreatePostComponent implements OnInit {
     //     this.urllink = event.target.result
     //     this.show=true;
     //   }
-      
     // }
   // }
 
+  //CODE TO BUILD POST OBJ TO SEND
   // buildObjPost() {
-
   //   // this.post = {
   //   //   body = this.body,
   //   //   image = this.imgFileName,
@@ -82,29 +74,21 @@ export class CreatePostComponent implements OnInit {
   //   //   parentPost = this.parentPost,
   //   //   creatorId = this.User
   //   // }
-   
   // }
   
  
   createPost(){
-    
     alert("Add post");
+  }
+ 
 
-    // console.log(this.body);
+  //CODE FOR IMGBB
+  onInput(e: Event){
+    const input = e.target as HTMLInputElement;
+    this.imageService.upload(input.files[0]).subscribe(url => console.log(url));
   }
 
 
-  // onFileSelected(imageInput:any){
-  //   this.imageFile = imageInput.files[0];
-  // }
  
-  // addImage(){
-  //   this.imageService.uploadImage(this.imageFile);
-  // }
-
-  
-  // getAllImages(){
-  //   this.images = this.imageService.getImages();
-  // }
   
  }
