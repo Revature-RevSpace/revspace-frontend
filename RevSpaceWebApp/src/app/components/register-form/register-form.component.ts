@@ -17,10 +17,11 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit(): void {
    
   }
+  userId: number;
   userFirstName: string;
   userLastName: string;
   userEmail: string;
-  userDob: number; // had to change this to number for now until we figure out how to handle dates
+  userDob: string; 
   userPassword: string;
   userConfirmPassword: string;
   userDOBNum: number;
@@ -72,14 +73,25 @@ export class RegisterFormComponent implements OnInit {
   }
 
   createUser(){
-    let newUser: User = new User(0, this.userEmail, this.userFirstName, this.userLastName, this.userDob, null, '', '', '', '');
+
+    this.userDOBNum = this.dateToNum(this.userDob);
+    let newUser: User = new User(0, this.userEmail, this.userFirstName, this.userLastName, this.userDOBNum, null, '', '', '', '');
     let newCredential: Credential = new Credential(newUser, this.userPassword);
     this.userHttp.addUser(newCredential).subscribe (
       (response) => {
         console.log(response);
-        setTimeout(() => this.router.navigate(['viewprofile']))  
+        this.userId = response.userId;
+        setTimeout(() => this.router.navigate(['viewprofile/' + this.userId]))  
       }
     )
+  }
+
+  //Convert String DOB to Unix Timestamp
+  dateToNum(userDob: string){
+    let DOBDate = new Date(userDob);
+    let DOBNum = (DOBDate.getTime() / 1000);
+
+    return DOBNum;
   }
 
 
