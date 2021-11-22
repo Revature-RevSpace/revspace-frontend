@@ -65,7 +65,11 @@
           },
           "defaultConfiguration": "production"
         },
-        "serve": {
+        "serve": 
+         {
+           "options": { 
+             "proxyConfig": "proxy.conf.json"
+            },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
@@ -81,6 +85,7 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "RevSpaceWebApp:build"
+           
           }
         },
         "test": {
@@ -95,7 +100,6 @@
               "src/assets"
             ],
             "styles": [
-              
               "src/styles.css"
             ],
             "scripts": []
