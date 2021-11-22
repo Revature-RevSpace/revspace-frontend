@@ -16,7 +16,7 @@ import { Form } from '@angular/forms';
 })
 export class CreatePostComponent implements OnInit {
 
-  constructor(private http: HttpClient, private imageService:ImageService) { }
+  constructor(private http: HttpClient, private imageService:ImageService, private postService: PostHttpServiceService) { }
 
   body: string;
   urlLink:string;
@@ -34,11 +34,7 @@ export class CreatePostComponent implements OnInit {
 
   
   ngOnInit(): void {
-    // this.postService.getAllPosts()
-    //   .subscribe(data =>{
-    //     console.log(data);
-    //     this.allPosts = data;
-    //   }, error=> console.log(error));
+    
   }
 
   expand(){
@@ -67,7 +63,6 @@ export class CreatePostComponent implements OnInit {
 
   //ADDING POST
   createPost(){
-    alert("Add post");
     console.log(this.body);
 
     this.post ={
@@ -76,12 +71,17 @@ export class CreatePostComponent implements OnInit {
     image: this.urlLink, 
     date: new Date().getTime(), 
     comment: false,
-    parentPost: this.post,
+    parentPost: null,
     postId:0
     }
     
+    //CALLING ADD POST SERVICE TO SEND NEW POST
+    this.postService.addPost(this.post)
+   .subscribe(data =>{
+     console.log(data);
+    }, error=> console.log(error));
 
-
+    window.location.reload();
   }
 }
  
