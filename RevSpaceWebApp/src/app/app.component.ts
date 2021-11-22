@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginServiceService } from './services/login-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'RevSpaceWebApp';
+  constructor (private loginUser: LoginServiceService){
+    
+  }
+  userLoggedIn(){
+    console.log(this.loginUser.getLoginInfo());
+    return this.loginUser.getLoginInfo();
+  }
 }
+
