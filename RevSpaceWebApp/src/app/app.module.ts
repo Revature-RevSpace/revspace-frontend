@@ -13,6 +13,8 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { PopulateFeedComponent } from './components/populate-feed/populate-feed.component';
 import { ViewProfileComponentComponent } from './components/view-profile-component/view-profile-component.component';
 import { TopComponent } from './components/top/top.component';
+import { ImageService } from './services/image.service';
+
 
 
 @NgModule({
@@ -35,7 +37,7 @@ import { TopComponent } from './components/top/top.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
