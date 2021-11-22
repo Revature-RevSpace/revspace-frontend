@@ -15,6 +15,11 @@ export class LoginServiceService {
 
   private loginInfo:LoginInfo = null;
 
+  /**
+   * Requests login validation.
+   * If request is successful, saves the user's auth token and user info
+   * @param credentials Credentials object containing a user object -- used to retrieve user's email and password
+   */
   public login(credentials:Credentials)
   {
     const authToken:string = 'Basic ' + btoa(credentials.user.email + ":" + credentials.password);
@@ -33,6 +38,10 @@ export class LoginServiceService {
     )
   }
 
+  /**
+   * @returns Login info for currently logged-in user (contains user info and reusable auth token).
+   * Returns null if user is not logged in.
+   */
   public getLoginInfo()
   {
     return this.loginInfo;
