@@ -21,7 +21,6 @@ import { DatePipe } from './pipes/date.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    ViewProfileComponentComponent,
     PostFeedComponent,
     CreatePostComponent,
     PopulateFeedComponent,

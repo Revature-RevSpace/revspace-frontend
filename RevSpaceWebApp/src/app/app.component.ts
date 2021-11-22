@@ -3,6 +3,7 @@ import { LoginInfo } from './models/LoginInfo';
 import { User } from './models/User';
 import { LoginServiceService } from './services/login-service.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
