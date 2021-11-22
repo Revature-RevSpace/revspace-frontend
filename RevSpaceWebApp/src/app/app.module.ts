@@ -14,13 +14,13 @@ import { PopulateFeedComponent } from './components/populate-feed/populate-feed.
 import { ViewProfileComponentComponent } from './components/view-profile-component/view-profile-component.component';
 import { TopComponent } from './components/top/top.component';
 import { ImageService } from './services/image.service';
+import { DatePipe } from './pipes/date.pipe';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ViewProfileComponentComponent,
     PostFeedComponent,
     CreatePostComponent,
     PopulateFeedComponent,
@@ -28,6 +28,7 @@ import { ImageService } from './services/image.service';
     RegisterFormComponent,
     LoginComponent,
     TopComponent,
+    DatePipe,
   ],
   
   imports: [
