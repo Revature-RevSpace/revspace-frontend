@@ -123,11 +123,12 @@ button .image {
 } */
 
 .fitImg{
-    height: 300px;
-    width:500px;
+    height: 250px;
+    width:400px;
     display: block;
     margin-left:auto;
     margin-right: auto;
+    padding: 5px;
 }
 
 .image{
