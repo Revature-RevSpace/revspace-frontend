@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { DOCUMENT } from "@angular/common";
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
@@ -27,6 +27,7 @@ export class PopulateFeedComponent implements OnInit {
   posts: Array<Post> = [];
   comments: Array<Post> = [];
   postUtil: Array<PostUtilObj> = [];
+  lastLoadTime: number = 0;
   
 
   user: User = new User(1,"abc@abc.com","firstName","lastName", 1637264203, 163700000, "gitName", "title", "location", "aboutme");
@@ -66,21 +67,23 @@ export class PopulateFeedComponent implements OnInit {
 
   populateArrays(pclArray: Array<Array<Post>>) {
 
-    this.calculateLikes(this.pclArray[2]);
-
     for (let newPost of this.pclArray[0]) {
 
       this.postUtil.push(new PostUtilObj(newPost.postId, 0, 0));
 
       this.posts.push(newPost);
 
-      console.log(newPost.creatorId.firstName);
+      //console.log(newPost.creatorId.firstName);
     }
 
     for (let newComment of this.pclArray[1]) {
 
+      this.postUtil.push(new PostUtilObj(newComment.postId, 0, 0));
+
       this.comments.push(newComment);
     }  
+
+    this.calculateLikes(this.pclArray[2]);
   }
 
   calculateLikes(likesArray: Array<Post>) {
@@ -140,7 +143,6 @@ export class PopulateFeedComponent implements OnInit {
     }
   }
 
-
   getIndent(comment: Post): number {
 
     if (comment.parentPost.comment) {
@@ -153,13 +155,28 @@ export class PopulateFeedComponent implements OnInit {
     }
   }
 
+  @HostListener("window:scroll", [])
+  onScroll(): void {
+
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+
+      if (Date.now() - this.lastLoadTime > 1000) {
+
+        this.nextTen(this.posts[this.posts.length - 1].postId);
+
+        this.lastLoadTime = Date.now();
+      }
+    } 
+  }
+
+
 
   // createComment(commentId: number, parentId: number) {
 
   // }
-
+}
   
 
-}
+
 
 
