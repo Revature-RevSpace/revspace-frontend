@@ -14,5 +14,13 @@ export class AppComponent {
   {
     return(this.loginService.getLoginInfo() != null);
   }
+  getUserName():string{
+    let user = this.loginService.getLoginInfo().user;
+    return user.firstName + " " + user.lastName;
+  }
+  getUserId(){
+    let user = this.loginService.getLoginInfo().user;
+    return user.userId;
+  }
 }
 

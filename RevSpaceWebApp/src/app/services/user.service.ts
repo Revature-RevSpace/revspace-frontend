@@ -12,8 +12,8 @@ export class UserService {
 
   private headers = new HttpHeaders({ 'Context-Type': 'application/json'});
 
-  getUserById(id: number): Observable<User> {
-    return this.http.get<User>('http://localhost:8080/users/' + id);
+  getUserById(id: number, myHeaders: HttpHeaders): Observable<User> {
+    return this.http.get<User>('http://localhost:8080/users/' + id, {headers:myHeaders});
   }
 
   getUserByEmail(email: string): Observable<User> {
