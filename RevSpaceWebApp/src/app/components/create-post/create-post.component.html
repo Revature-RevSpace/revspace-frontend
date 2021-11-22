@@ -14,22 +14,13 @@
             <!-- <div *ngIf="show">
                 <img class="fitImg" [src]="urllink">
             </div> -->
-            <!-- <div *ngFor="let image of images">
-                <img [src]="image.link">               
-            </div> -->
-            <!-- <button> -->
-                <!-- <input #imageInput style="display:none" type="file" (change)="onFileSelected(imageInput)" #fileInput>
-                <button type="button" (click)="fileInput.click()">Choose Image</button>  -->
-            
-
+          
                 <!-- CODE FOR IMGBB -->
                 <input type="file" style="display:none" (input)="onInput($event)" #fileInput>
                 <button  type="button" (click)="fileInput.click()">
                         <img class="image" alt="photo" src="/assets/postimage/photo1.png"/>
                 </button>
 
-                
-            <!-- </button> -->
 
                 <!-- CODE FOR ADD POST -->
                 <button id="createPostBtn" (click)="createPost()" class="postbtn">
