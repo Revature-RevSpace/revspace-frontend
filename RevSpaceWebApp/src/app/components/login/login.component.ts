@@ -23,4 +23,12 @@ export class LoginComponent implements OnInit {
   {
     this.loginService.login(this.username, this.password);
   }
+
+  /**
+   * @returns whether the most recent login attempt was invalid (false if no login attempt this session)
+   */
+  isLoginInvalid():boolean
+  {
+    return this.loginService.isLoginInvalid();
+  }
 }

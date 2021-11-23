@@ -14,6 +14,7 @@ export class LoginService {
   ) { }
 
   private loginInfo:LoginInfo = null;
+  private invalidLogin = false;
 
   /**
    * Requests login validation.
@@ -30,11 +31,13 @@ export class LoginService {
     const request = this.http.get<User>("http://localhost:8080/login", {headers:myHeaders});
     const result = request.subscribe(
       (response)=>{
-        this.loginInfo = new LoginInfo(response, authToken)
+        this.loginInfo = new LoginInfo(response, authToken);
+        this.invalidLogin = false;
       },
       ()=>
       {
         this.loginInfo = null;
+        this.invalidLogin = true;
       }
     )
   }
@@ -46,5 +49,14 @@ export class LoginService {
   public getLoginInfo()
   {
     return this.loginInfo;
+  }
+
+  /**
+   * @returns true if the most recent login attempt was invalid, false otherwise
+   * (false if no login attemps yet in this session)
+   */
+  public isLoginInvalid()
+  {
+    return this.invalidLogin;
   }
 }

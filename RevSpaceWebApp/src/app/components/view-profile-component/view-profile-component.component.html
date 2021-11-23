@@ -11,23 +11,23 @@
                                    <h3>Revature Information</h3>
                             Title: {{user.title}}
                             <br>
-                            Revature Join Date: <span *ngIf="user.revatureJoinDate"> {{user.revatureJoinDate | date}}</span>
+                            Revature Join Date: <span *ngIf="user.revatureJoinDate"> {{user.revatureJoinDate | newDate}}</span>
                             <br>
-                            Birthday: {{user.birthday | date}}
+                            Birthday: {{user.birthday | newDate}}
                             <br>
                             Location: {{user.location}}
                             </div>
 
                      </div>
                      <div class="col" style="height: 100%;">
-                            <div style="background-color: #F26925;display: inline-block;padding: 3%;border-radius: 10px;">
+                            <div style="background-color: #F26925;padding: 3%;border-radius: 10px;">
                                    <h3>Contact</h3>
                             Email: {{user.email}}
                             <br>
                             GitHub username: {{user.githubUsername}}
                             <br>
                             <br>
-                            
+                            <br>
                             </div>
                      </div>
               </div>
