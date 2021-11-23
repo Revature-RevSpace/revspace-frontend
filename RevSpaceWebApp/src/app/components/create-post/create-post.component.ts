@@ -9,6 +9,7 @@ import { PostHttpServiceService } from 'src/app/services/post-http-service.servi
 import { Form } from '@angular/forms';
 import { LoginServiceService } from 'src/app/services/login-service.service';
 import { NewPostService } from 'src/app/services/new-post.service';
+import { PostUtilObj } from 'src/app/models/PostUtilObj';
 
 
 @Component({
@@ -85,7 +86,13 @@ export class CreatePostComponent implements OnInit {
 
     // window.location.reload();
 
-    this.newPostService.posts.unshift(this.post);
+
+    let newPost = new Post(this.user, this.body, this.urlLink, this.post.date, false, null, 0);
+    
+    this.newPostService.postUtil.push(new PostUtilObj(newPost.postId, 0, 0));
+    this.newPostService.posts.unshift(newPost);
+
+    console.log(this.newPostService.posts);
 
     this.body="";
     this.show=false;

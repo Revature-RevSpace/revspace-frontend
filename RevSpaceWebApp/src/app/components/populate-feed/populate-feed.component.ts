@@ -28,7 +28,7 @@ export class PopulateFeedComponent implements OnInit {
   pclArray: Array<Array<Post>> = [];
   posts: Array<Post> = this.newPostService.posts;
   comments: Array<Post> = [];
-  postUtil: Array<PostUtilObj> = [];
+  postUtil: Array<PostUtilObj> = this.newPostService.postUtil;
   lastLoadTime: number = 0;
   
 
