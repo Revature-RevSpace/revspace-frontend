@@ -40,6 +40,12 @@
 
                     <div class="collapse" [id]="'commentsList' + post.postId" >
 
+                        <div>
+                            <input type="text" placeholder="Comment" [(ngModel)]="getPostUtilObj(post).potentialComment">
+                            <button [id]="'submitBtn' + post.postId" (click)="submitComment(post)">Submit</button>
+                        </div>
+                        
+
                         <div style="border: 2px solid;" class="comments" [id]="'attach' + post.postId"> <!--Id including current postId-->
                             
 
@@ -56,7 +62,7 @@
 </div>
 
 
-<div *ngFor="let comment of comments; let j = index">
+<div *ngFor="let comment of comments; let j = index;">
 
     <div 
     style="position: relative;"
@@ -66,7 +72,29 @@
         <div class="d-flex flex-column ml-2"> <span class="name">{{comment.creatorId.firstName}} {{comment.creatorId.lastName}}</span> 
             <small class="comment-text">{{comment.body}}</small>
             <div class="d-flex flex-row align-items-center status"></div>
+            
+            <span class="postButton" (click)="likePost(comment)" [attr.disable]="alreadyLiked(comment)">
+                <span style="text-align: left; vertical-align: text-top; color: rgb(185, 185, 186);">{{getPostUtilObj(comment).numLikes}}</span>
+                <i [class]="determineStarStyle(comment)"></i>
+                <span style="color: rgb(185, 185, 186);">  Like</span>
+            </span>
+
+            <span class="postButton" data-bs-toggle="collapse" [attr.data-bs-target]="'#' + 'writeCommentCollapse' + comment.postId" >
+                <i class="fa fa-comments-o"></i>
+            </span>
+
+            <div class="collapse" [id]="'writeCommentCollapse' + comment.postId" >
+                <div>
+                    <!-- <input type="text" placeholder="Comment" [(ngModel)]="getPostUtilObj(comment).potentialComment"> -->
+                    <input type="text" placeholder="Comment" [(ngModel)]="getPostUtilObj(comment).potentialComment">
+
+                    <button [id]="'submitBtn' + comment.postId" (click)="submitComment(comment)">Submit</button>
+                </div>
+            </div>
+
+
             <div [id]="'attach' + comment.postId"></div>
+
         </div>
     </div>
 
