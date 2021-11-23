@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login.service';
 import { User } from 'src/app/models/User';
@@ -11,16 +13,13 @@ import { User } from 'src/app/models/User';
 })
 export class EditUserProfileComponent implements OnInit {
 
-  constructor(private userService: UserService, private loginService:LoginService) { 
+  constructor(private userService: UserService, private loginService:LoginService, private router: Router) { 
 
   }
 
   ngOnInit(): void {
 
-    //Get the user's current information
-    //this.currentUser = this.loginService.getLoginInfo().user;
-    
-    //this.resetInputFields();
+    this.resetInputFields();
   }
 
   //Variable declarations 
@@ -54,13 +53,6 @@ export class EditUserProfileComponent implements OnInit {
 
   maxDateVar = new Date(); 
 
-  //testing function. remove eventually
-  testLimit() {
-    console.log(this.maxDateVar);
-    console.log(this.joinDateInput);
-    console.log(this.joinDateInput > this.maxDateVar);
-  }
-
 
   //Converts Date and String data types from the date input tags into unix time (in ms)
   //We need to handle both date and string value types here:
@@ -91,7 +83,6 @@ export class EditUserProfileComponent implements OnInit {
 
     this.currentUser = this.loginService.getLoginInfo().user;
 
-    console.log(this.currentUser);
 
     //Set the input tag values to the user's current info
     this.firstNameInput = this.currentUser.firstName;
@@ -103,11 +94,6 @@ export class EditUserProfileComponent implements OnInit {
 
     let joinUnixDate = this.currentUser.revatureJoinDate;
     let birthdayUnixDate = this.currentUser.birthday;
-
-    /*
-    let joinUnixDate = 1104537600000; //Jan 1, 2005 12:00 AM UTC
-    let birthdayUnixDate = 788918400000; //Jan 1, 1995 12:00 AM UTC
-    */
 
 
     //Convert the numeric date values into Date objects
@@ -166,9 +152,7 @@ export class EditUserProfileComponent implements OnInit {
       return;
     }
 
-    let userIdPlaceholder = 1;
-    let userEmailPlaceholder = 'AAA@BBB.CCC';
-    
+
     let updatedUser: User = new User(
       this.currentUser.userId, 
       this.currentUser.email, 
@@ -182,24 +166,6 @@ export class EditUserProfileComponent implements OnInit {
       this.aboutMeInput
       );
 
-      console.log(updatedUser);
-
-      /*
-    let fakeUser = {
-      firstName: this.firstNameInput,
-      lastName: this.lastNameInput,
-      birthday: birthdayNumber,
-      revatureJoinDate: joinDateNumber,
-      githubUsername: this.githubUsernameInput,
-      title: this.titleInput,
-      location: this.locationInput,
-      aboutMe: this.aboutMeInput,
-    };
-    console.log(fakeUser);
-    */
-
-    console.log(updatedUser);
-
 
     //Get authentication information
     const authToken:string = this.loginService.getLoginInfo().authToken;
@@ -207,16 +173,19 @@ export class EditUserProfileComponent implements OnInit {
       'Authorization': authToken
     });
 
-    this.userService.editUser(userIdPlaceholder, updatedUser, myHeaders).subscribe (
+    this.userService.editUser(updatedUser.userId, updatedUser, myHeaders).subscribe (
       (response) => {
-        console.log(response);
+
+        if(null != response) {
+          this.loginService.setUserInfo(response);
+          this.router.navigate(["viewprofile/" + response.userId]);
+        }
+        
+
       }
     )
 
       
-
-
-    console.log();
 
   }
 
@@ -224,7 +193,6 @@ export class EditUserProfileComponent implements OnInit {
 
   //Reset the fields and return to the view user profile screen
   cancelUpdateProfile() {
-    this.resetInputFields();
   }
 
 

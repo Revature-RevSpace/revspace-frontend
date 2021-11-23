@@ -20,12 +20,7 @@ export class User {
         revatureJoinDate: number,
         githubUsername: string,
         title: string,
-<<<<<<< HEAD
         location: string, aboutMe: string,)
-=======
-        location: string, 
-        aboutMe: string,)
->>>>>>> ce3c396 (Update function now sends put requets with authentication. Put http method expanded to include authentication.)
         {
             this.userId = userId;
             this.email = email;
