@@ -6,8 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DatePipe implements PipeTransform {
 
   transform(data: any): string {
-    data = data * 1000;
-    var date = new Date(data);
+    data = data;
+    var timeZoneOffsetDate = new Date();
+    var date = new Date(data + 60*1000*timeZoneOffsetDate.getTimezoneOffset());
     let format = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
     return format;
   }

@@ -1,0 +1,78 @@
+
+<div id="edit-user-profile-div">
+
+
+    <!-- first_name varchar(50) not null -->
+    <label for="edit-user-first-name-input"> Name: </label>  <br>
+    <input id="edit-user-first-name-input" type="text" maxlength="50" size="70" [(ngModel)]="firstNameInput">
+    <br>
+    <span *ngIf="firstNameInput.length > 45" style="color:red"> First Name has a character limit of 50 ({{firstNameInput.length}}/50) <br></span>   
+
+    <!-- last_name varchar(50) not null -->
+    <label for="edit-user-last-name-input"> Name: </label> <br>
+    <input id="edit-user-last-name-input" type="text" maxlength="50" size="70" [(ngModel)]="lastNameInput">
+    <br>
+    <span *ngIf="lastNameInput.length > 45" style="color:red"> Last Name has a character limit of 50 ({{lastNameInput.length}}/50) <br></span>   
+
+    <!-- title varchar(100) not null default '' -->
+    <label for="edit-user-title-input"> Title: </label> <br>
+    <input id="edit-user-title-input" type="text" maxlength="100" size="140" [(ngModel)]="titleInput">
+    <br> 
+    <span *ngIf="titleInput.length > 90" style="color:red"> Title has a character limit of 100 ({{titleInput.length}}/100) <br></span>   
+
+
+    <!-- github_username varchar(50) not null default '' -->
+    <label for="edit-user-github-username-input"> Github Username: </label> <br>
+    <input id="edit-user-github-username-input" type="text" maxlength="50" size="70" [(ngModel)]="githubUsernameInput">
+    <br>
+    <span *ngIf="githubUsernameInput.length > 45" style="color:red"> Github Username has a character limit of 50 ({{githubUsernameInput.length}}/50) <br></span>   
+    <p *ngIf="githubUsernameInput.length > 0"> Test Github Profile Link: <a href="https://github.com/{{githubUsernameInput}}"> https://github.com/{{githubUsernameInput}} </a></p>
+    <br>
+
+    <!-- revature_join_date bigint default null  -->
+    <label for="edit-user-join-date-input"> Revature Join Date: </label> <br>
+    <input id="edit-user-join-date-input" type="date" min="2003-01-01" max={{currentDateString}} [ngModel]="joinDateInput | date: 'yyyy-MM-dd'" (ngModelChange)="joinDateInput = $event"> 
+    <br>
+    <span *ngIf="joinDateLimitWarning" style="color:red"> Revature Join Date must be between 2003 and the present! <br></span> 
+
+
+    <!-- location varchar(500) not null default '' -->
+    <label for="edit-user-location-input"> Location: </label> <br>
+    <textarea id="edit-user-location-input" type="text" maxlength="500" rows="7" cols="100" [(ngModel)]="locationInput"> </textarea>
+    <br>
+    <span *ngIf="locationInput.length > 475" style="color:red"> Location has a character limit of 500 ({{locationInput.length}}/500) <br></span>   
+
+
+    <!-- aboutme varchar(1000) not null default '' -->
+    <label for="edit-user-aboutme-input"> About Me: </label> <br>
+    <textarea id="edit-user-aboutme-input" type="text" maxlength="1000" rows="12" cols="100" [(ngModel)]="aboutMeInput"> </textarea>
+    <br>
+    <span *ngIf="aboutMeInput.length > 475" style="color:red"> About Me has a character limit of 1000 ({{aboutMeInput.length}}/1000) <br></span>   
+
+
+    <!-- birthday bigint default null   -->
+    <label for="edit-user-birthday-input"> Birthday </label> <br>
+    <input id="edit-user-birthday-input"  type="date" min={{minimumBirthdayString}} max={{currentDateString}} [ngModel]="birthdayInput | date: 'yyyy-MM-dd'" (ngModelChange)="birthdayInput = $event">
+    <br>
+    <span *ngIf="birthdayLimitWarning" style="color:red"> Birthday must be within 125 years ago and the present! <br></span>   
+
+
+    <button id="edit-user-accept-changes-button" (click)="confirmUpdateProfile()"> Accept changes </button>
+    <button id="edit-user-cancel-changes-button" (click)="cancelUpdateProfile()"> Cancel changes </button>
+
+    <button id="test-button" (click)="alertLeavingEditScreen()"> Leave </button>
+    
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+

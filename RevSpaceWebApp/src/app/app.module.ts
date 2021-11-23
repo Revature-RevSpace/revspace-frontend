@@ -16,6 +16,7 @@ import { TopComponent } from './components/top/top.component';
 import { ImageService } from './services/image.service';
 import { DatePipe } from './pipes/date.pipe';
 
+import { EditUserProfileComponent } from './components/edit-user-profile/edit-user-profile.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { DatePipe } from './pipes/date.pipe';
     LoginComponent,
     TopComponent,
     DatePipe,
+    EditUserProfileComponent
   ],
   
   imports: [

@@ -61,4 +61,14 @@ export class LoginService {
   {
     return this.invalidLogin;
   }
+
+  /**
+   * Sets the stored user object in loginInfo to the passed user object
+   * Does not change the authtoken
+   */
+  public setUserInfo(user: User) {
+    let authToken = this.loginInfo.authToken;
+    this.loginInfo = new LoginInfo(user, authToken);
+  }
+
 }
