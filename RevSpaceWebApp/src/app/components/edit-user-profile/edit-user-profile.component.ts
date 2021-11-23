@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/User';
 
+import { UserService } from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-edit-user-profile',
   templateUrl: './edit-user-profile.component.html',
@@ -8,7 +10,7 @@ import { User } from 'src/app/models/User';
 })
 export class EditUserProfileComponent implements OnInit {
 
-  constructor() { 
+  constructor(private userService: UserService) { 
 
     let dateObject = new Date();
     let currentYear = dateObject.getFullYear();
@@ -22,6 +24,26 @@ export class EditUserProfileComponent implements OnInit {
 
     
   }
+
+
+  // TEST
+  // adding code for dynamic span
+  public show:boolean = false;
+  public spanText:any = 'You have reached the limit'
+
+  // toggle() {
+  //  this.show = !this.show;
+
+    // CHANGE THE NAME OF THE BUTTON.
+  //  if(this.show)  
+  //    this.spanText = "";
+  //  else
+  //    this.spanText = "You have reached the limit";
+  // }
+
+  // https://www.concretepage.com/angular-2/angular-2-4-minlength-and-maxlength-validation-example
+
+  // =======================================================
 
   ngOnInit(): void {}
 
@@ -114,6 +136,8 @@ export class EditUserProfileComponent implements OnInit {
     };
 
     console.log(fakeUser);
+
+    this.userService.editUser(fakeUser, );
     
 
   }
