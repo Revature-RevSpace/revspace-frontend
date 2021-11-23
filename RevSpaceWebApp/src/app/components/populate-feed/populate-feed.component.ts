@@ -7,6 +7,7 @@ import { PostUtilObj } from 'src/app/models/PostUtilObj';
 import { PostHttpServiceService } from 'src/app/services/post-http-service.service';
 import { LikeHttpServiceService } from 'src/app/services/like-http-service.service';
 import { NewPostService } from 'src/app/services/new-post.service';
+import { LoginServiceService } from 'src/app/services/login-service.service';
 
 @Component({
   selector: 'app-populate-feed',
@@ -18,6 +19,7 @@ export class PopulateFeedComponent implements OnInit {
   constructor(private postHttpService: PostHttpServiceService,
               private likeHttpService: LikeHttpServiceService,
               private newPostService: NewPostService,
+              private loginService: LoginServiceService,
               @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
@@ -32,7 +34,7 @@ export class PopulateFeedComponent implements OnInit {
   lastLoadTime: number = 0;
   
 
-  user: User = new User(1,"abc@abc.com","firstName","lastName", 1637264203, 163700000, "gitName", "title", "location", "aboutme");
+  user: User = this.loginService.getLoginInfo().user;
 
   /*
   postUtil is an array where each element is an object with the following attributes:
@@ -71,7 +73,7 @@ export class PopulateFeedComponent implements OnInit {
 
     for (let newPost of this.pclArray[0]) {
 
-      this.postUtil.push(new PostUtilObj(newPost.postId, 0, 0));
+      this.postUtil.push(new PostUtilObj(newPost.postId, 0, ""));
 
       this.posts.push(newPost);
 
@@ -80,7 +82,7 @@ export class PopulateFeedComponent implements OnInit {
 
     for (let newComment of this.pclArray[1]) {
 
-      this.postUtil.push(new PostUtilObj(newComment.postId, 0, 0));
+      this.postUtil.push(new PostUtilObj(newComment.postId, 0, ""));
 
       this.comments.push(newComment);
     }  
@@ -171,11 +173,31 @@ export class PopulateFeedComponent implements OnInit {
     } 
   }
 
+  submitComment(parentPost: Post) {
 
+    console.log(this.getPostUtilObj(parentPost).potentialComment);
+
+    let newComment = new Post(this.user, this.getPostUtilObj(parentPost).potentialComment, null, 
+                    new Date().getTime(), true, parentPost);
+
+    this.postHttpService.addPost(newComment).subscribe(data =>{
+
+      console.log(data); 
+    });
+
+    this.comments.push(newComment);
+
+    this.getPostUtilObj(parentPost).potentialComment = "";
+  }
 
   // createComment(commentId: number, parentId: number) {
 
   // }
+
+  trackByFn(index: any, item: any) {
+    return index;
+  }
+
 }
   
 
