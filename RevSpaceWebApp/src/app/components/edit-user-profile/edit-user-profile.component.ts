@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpHeaders } from '@angular/common/http';
+import { UserService } from 'src/app/services/user.service';
+import { LoginService } from 'src/app/services/login.service';
 import { User } from 'src/app/models/User';
 
 @Component({
@@ -8,25 +11,32 @@ import { User } from 'src/app/models/User';
 })
 export class EditUserProfileComponent implements OnInit {
 
-  constructor() { 
+  constructor(private userService: UserService, private loginService:LoginService) { 
 
   }
 
   ngOnInit(): void {
-    this.resetInputFields();
+
+    //Get the user's current information
+    //this.currentUser = this.loginService.getLoginInfo().user;
+    
+    //this.resetInputFields();
   }
 
   //Variable declarations 
   currentDateString:String;
   minimumBirthdayString: String;
 
+  //Logged in user information
+  currentUser: User;
+
   // Used to store the string values
-  firstNameInput: String = "";
-  lastNameInput: String = "";
-  titleInput: String = "";
-  githubUsernameInput: String = "";
-  locationInput: String = "";
-  aboutMeInput:String = "";
+  firstNameInput: string = "";
+  lastNameInput: string = "";
+  titleInput: string = "";
+  githubUsernameInput: string = "";
+  locationInput: string = "";
+  aboutMeInput:string = "";
 
   // Used to store the date values
   //Initialized to the current date, but overwritten when the user's data is loaded
@@ -44,20 +54,12 @@ export class EditUserProfileComponent implements OnInit {
 
   maxDateVar = new Date(); 
 
+  //testing function. remove eventually
   testLimit() {
     console.log(this.maxDateVar);
     console.log(this.joinDateInput);
     console.log(this.joinDateInput > this.maxDateVar);
   }
-/*
-    //Min Value for join date
-    let minJoinDate = new Date(2003, 0, 1); 
-    let minJoinDateValue = this.convertToUnixTime(minJoinDate) -this.dateTimezoneOffset;
-    //Min Value for birthday
-    let minBirthday = new Date(maxDate.getFullYear() - 125, 0, 1); 
-    let minBirthdayValue = this.convertToUnixTime(minBirthday) -this.dateTimezoneOffset;
-  */
-
 
 
   //Converts Date and String data types from the date input tags into unix time (in ms)
@@ -87,16 +89,26 @@ export class EditUserProfileComponent implements OnInit {
   //Currently uses (hardcoded) placeholder data - refactor once actual user data is available
   resetInputFields() {
 
-    //Replace these values with ones from the session storage
-    this.firstNameInput = "PlaceholderFirstname";
-    this.lastNameInput = "PlaceholderLastName";
-    this.titleInput = "Placeholder Title";
-    this.githubUsernameInput = "Placeholder GitHubuserName";
-    this.locationInput = "Placeholder Location";
-    this.aboutMeInput = "Placeholder AboutMe";
+    this.currentUser = this.loginService.getLoginInfo().user;
 
+    console.log(this.currentUser);
+
+    //Set the input tag values to the user's current info
+    this.firstNameInput = this.currentUser.firstName;
+    this.lastNameInput = this.currentUser.lastName;
+    this.titleInput = this.currentUser.title;
+    this.githubUsernameInput = this.currentUser.githubUsername;
+    this.locationInput = this.currentUser.location;
+    this.aboutMeInput = this.currentUser.aboutMe;
+
+    let joinUnixDate = this.currentUser.revatureJoinDate;
+    let birthdayUnixDate = this.currentUser.birthday;
+
+    /*
     let joinUnixDate = 1104537600000; //Jan 1, 2005 12:00 AM UTC
     let birthdayUnixDate = 788918400000; //Jan 1, 1995 12:00 AM UTC
+    */
+
 
     //Convert the numeric date values into Date objects
     //This uses the local time zone offset to prevent the incorrect date from appearing due to the input tags automatically factoring in timezone differences
@@ -133,9 +145,6 @@ export class EditUserProfileComponent implements OnInit {
 
     let failUpdate = false;
 
-    console.log(joinDateNumber);
-    console.log(minJoinDateValue);
-
     if(joinDateNumber > maxDateValue || joinDateNumber < minJoinDateValue) {
       console.log("Join Date out of bounds!");
 
@@ -156,8 +165,26 @@ export class EditUserProfileComponent implements OnInit {
       console.log("Out of bounds - cancelling update");
       return;
     }
-    
 
+    let userIdPlaceholder = 1;
+    let userEmailPlaceholder = 'AAA@BBB.CCC';
+    
+    let updatedUser: User = new User(
+      this.currentUser.userId, 
+      this.currentUser.email, 
+      this.firstNameInput,
+      this.lastNameInput,
+      birthdayNumber,
+      joinDateNumber,
+      this.githubUsernameInput,
+      this.titleInput,
+      this.locationInput,
+      this.aboutMeInput
+      );
+
+      console.log(updatedUser);
+
+      /*
     let fakeUser = {
       firstName: this.firstNameInput,
       lastName: this.lastNameInput,
@@ -168,13 +195,28 @@ export class EditUserProfileComponent implements OnInit {
       location: this.locationInput,
       aboutMe: this.aboutMeInput,
     };
-
     console.log(fakeUser);
-
-    /* Endpoint/method for put user
-      @PutMapping(value = "/users/{id}", consumes = "application/json")
-      public User updateUser(@PathVariable("id") String id, @RequestBody User newUser)
     */
+
+    console.log(updatedUser);
+
+
+    //Get authentication information
+    const authToken:string = this.loginService.getLoginInfo().authToken;
+    const myHeaders:HttpHeaders = new HttpHeaders({
+      'Authorization': authToken
+    });
+
+    this.userService.editUser(userIdPlaceholder, updatedUser, myHeaders).subscribe (
+      (response) => {
+        console.log(response);
+      }
+    )
+
+      
+
+
+    console.log();
 
   }
 
@@ -182,7 +224,7 @@ export class EditUserProfileComponent implements OnInit {
 
   //Reset the fields and return to the view user profile screen
   cancelUpdateProfile() {
-
+    this.resetInputFields();
   }
 
 
