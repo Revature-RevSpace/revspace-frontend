@@ -11,7 +11,7 @@
             </b>    
         </label> 
         <br>   
-        <input style="border:5px solid#F26925; background-color: #bbdefb;" type="text"  id="email" placeholder="Email@revature.net" [(ngModel)]="username">    
+        <input style="border:5px solid#F26925; background-color: #bbdefb;" type="text"  id="email" placeholder="Email@revature.net" [(ngModel)]="username" (keydown.enter)=login()>    
         <br>
         <br>    
         <label>
@@ -20,7 +20,7 @@
             </b>    
         </label>
         <br>    
-        <input style="border:5px solid#F26925; background-color: #bbdefb;" type="Password"  id="password" placeholder="Password" [(ngModel)]="password">    
+        <input style="border:5px solid#F26925; background-color: #bbdefb;" type="Password"  id="password" placeholder="Password" [(ngModel)]="password" (keydown.enter)=login()>    
         <br>
         <br>    
         <input  style="background-color: #F26925; color: white;" type="button" id="login" value="Log In >" (click)="login()">       
