@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Credentials } from '../models/Credentials';
 import { LoginInfo } from '../models/LoginInfo';
 import { User } from '../models/User';
+import { BackendService } from './backend.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { User } from '../models/User';
 export class LoginService {
 
   constructor(
+    private backendService:BackendService,
     private http: HttpClient
   ) { }
 
@@ -28,7 +30,7 @@ export class LoginService {
     const myHeaders:HttpHeaders = new HttpHeaders({
       'Authorization': authToken
     });
-    const request = this.http.get<User>("http://localhost:8080/login", {headers:myHeaders});
+    const request = this.http.get<User>(this.backendService.getBackendURL() + "/login", {headers:myHeaders});
     const result = request.subscribe(
       (response)=>{
         this.loginInfo = new LoginInfo(response, authToken);
