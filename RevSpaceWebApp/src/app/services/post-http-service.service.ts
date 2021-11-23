@@ -1,13 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BackendService } from './backend.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostHttpServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private backendService: BackendService,
+    private http: HttpClient
+    ) { }
 
   authToken: string = "Basic " + btoa("username1@email.com:Password1");
 
@@ -22,7 +26,7 @@ export class PostHttpServiceService {
 
     let authHeadersTen = new HttpHeaders({ 'Context-Type': 'application/json', 'Authorization': this.authToken, 'lastPostIdOnThePage': oldestIdString});
 
-    return this.http.get(`http://localhost:8080/posts`, {headers: authHeadersTen, observe:'response'});
+    return this.http.get(this.backendService.getBackendURL() + `/posts`, {headers: authHeadersTen, observe:'response'});
   }
 
   
