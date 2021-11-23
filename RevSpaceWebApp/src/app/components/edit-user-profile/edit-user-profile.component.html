@@ -30,7 +30,7 @@
     <p *ngIf="githubUsernameInput.length > 0"> Test Github Profile Link: <a href="https://github.com/{{githubUsernameInput}}"> https://github.com/{{githubUsernameInput}} </a></p>
     <br>
 
-    <!-- revature_join_date bigint default null -->
+    <!-- revature_join_date bigint default null  -->
     <label for="edit-user-join-date-input"> Revature Join Date: </label> <br>
     <input id="edit-user-join-date-input" type="date" min="2003-01-01" max={{currentDateString}} [ngModel]="joinDateInput | date: 'yyyy-MM-dd'" (ngModelChange)="joinDateInput = $event"> 
     <br>
@@ -51,7 +51,7 @@
     <span *ngIf="aboutMeInput.length > 475" style="color:red"> About Me has a character limit of 1000 ({{aboutMeInput.length}}/1000) <br></span>   
 
 
-    <!-- birthday bigint default null -->
+    <!-- birthday bigint default null   -->
     <label for="edit-user-birthday-input"> Birthday </label> <br>
     <input id="edit-user-birthday-input"  type="date" min={{minimumBirthdayString}} max={{currentDateString}} [ngModel]="birthdayInput | date: 'yyyy-MM-dd'" (ngModelChange)="birthdayInput = $event">
     <br>
