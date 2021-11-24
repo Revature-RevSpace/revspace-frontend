@@ -10,7 +10,7 @@ public class PostFeedPage {
 
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-create-post/div/div/div/form/textarea")
     public WebElement newPostTextarea;
-    
+
     //input element
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-create-post/div/div/div/form/div/input")
     public WebElement newPostImageInput;
@@ -80,8 +80,7 @@ public class PostFeedPage {
 
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[4]/span[1]/span[1]")
     public WebElement firstPostLikeCount;
-    
-    
+
 
 
 
