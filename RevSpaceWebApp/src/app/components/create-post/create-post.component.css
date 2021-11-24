@@ -7,7 +7,7 @@
 }
 
 .main_post{
-    width: 600px;
+    width: 650px;
     padding: 15px;
     margin: 30px auto;
 }
@@ -88,26 +88,8 @@ textarea {
     margin: 10px 0;
 }
 
-i .fas,.fa-image {
-    outline:none;
-    font-size: 30px;
-    font-weight: 600;
-    color: rgb(70, 100, 125);
-    /* cursor:pointer; */
-    /* z-index: 222; */
-    background-color: transparent;
-}
-
-i .fa-image {
-    width:30px;
-    height:50px;
-    position:absolute;
-    bottom: 30px;
-}
-
 button .image {
     width:40px;
-    /* font-size: 30px; */
     font-weight: 600;
     color: rgb(70, 100, 125);
     /* cursor:pointer; */
@@ -115,16 +97,9 @@ button .image {
     background-color: transparent;
 }
 
-/* .star {
-    width:30px;
-    height:50px;
-    position:absolute;
-    bottom: 25px;
-} */
-
 .fitImg{
-    height: 300px;
-    width:500px;
+    height: 350px;
+    width: 450px;
     display: block;
     margin-left:auto;
     margin-right: auto;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { DOCUMENT } from "@angular/common";
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
@@ -6,6 +6,8 @@ import { Like } from 'src/app/models/Like';
 import { PostUtilObj } from 'src/app/models/PostUtilObj';
 import { PostHttpServiceService } from 'src/app/services/post-http-service.service';
 import { LikeHttpServiceService } from 'src/app/services/like-http-service.service';
+import { NewPostService } from 'src/app/services/new-post.service';
+import { LoginServiceService } from 'src/app/services/login-service.service';
 
 @Component({
   selector: 'app-populate-feed',
@@ -16,6 +18,8 @@ export class PopulateFeedComponent implements OnInit {
 
   constructor(private postHttpService: PostHttpServiceService,
               private likeHttpService: LikeHttpServiceService,
+              private newPostService: NewPostService,
+              private loginService: LoginServiceService,
               @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
@@ -24,12 +28,13 @@ export class PopulateFeedComponent implements OnInit {
 
 
   pclArray: Array<Array<Post>> = [];
-  posts: Array<Post> = [];
+  posts: Array<Post> = this.newPostService.posts;
   comments: Array<Post> = [];
-  postUtil: Array<PostUtilObj> = [];
+  postUtil: Array<PostUtilObj> = this.newPostService.postUtil;
+  lastLoadTime: number = 0;
   
 
-  user: User = new User(1,"abc@abc.com","firstName","lastName", 1637264203, 163700000, "gitName", "title", "location", "aboutme");
+  user: User = this.loginService.getLoginInfo().user;
 
   /*
   postUtil is an array where each element is an object with the following attributes:
@@ -66,21 +71,23 @@ export class PopulateFeedComponent implements OnInit {
 
   populateArrays(pclArray: Array<Array<Post>>) {
 
-    this.calculateLikes(this.pclArray[2]);
-
     for (let newPost of this.pclArray[0]) {
 
-      this.postUtil.push(new PostUtilObj(newPost.postId, 0, 0));
+      this.postUtil.push(new PostUtilObj(newPost.postId, 0, ""));
 
       this.posts.push(newPost);
 
-      console.log(newPost.creatorId.firstName);
+      //console.log(newPost.creatorId.firstName);
     }
 
     for (let newComment of this.pclArray[1]) {
 
+      this.postUtil.push(new PostUtilObj(newComment.postId, 0, ""));
+
       this.comments.push(newComment);
     }  
+
+    this.calculateLikes(this.pclArray[2]);
   }
 
   calculateLikes(likesArray: Array<Post>) {
@@ -140,7 +147,6 @@ export class PopulateFeedComponent implements OnInit {
     }
   }
 
-
   getIndent(comment: Post): number {
 
     if (comment.parentPost.comment) {
@@ -153,13 +159,48 @@ export class PopulateFeedComponent implements OnInit {
     }
   }
 
+  @HostListener("window:scroll", [])
+  onScroll(): void {
+
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+
+      if (Date.now() - this.lastLoadTime > 1000) {
+
+        this.nextTen(this.posts[this.posts.length - 1].postId);
+
+        this.lastLoadTime = Date.now();
+      }
+    } 
+  }
+
+  submitComment(parentPost: Post) {
+
+    console.log(this.getPostUtilObj(parentPost).potentialComment);
+
+    let newComment = new Post(this.user, this.getPostUtilObj(parentPost).potentialComment, null, 
+                    new Date().getTime(), true, parentPost);
+
+    this.postHttpService.addPost(newComment).subscribe(data =>{
+
+      console.log(data); 
+    });
+
+    this.comments.push(newComment);
+
+    this.getPostUtilObj(parentPost).potentialComment = "";
+  }
 
   // createComment(commentId: number, parentId: number) {
 
   // }
 
-  
+  trackByFn(index: any, item: any) {
+    return index;
+  }
 
 }
+  
+
+
 
 

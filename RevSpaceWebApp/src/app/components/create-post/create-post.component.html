@@ -6,17 +6,17 @@
 
     <div class="main_post">
         <form>
-            <textarea rows="" column="" name ="body" value="body" [(ngModel)] = "body" (click)="expand()" placeholder="Hey, whats on your mind?" autocomplete="on">
+            <textarea rows="" column="" name ="body" value="body" [(ngModel)] = "body" (click)="expand()" placeholder="Hey, whats on your mind?" autocomplete="on" accept="image/*">
             </textarea>
             
 
         <div *ngIf="expandThis">
-            <!-- <div *ngIf="show">
-                <img class="fitImg" [src]="urllink">
-            </div> -->
+            <div *ngIf="show">
+                <img class="fitImg" [src]="urlLink">
+            </div>
           
                 <!-- CODE FOR IMGBB -->
-                <input type="file" style="display:none" (input)="onInput($event)" #fileInput>
+                <input type="file" style="display:none" (input)="onInput($event)" #fileInput autocomplete="false">
                 <button  type="button" (click)="fileInput.click()">
                         <img class="image" alt="photo" src="/assets/postimage/photo1.png"/>
                 </button>
@@ -29,12 +29,6 @@
         </div>
 
         </form>
-        <div class="post">
-            <h1>Title</h1>
-            <br>
-            <p>this is the content</p>
-
-        </div>
 
     </div>
     </div>
