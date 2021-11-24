@@ -13,8 +13,7 @@ import { NewPostService } from './services/new-post.service';
 })
 export class AppComponent {
   title = 'RevSpaceWebApp';
-  constructor(private loginService:LoginService,
-              private newPostService: NewPostService){}
+  constructor(private loginService:LoginService){}
   isLoggedIn()
   {
     return(this.loginService.getLoginInfo() != null);
@@ -26,13 +25,6 @@ export class AppComponent {
   getUserId(){
     let user = this.loginService.getLoginInfo().user;
     return user.userId;
-  }
-
-  clearPosts() {
-    this.newPostService.pclArray = [];
-    this.newPostService.posts = [];
-    this.newPostService.comments = [];
-    this.newPostService.postUtil = [];
   }
 }
 
