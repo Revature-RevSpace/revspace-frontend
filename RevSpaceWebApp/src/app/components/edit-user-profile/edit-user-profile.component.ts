@@ -18,18 +18,15 @@ export class EditUserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.resetInputFields();
   }
 
   //Variable declarations 
-  currentDateString:String;
-  minimumBirthdayString: String;
 
   //Logged in user information
   currentUser: User;
 
-  // Used to store the string values
+  //Used to store the string values
   firstNameInput: string = "";
   lastNameInput: string = "";
   titleInput: string = "";
@@ -38,7 +35,7 @@ export class EditUserProfileComponent implements OnInit {
   aboutMeInput:string = "";
   email:string;
 
-  // Used to store the date values
+  //Used to store the date values
   //Initialized to the current date, but overwritten when the user's data is loaded
   joinDateInput: Date = new Date();
   birthdayInput: Date = new Date();
@@ -51,14 +48,14 @@ export class EditUserProfileComponent implements OnInit {
   //Used to display spans warning the user of date limits
   joinDateLimitWarning: Boolean = false;
   birthdayLimitWarning: Boolean = false;
-
-  maxDateVar = new Date(); 
+  //Used to notify the user if something went wrong when updating their profile
+  updateFailWarning: Boolean = false;
 
 
   //Converts Date and String data types from the date input tags into unix time (in ms)
   //We need to handle both date and string value types here:
-  //Since we provide a date object to the input tags, if left unchanged by the user we get a date back out
-  //But if the user changes the value, the tag gives us a string we need to manually parse
+  //Since we initally provide a date object to the input tags to display, we get a date back out if it is left unchanged by the user 
+  //But if the user changes a value, the input tag gives us a string we need to manually parse
   convertToUnixTime(date: any) {
 
     if((typeof date) == (typeof String("I'm a string!"))) {
@@ -79,11 +76,11 @@ export class EditUserProfileComponent implements OnInit {
 
   //Sets the input variables equal to the logged in user's current profile data
   //Call this when opening/changing to the edit profile screen
-  //Currently uses (hardcoded) placeholder data - refactor once actual user data is available
+  //(also called when exiting the page)
   resetInputFields() {
 
+    //Get information for the current user
     this.currentUser = this.loginService.getLoginInfo().user;
-
 
     //Set the input tag values to the user's current info
     this.firstNameInput = this.currentUser.firstName;
@@ -107,6 +104,7 @@ export class EditUserProfileComponent implements OnInit {
   }
 
 
+  //Updates the user's profile
   //Bundles the input values into a User object, then sends the User object to the service
   //The service will create the request itself
   //Finalize implementation based on what the backend wants for the update request
@@ -119,29 +117,30 @@ export class EditUserProfileComponent implements OnInit {
 
 
     //Verify all input values are within tolerances!
-    //Max values for join date and birthday
+    //Max values for join date and birthday (today - no future enrollments or time travelers)
     let maxDate = new Date(); 
     let maxDateValue = this.convertToUnixTime(maxDate) -this.dateTimezoneOffset; 
-    //Min Value for join date
+    //Min Value for join date (Jan 1, 2003 - Revature was founded in 2003)
     let minJoinDate = new Date(2003, 0, 1); 
     let minJoinDateValue = this.convertToUnixTime(minJoinDate) -this.dateTimezoneOffset;
-    //Min Value for birthday
+    //Min Value for birthday (125 years before this year - if this range is exceeded we have a new record for oldest living human by a few years)
     let minBirthday = new Date(maxDate.getFullYear() - 125, 0, 1); 
     let minBirthdayValue = this.convertToUnixTime(minBirthday) -this.dateTimezoneOffset;
     
     
-    
-
+    //Checks the date values and only allows to update to proceed if the dates are within reasonable ranges
+    //If a range is failed, the user sees a notification near the relevant input tag(s)
     let failUpdate = false;
 
+    //Checks revatureJoinDate range
     if(joinDateNumber > maxDateValue || joinDateNumber < minJoinDateValue) {
-      console.log("Join Date out of bounds!");
-
       failUpdate = true;
       this.joinDateLimitWarning = true;
     } else {
       this.joinDateLimitWarning = false;
     }
+
+    //Checks birthday range
     if(birthdayNumber > maxDateValue || birthdayNumber < minBirthdayValue) {
       console.log("Birthday out of bounds!");
       failUpdate = true;
@@ -150,12 +149,14 @@ export class EditUserProfileComponent implements OnInit {
       this.birthdayLimitWarning = false;
     }
  
+    //Abort if a range chek is failed
     if(failUpdate) {
-      console.log("Out of bounds - cancelling update");
       return;
     }
 
 
+    //Creates a new User object to send with the put request
+    //Populated by the input tag values and the UTC unix time values
     let updatedUser: User = new User(
       this.currentUser.userId, 
       this.currentUser.email, 
@@ -176,36 +177,30 @@ export class EditUserProfileComponent implements OnInit {
       'Authorization': authToken
     });
 
+    //Make the request
     this.userService.editUser(updatedUser.userId, updatedUser, myHeaders).subscribe (
       (response) => {
 
         if(null != response) {
+          //As long as the response isn't null, the operation succeeded
+          //Set the user info in the front end to the new data (to avoid an extra backend call)
           this.loginService.setUserInfo(response);
+          //Go the user profile page
           this.router.navigate(["viewprofile/" + response.userId]);
+        } else {
+          //If we get a null response something went wrong in the backend
+          this.updateFailWarning = true;
         }
-        
-
-      }
-    )
-
-      
+      })
 
   }
-
 
 
   //Reset the fields and return to the view user profile screen
   cancelUpdateProfile() {
+    this.resetInputFields();
+    this.router.navigate(["viewprofile/" + this.currentUser.userId]);
   }
-
-
-  alertLeavingEditScreen() {
-    let leaveBoolean = confirm("Leave the page?");
-    console.log(leaveBoolean);
-  }
-  
-
-
 
 }
 
