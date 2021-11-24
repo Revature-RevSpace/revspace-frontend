@@ -8,6 +8,7 @@ import { PostHttpServiceService } from 'src/app/services/post-http-service.servi
 import { LikeHttpServiceService } from 'src/app/services/like-http-service.service';
 import { NewPostService } from 'src/app/services/new-post.service';
 import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-populate-feed',
@@ -20,6 +21,7 @@ export class PopulateFeedComponent implements OnInit {
               private likeHttpService: LikeHttpServiceService,
               private newPostService: NewPostService,
               private loginService: LoginService,
+              private router:Router,
               @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
@@ -208,6 +210,12 @@ export class PopulateFeedComponent implements OnInit {
       commentInputElement.value = "";
     });
 
+  }
+
+  
+  navToProfile(post:Post)
+  {
+    this.router.navigate(['viewprofile/' + post.creatorId.userId]);
   }
 
   // createComment(commentId: number, parentId: number) {
