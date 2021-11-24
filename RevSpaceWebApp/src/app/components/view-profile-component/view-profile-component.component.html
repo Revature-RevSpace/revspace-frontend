@@ -13,7 +13,7 @@
                             <br>
                             Revature Join Date: <span *ngIf="user.revatureJoinDate"> {{user.revatureJoinDate | newDate}}</span>
                             <br>
-                            Birthday: {{user.birthday | newDate}}
+                            Birthday: <span *ngIf="user.birthday"> {{user.birthday | newDate}}</span>
                             <br>
                             Location: {{user.location}}
                             </div>

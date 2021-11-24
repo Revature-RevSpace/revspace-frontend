@@ -36,6 +36,7 @@ export class EditUserProfileComponent implements OnInit {
   githubUsernameInput: string = "";
   locationInput: string = "";
   aboutMeInput:string = "";
+  email:string;
 
   // Used to store the date values
   //Initialized to the current date, but overwritten when the user's data is loaded
@@ -91,6 +92,8 @@ export class EditUserProfileComponent implements OnInit {
     this.githubUsernameInput = this.currentUser.githubUsername;
     this.locationInput = this.currentUser.location;
     this.aboutMeInput = this.currentUser.aboutMe;
+    this.email = this.currentUser.email;
+
 
     let joinUnixDate = this.currentUser.revatureJoinDate;
     let birthdayUnixDate = this.currentUser.birthday;
