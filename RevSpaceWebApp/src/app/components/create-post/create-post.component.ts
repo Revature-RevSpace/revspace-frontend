@@ -87,6 +87,8 @@ export class CreatePostComponent implements OnInit {
      let newPost = new Post(this.user, this.body, this.urlLink, this.post.date, false, null, 0);
 
      newPost.postId = this.post.postId;
+
+     console.log(this.newPostService.posts);
      
      this.newPostService.postUtil.push(new PostUtilObj(newPost.postId, 0, ""));
      this.newPostService.posts.unshift(newPost);

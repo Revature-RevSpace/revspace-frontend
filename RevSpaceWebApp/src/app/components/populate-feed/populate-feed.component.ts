@@ -23,13 +23,17 @@ export class PopulateFeedComponent implements OnInit {
               @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
+
+    // this.posts = [];
+    // this.comments = [];
+    // this.postUtil = [];
     
     this.nextTen(0);
   }
 
-  pclArray: Array<Array<Post>> = this.newPostService.pclArray;
+  pclArray: Array<Array<Post>> = [];
   posts: Array<Post> = this.newPostService.posts;
-  comments: Array<Post> = this.newPostService.comments;
+  comments: Array<Post> = [];
   postUtil: Array<PostUtilObj> = this.newPostService.postUtil;
   lastLoadTime: number = 0;
   
@@ -52,12 +56,11 @@ export class PopulateFeedComponent implements OnInit {
 
         if(response.status == 200){ //Okay
           
-          this.newPostService.pclArray = response.body;
+          this.pclArray = response.body;
 
-          this.populateArrays(this.newPostService.pclArray);
+          this.populateArrays(this.pclArray);
 
-          console.log(this.newPostService.pclArray);
-
+          console.log(this.pclArray);
 
         }else if (response.status == 204){ //No more posts to display
           
@@ -73,23 +76,23 @@ export class PopulateFeedComponent implements OnInit {
 
   populateArrays(pclArray: Array<Array<Post>>) {
 
-    for (let newPost of this.newPostService.pclArray[0]) {
+    for (let newPost of this.pclArray[0]) {
 
-      this.newPostService.postUtil.push(new PostUtilObj(newPost.postId, 0, ""));
+      this.postUtil.push(new PostUtilObj(newPost.postId, 0, ""));
 
-      this.newPostService.posts.push(newPost);
+      this.posts.push(newPost);
 
       //console.log(newPost.creatorId.firstName);
     }
 
-    for (let newComment of this.newPostService.pclArray[1]) {
+    for (let newComment of this.pclArray[1]) {
 
-      this.newPostService.postUtil.push(new PostUtilObj(newComment.postId, 0, ""));
+      this.postUtil.push(new PostUtilObj(newComment.postId, 0, ""));
 
-      this.newPostService.comments.push(newComment);
+      this.comments.push(newComment);
     }  
 
-    this.calculateLikes(this.newPostService.pclArray[2]);
+    this.calculateLikes(this.pclArray[2]);
   }
 
   calculateLikes(likesArray: Array<Post>) {
@@ -134,12 +137,12 @@ export class PopulateFeedComponent implements OnInit {
 
   getPostUtilObj(post: Post): PostUtilObj {
 
-    return this.newPostService.postUtil.filter(obj => {return obj.postId == post.postId})[0]
+    return this.postUtil.filter(obj => {return obj.postId == post.postId})[0]
   }
 
   appendComments() {
     
-    for (let comment of this.newPostService.comments) {
+    for (let comment of this.comments) {
 
       let parent = this.document.getElementById("attach" + comment.parentPost.postId);
 
@@ -166,7 +169,7 @@ export class PopulateFeedComponent implements OnInit {
 
       if (Date.now() - this.lastLoadTime > 1000) {
 
-        this.nextTen(this.newPostService.posts[this.newPostService.posts.length - 1].postId);
+        this.nextTen(this.posts[this.posts.length - 1].postId);
 
         this.lastLoadTime = Date.now();
       }
@@ -189,9 +192,9 @@ export class PopulateFeedComponent implements OnInit {
 
       newComment.postId = data.postId;
 
-      this.newPostService.postUtil.push(new PostUtilObj(newComment.postId, 0, commentInputElement.value));
+      this.postUtil.push(new PostUtilObj(newComment.postId, 0, commentInputElement.value));
 
-      this.newPostService.comments.push(newComment);
+      this.comments.push(newComment);
 
       commentInputElement.value = "";
     });
