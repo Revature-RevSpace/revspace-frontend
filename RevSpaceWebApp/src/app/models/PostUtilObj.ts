@@ -1,8 +1,8 @@
 export class PostUtilObj {
-    postId: number = 0;
-    numLikes: number = 0;
-    potentialComment: string = "";
-    starStyle: string = "";
+    postId: number;
+    numLikes: number;
+    potentialComment: string;
+    starStyle: string;
 
     constructor(
         postId: number, 

@@ -82,21 +82,29 @@ export class CreatePostComponent implements OnInit {
     this.postService.addPost(this.post)
    .subscribe(data =>{
      console.log(data);
+     this.post.postId = data.postId;
+
+     let newPost = new Post(this.user, this.body, this.urlLink, this.post.date, false, null, 0);
+
+     newPost.postId = this.post.postId;
+
+     console.log(this.newPostService.posts);
+     
+     this.newPostService.postUtil.push(new PostUtilObj(newPost.postId, 0, ""));
+     this.newPostService.posts.unshift(newPost);
+ 
+     console.log(this.newPostService.posts);
+ 
+     this.body="";
+     this.show=false;
+     this.expandThis=false;
+
     }, error=> console.log(error));
 
     // window.location.reload();
 
 
-    let newPost = new Post(this.user, this.body, this.urlLink, this.post.date, false, null, 0);
     
-    this.newPostService.postUtil.push(new PostUtilObj(newPost.postId, 0, ""));
-    this.newPostService.posts.unshift(newPost);
-
-    console.log(this.newPostService.posts);
-
-    this.body="";
-    this.show=false;
-    this.expandThis=false;
   }
 }
  
