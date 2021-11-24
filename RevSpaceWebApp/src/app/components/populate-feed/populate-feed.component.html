@@ -41,14 +41,11 @@
                     <div class="collapse" [id]="'commentsList' + post.postId" >
 
                         <div>
-                            <input type="text" placeholder="Comment" [(ngModel)]="getPostUtilObj(post).potentialComment">
+                            <input [id]="'commentInput' + post.postId" type="text" placeholder="Comment"  name="{{'postInput'+i}}">
                             <button [id]="'submitBtn' + post.postId" (click)="submitComment(post)">Submit</button>
                         </div>
-                        
 
                         <div style="border: 2px solid;" class="comments" [id]="'attach' + post.postId"> <!--Id including current postId-->
-                            
-
                         </div>
 
                     </div>
@@ -86,7 +83,7 @@
             <div class="collapse" [id]="'writeCommentCollapse' + comment.postId" >
                 <div>
                     <!-- <input type="text" placeholder="Comment" [(ngModel)]="getPostUtilObj(comment).potentialComment"> -->
-                    <input type="text" placeholder="Comment" [(ngModel)]="getPostUtilObj(comment).potentialComment">
+                    <input [id]="'commentInput' + comment.postId" type="text" placeholder="Comment" name="{{'commentInput'+j}}">
 
                     <button [id]="'submitBtn' + comment.postId" (click)="submitComment(comment)">Submit</button>
                 </div>

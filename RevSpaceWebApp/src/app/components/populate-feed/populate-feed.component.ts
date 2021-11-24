@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, HostListener } from '@angular/core';
+import { Component, OnInit, Inject, HostListener, ChangeDetectorRef } from '@angular/core';
 import { DOCUMENT } from "@angular/common";
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
@@ -27,6 +27,7 @@ export class PopulateFeedComponent implements OnInit {
   }
 
 
+  message: string = 'loading :(';
   pclArray: Array<Array<Post>> = [];
   posts: Array<Post> = this.newPostService.posts;
   comments: Array<Post> = [];
@@ -177,26 +178,35 @@ export class PopulateFeedComponent implements OnInit {
 
     console.log(this.getPostUtilObj(parentPost).potentialComment);
 
-    let newComment = new Post(this.user, this.getPostUtilObj(parentPost).potentialComment, null, 
+    let commentInput = this.document.getElementById("commentInput" + parentPost.postId);
+
+    let commentInputElement = commentInput as HTMLInputElement;
+
+    let newComment = new Post(this.user, commentInputElement.value, null, 
                     new Date().getTime(), true, parentPost);
 
     this.postHttpService.addPost(newComment).subscribe(data =>{
 
       console.log(data); 
+
+      newComment.postId = data.postId;
     });
 
     this.comments.push(newComment);
 
-    this.getPostUtilObj(parentPost).potentialComment = "";
+    commentInputElement.value = "";
+
+    this.postUtil.push(new PostUtilObj(newComment.postId, 0, commentInputElement.value));
+
   }
 
   // createComment(commentId: number, parentId: number) {
 
   // }
 
-  trackByFn(index: any, item: any) {
-    return index;
-  }
+  // trackByFn(index: any, item: any) {
+  //   return index;
+  // }
 
 }
   
