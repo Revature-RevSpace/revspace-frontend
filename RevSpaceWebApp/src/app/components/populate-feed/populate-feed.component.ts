@@ -30,7 +30,6 @@ export class PopulateFeedComponent implements OnInit {
     // this.posts = [];
     // this.comments = [];
     // this.postUtil = [];
-    
     this.nextTen(0);
   }
 
@@ -40,7 +39,7 @@ export class PopulateFeedComponent implements OnInit {
   postUtil: Array<PostUtilObj> = this.newPostService.postUtil;
   lastLoadTime: number = 0;
   like: Like;
-
+  allLikes: Array<Like>;
   user: User = this.loginService.getLoginInfo().user;
 
   /*
@@ -51,30 +50,33 @@ export class PopulateFeedComponent implements OnInit {
   */
 
   nextTen(oldestId: number){
-
-    this.postHttpService.getTenPosts(oldestId).subscribe(
-      (response) => {
-
-        console.log(response);
-
-        if(response.status == 200){ //Okay
-          
-          this.pclArray = response.body;
-
-          this.populateArrays(this.pclArray);
-
-          console.log(this.pclArray);
-
-        }else if (response.status == 204){ //No more posts to display
-          
-          alert("There are no more posts to display.")
-
-        }else if (response.status == 400){ //Bad request
-          
-          alert("Something went wrong! Call IT support for help.");
+    this.likeHttpService.getAllLikes().subscribe(data => {
+      this.allLikes = data;
+      console.log(data);
+      this.postHttpService.getTenPosts(oldestId).subscribe(
+        (response) => {
+  
+          console.log(response);
+  
+          if(response.status == 200){ //Okay
+            
+            this.pclArray = response.body;
+  
+            this.populateArrays(this.pclArray);
+  
+            console.log(this.pclArray);
+  
+          }else if (response.status == 204){ //No more posts to display
+            
+            alert("There are no more posts to display.")
+  
+          }else if (response.status == 400){ //Bad request
+            
+            alert("Something went wrong! Call IT support for help.");
+          }
         }
-      }
-    );
+      );
+    });
   }
 
   populateArrays(pclArray: Array<Array<Post>>) {
@@ -109,21 +111,23 @@ export class PopulateFeedComponent implements OnInit {
   }
 
   calculateLikes(likesArray: Array<Post>) {
-    console.log("above");
   
 
     for(let likePost of likesArray){
 
       this.getPostUtilObj(likePost).numLikes = likePost.date;
-      console.log("below creatorID");
-      console.log(likePost.creatorId);
-
+      
+      // for(let like of this.allLikes){
+        //like.postId.postId == likePost.postId && this.user.userId == like.userId.userId
+        if( this.alreadyLiked(likePost) ){
+          this.getPostUtilObj(likePost).starStyle = "fas fa-star";
+        }
+      // }
       if (likePost.creatorId.userId == this.user.userId) {
         
-        this.getPostUtilObj(likePost).starStyle = "fas fa-star";
+        // this.getPostUtilObj(likePost).starStyle = "fas fa-star";
         
       }
-      console.log("exiting for loop");
       console.log(this.postUtil);
     }
   }
@@ -144,7 +148,7 @@ export class PopulateFeedComponent implements OnInit {
         this.like = null;
       }
     )
-
+      
     }
   }
 
@@ -157,7 +161,15 @@ export class PopulateFeedComponent implements OnInit {
 
   alreadyLiked(curPost: Post): boolean {
 
-    return (this.determineStarStyle(curPost) == "fas fa-star");
+    for(let like of this.allLikes){
+      if(like.postId.postId == curPost.postId && this.user.userId == like.userId.userId){
+        return true;
+      }
+    }
+    return false;
+
+    // return (this.determineStarStyle(curPost) == "fas fa-star");
+
   }
 
 
