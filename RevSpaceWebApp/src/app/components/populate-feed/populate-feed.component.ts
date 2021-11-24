@@ -76,11 +76,20 @@ export class PopulateFeedComponent implements OnInit {
 
   populateArrays(pclArray: Array<Array<Post>>) {
 
+    
+
     for (let newPost of this.pclArray[0]) {
 
-      this.postUtil.push(new PostUtilObj(newPost.postId, 0, ""));
+      let newPostUtilObj = new PostUtilObj(newPost.postId, 0, "");
 
-      this.posts.push(newPost);
+      console.log(this.postUtil.filter(obj => {return obj.postId == newPostUtilObj.postId}));
+      let duplicatePosts = (this.postUtil.filter(obj => {return obj.postId == newPostUtilObj.postId}).length);
+
+      if(duplicatePosts == 0) {
+        this.postUtil.push(new PostUtilObj(newPost.postId, 0, ""));
+
+        this.posts.push(newPost);
+      }
 
       //console.log(newPost.creatorId.firstName);
     }
