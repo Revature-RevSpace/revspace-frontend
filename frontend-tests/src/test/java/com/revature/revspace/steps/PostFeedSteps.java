@@ -1,0 +1,78 @@
+package com.revature.revspace.steps;
+
+import com.revature.revspace.CucumberRunner;
+import com.revature.revspace.pages.LoginPage;
+import com.revature.revspace.pages.PostFeedPage;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+
+public class PostFeedSteps {
+    public static PostFeedPage postFeedPage = CucumberRunner.postFeedPage;
+    public static LoginPage loginPage = CucumberRunner.loginPage;
+    public static WebDriver driver = CucumberRunner.DRIVER;
+    public static String url = CucumberRunner.WEB_APP_URL;
+
+    @Given("User is on post feed page")
+    public void user_is_on_post_feed_page() throws InterruptedException {
+        driver.get(url);
+        loginPage.inputEmail.sendKeys("username1@email.com");
+        loginPage.inputPassword.sendKeys("Password1");
+        loginPage.loginBtn.click();
+    }
+    @Then("User can view all posts from other users")
+    public void user_can_view_all_posts_from_other_users() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+//    @Given("User is on post feed page")
+//    public void user_is_on_post_feed_page() {
+//        // Write code here that turns the phrase above into concrete actions
+//        throw new io.cucumber.java.PendingException();
+//    }
+    @When("User scrolls to bottom of page")
+    public void user_scrolls_to_bottom_of_page() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("User can view more posts that automatically populate")
+    public void user_can_view_more_posts_that_automatically_populate() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+//    @Given("User is on post feed page")
+//    public void user_is_on_post_feed_page() {
+//        // Write code here that turns the phrase above into concrete actions
+//        throw new io.cucumber.java.PendingException();
+//    }
+    @When("User clicks on return-to-top button")
+    public void user_clicks_on_return_to_top_button() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("User returns to the top of the page")
+    public void user_returns_to_the_top_of_the_page() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+//    @Given("User is on post feed page")
+//    public void user_is_on_post_feed_page() {
+//        // Write code here that turns the phrase above into concrete actions
+//        throw new io.cucumber.java.PendingException();
+//    }
+    @When("User clicks the display-comments button on a post")
+    public void user_clicks_the_display_comments_button_on_a_post() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("Comments for that post are displayed")
+    public void comments_for_that_post_are_displayed() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+}
