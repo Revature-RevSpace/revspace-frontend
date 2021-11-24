@@ -74,7 +74,7 @@
             <small class="comment-text">{{comment.body}}</small>
             <div class="d-flex flex-row align-items-center status"></div>
             
-            <div>
+            <div style="color: rgb(185, 185, 186);">
                 <span class="commentButton" (click)="likePost(comment)" [attr.disable]="alreadyLiked(comment)">
                     <span style="text-align: left; vertical-align: text-top; color: rgb(185, 185, 186);">{{getPostUtilObj(comment).numLikes}}</span>
                     <i [class]="determineStarStyle(comment)"></i>
@@ -90,8 +90,8 @@
             </div>
             
 
-            <div class="collapse" [id]="'writeCommentCollapse' + comment.postId" >
-                <div class="input-group mb-3">
+            <div class="collapse" [id]="'writeCommentCollapse' + comment.postId">
+                <div class="input-group sb-2">
                     <div class="input-group-prepend">
                         <!-- <input type="text" placeholder="Comment" [(ngModel)]="getPostUtilObj(comment).potentialComment"> -->
                         <input class="form-control" [id]="'commentInput' + comment.postId" type="text" placeholder="Comment" name="{{'commentInput'+j}}">
