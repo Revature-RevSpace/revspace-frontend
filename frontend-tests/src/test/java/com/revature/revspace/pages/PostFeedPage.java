@@ -82,9 +82,6 @@ public class PostFeedPage {
     public WebElement firstPostLikeCount;
 
 
-
-
-
     public PostFeedPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
