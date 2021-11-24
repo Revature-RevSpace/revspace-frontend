@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, HostListener, ChangeDetectorRef } from '@angular/core';
-import { DOCUMENT } from "@angular/common";
+import { CurrencyPipe, DOCUMENT } from "@angular/common";
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
 import { Like } from 'src/app/models/Like';
@@ -9,6 +9,7 @@ import { LikeHttpServiceService } from 'src/app/services/like-http-service.servi
 import { NewPostService } from 'src/app/services/new-post.service';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
+import { LiteralExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-populate-feed',
@@ -38,7 +39,7 @@ export class PopulateFeedComponent implements OnInit {
   comments: Array<Post> = [];
   postUtil: Array<PostUtilObj> = this.newPostService.postUtil;
   lastLoadTime: number = 0;
-  
+  like: Like;
 
   user: User = this.loginService.getLoginInfo().user;
 
@@ -104,20 +105,26 @@ export class PopulateFeedComponent implements OnInit {
     }  
 
     this.calculateLikes(this.pclArray[2]);
+    console.log(this.pclArray[2]);
   }
 
   calculateLikes(likesArray: Array<Post>) {
+    console.log("above");
+  
 
     for(let likePost of likesArray){
 
       this.getPostUtilObj(likePost).numLikes = likePost.date;
+      console.log("below creatorID");
+      console.log(likePost.creatorId);
 
       if (likePost.creatorId.userId == this.user.userId) {
         
         this.getPostUtilObj(likePost).starStyle = "fas fa-star";
+        
       }
-
-      //console.log(this.postUtil);
+      console.log("exiting for loop");
+      console.log(this.postUtil);
     }
   }
 
@@ -125,10 +132,18 @@ export class PopulateFeedComponent implements OnInit {
 
     if (!this.alreadyLiked(curPost)){
 
-      this.likeHttpService.likePost();
+      // this.likeHttpService.likePost();
 
     this.getPostUtilObj(curPost).numLikes ++;
     this.getPostUtilObj(curPost).starStyle = "fas fa-star";
+    this.like = new Like(this.loginService.getLoginInfo().user, curPost);
+    console.log(this.like);
+    // console.log(this.pclArray);
+    this.likeHttpService.likePost(this.like).subscribe(
+      (response)=>{console.log(response)
+        this.like = null;
+      }
+    )
 
     }
   }
