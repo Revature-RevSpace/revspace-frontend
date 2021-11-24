@@ -9,7 +9,9 @@ export class NewPostService {
 
   constructor() { }
 
+  pclArray: Array<Array<Post>> = [];
   posts: Array<Post> = [];
+  comments: Array<Post> = [];
   postUtil: Array<PostUtilObj> = [];
   
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginInfo } from './models/LoginInfo';
 import { LoginService } from './services/login.service';
 import { User } from './models/User';
+import { NewPostService } from './services/new-post.service';
 
 
 
@@ -12,7 +13,8 @@ import { User } from './models/User';
 })
 export class AppComponent {
   title = 'RevSpaceWebApp';
-  constructor(private loginService:LoginService){}
+  constructor(private loginService:LoginService,
+              private newPostService: NewPostService){}
   isLoggedIn()
   {
     return(this.loginService.getLoginInfo() != null);
@@ -24,7 +26,13 @@ export class AppComponent {
   getUserId(){
     let user = this.loginService.getLoginInfo().user;
     return user.userId;
+  }
 
+  clearPosts() {
+    this.newPostService.pclArray = [];
+    this.newPostService.posts = [];
+    this.newPostService.comments = [];
+    this.newPostService.postUtil = [];
   }
 }
 
