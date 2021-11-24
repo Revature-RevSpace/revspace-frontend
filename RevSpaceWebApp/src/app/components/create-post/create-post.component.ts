@@ -7,7 +7,7 @@ import { User } from 'src/app/models/User';
 import { ImageService } from 'src/app/services/image.service';
 import { PostHttpServiceService } from 'src/app/services/post-http-service.service';
 import { Form } from '@angular/forms';
-import { LoginServiceService } from 'src/app/services/login-service.service';
+import { LoginService } from 'src/app/services/login.service';
 import { NewPostService } from 'src/app/services/new-post.service';
 import { PostUtilObj } from 'src/app/models/PostUtilObj';
 
@@ -19,7 +19,7 @@ import { PostUtilObj } from 'src/app/models/PostUtilObj';
 })
 export class CreatePostComponent implements OnInit {
 
-  constructor(private loginService: LoginServiceService, private http: HttpClient, private imageService:ImageService, private postService: PostHttpServiceService, private newPostService: NewPostService) { }
+  constructor(private loginService: LoginService, private http: HttpClient, private imageService:ImageService, private postService: PostHttpServiceService, private newPostService: NewPostService) { }
 
   body: string;
   urlLink:string;

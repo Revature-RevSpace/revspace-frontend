@@ -3,20 +3,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from '../models/Post';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import {LoginServiceService} from './login-service.service';
-import { Observable } from 'rxjs';
+import {LoginService} from './login.service';
 import { BackendService } from './backend.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostHttpServiceService {
-  constructor(private http: HttpClient, private loginService: LoginServiceService) { }
+
 
   constructor(
-    private backendService: BackendService,
-    private http: HttpClient
-    ) { }
+    private http: HttpClient, 
+    private loginService: LoginService, 
+    private backendService: BackendService) { }
+
 
 
   authToken: string = this.loginService.getLoginInfo().authToken;

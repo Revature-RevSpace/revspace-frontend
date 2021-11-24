@@ -7,7 +7,7 @@ import { PostUtilObj } from 'src/app/models/PostUtilObj';
 import { PostHttpServiceService } from 'src/app/services/post-http-service.service';
 import { LikeHttpServiceService } from 'src/app/services/like-http-service.service';
 import { NewPostService } from 'src/app/services/new-post.service';
-import { LoginServiceService } from 'src/app/services/login-service.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-populate-feed',
@@ -19,7 +19,7 @@ export class PopulateFeedComponent implements OnInit {
   constructor(private postHttpService: PostHttpServiceService,
               private likeHttpService: LikeHttpServiceService,
               private newPostService: NewPostService,
-              private loginService: LoginServiceService,
+              private loginService: LoginService,
               @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
