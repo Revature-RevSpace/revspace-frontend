@@ -124,6 +124,7 @@ export class EditUserProfileComponent implements OnInit {
     console.log((new Date(this.birthdayInput)).getTime());
 
     let fakeUser = {
+      userId: 
       firstName: this.firstNameInput,
       lastName: this.lastNameInput,
       birthday: (new Date(this.birthdayInput)).getTime(),
@@ -137,7 +138,7 @@ export class EditUserProfileComponent implements OnInit {
 
     console.log(fakeUser);
 
-    this.userService.editUser(fakeUser, );
+    this.userService.editUser(1, fakeUser);
     
 
   }

@@ -33,7 +33,7 @@ export class UserService {
     return this.http.delete<User>('http://localhost:8080/users/' + id);
   }
 
-  editUser(id: number, change: User, ): Observable<User> {
+  editUser(id: number, change: User ): Observable<User> {
     return this.http.put<User>('http://localhost:8080/users/' + id, change, { headers: this.headers });
   }
 
