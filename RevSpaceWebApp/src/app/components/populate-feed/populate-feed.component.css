@@ -29,6 +29,16 @@
     cursor: pointer;
 }
 
+.commentButton:hover {
+    background-color: rgb(115, 165, 194);
+    border-radius: 10%;
+}
+
+.commentButton {
+
+    cursor: pointer;
+}
+
 body {
     background-color: white;
     font-family: Futura-Std-Book;
