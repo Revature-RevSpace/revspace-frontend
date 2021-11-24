@@ -1,9 +1,12 @@
 package com.revature.revspace;
 
+import com.revature.revspace.pages.LoginPage;
+import com.revature.revspace.pages.PostFeedPage;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
@@ -18,6 +21,9 @@ import java.util.concurrent.TimeUnit;
 public class CucumberRunner
 {
 	private static final Logger LOGGER = LogManager.getLogger();
+	public static PostFeedPage postFeedPage;
+	public static LoginPage loginPage;
+
 	public static final WebDriver DRIVER;
 	public static final String WEB_APP_URL;
 
@@ -65,6 +71,9 @@ public class CucumberRunner
 		WebDriver driver = driverType.getDriverStarter().apply(driverPath);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		DRIVER = driver;
+
+		postFeedPage = new PostFeedPage(DRIVER);
+		loginPage = new LoginPage(DRIVER);
 	}
 
 	/**
