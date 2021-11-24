@@ -82,12 +82,15 @@ export class CreatePostComponent implements OnInit {
     this.postService.addPost(this.post)
    .subscribe(data =>{
      console.log(data);
+     this.post.postId = data.postId;
     }, error=> console.log(error));
 
     // window.location.reload();
 
 
     let newPost = new Post(this.user, this.body, this.urlLink, this.post.date, false, null, 0);
+
+    newPost.postId = this.post.postId;
     
     this.newPostService.postUtil.push(new PostUtilObj(newPost.postId, 0, ""));
     this.newPostService.posts.unshift(newPost);
