@@ -27,6 +27,10 @@ export class LikeHttpServiceService {
     return this.http.post<Like>(this.backendService.getBackendURL()+ '/likes', like, {headers: this.postHeaders}).pipe(retry(1), catchError(this.errorHandl));
   }
 
+  getAllLikes(): Observable<Array<Like>>{
+    return this.http.get<Array<Like>>(this.backendService.getBackendURL()+ '/likes', {headers: this.postHeaders}).pipe(retry(1), catchError(this.errorHandl));
+  }
+
   errorHandl(error: { error: { message: string; }; status: any; message: any; }) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {
