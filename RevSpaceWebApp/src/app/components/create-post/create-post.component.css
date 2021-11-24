@@ -19,12 +19,12 @@ form{
     box-shadow: 3px 5px 15px -5px black;
     border-radius: 10px;
     position: relative;
-    background-color: rgb(236, 234, 234);
+    background-color: rgb(243, 241, 241);
 }
 
 
 .post {
-    background: #fff;
+    background: rgb(255, 255, 255);
     border-radius: 7px;
     box-shadow: 0 2px 5px #ccc;
     padding: 10px;
@@ -50,7 +50,7 @@ i .fa-plus {
     background:transparent;
 }
 .postbtn:hover {
-    background-color: #f45900;
+    background-color: rgb(242, 105, 38);
 }
 
 .postbtn {
@@ -70,9 +70,9 @@ i .fa-plus {
 
 i .fas,.fa-plus {
     outline:none;
-    font-size: 30px;
+    font-size: 27px;
     font-weight: 550;
-    color:#f45900;
+    color:rgb(242, 105, 38);
     /* cursor:pointer; */
     /* z-index: 222;  */
     background-color: transparent;
@@ -84,14 +84,14 @@ textarea {
     background: transparent;
     border:none;
     outline: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 10px 0;
 }
 
 button .image {
     width:40px;
     font-weight: 600;
-    color: rgb(70, 100, 125);
+    color: rgb(245, 245, 245);
     /* cursor:pointer; */
     /* z-index: 222; */
     background-color: transparent;
