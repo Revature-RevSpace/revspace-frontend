@@ -23,11 +23,14 @@ export class PopulateFeedComponent implements OnInit {
               @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
+
+    // this.posts = [];
+    // this.comments = [];
+    // this.postUtil = [];
+    
     this.nextTen(0);
   }
 
-
-  message: string = 'loading :(';
   pclArray: Array<Array<Post>> = [];
   posts: Array<Post> = this.newPostService.posts;
   comments: Array<Post> = [];
@@ -57,6 +60,7 @@ export class PopulateFeedComponent implements OnInit {
 
           this.populateArrays(this.pclArray);
 
+          console.log(this.pclArray);
 
         }else if (response.status == 204){ //No more posts to display
           
@@ -142,8 +146,6 @@ export class PopulateFeedComponent implements OnInit {
 
       let parent = this.document.getElementById("attach" + comment.parentPost.postId);
 
-
-
       parent.appendChild(this.document.getElementById("comment" + comment.postId));
     }
   }
@@ -187,16 +189,15 @@ export class PopulateFeedComponent implements OnInit {
 
     this.postHttpService.addPost(newComment).subscribe(data =>{
 
-      console.log(data); 
 
       newComment.postId = data.postId;
+
+      this.postUtil.push(new PostUtilObj(newComment.postId, 0, commentInputElement.value));
+
+      this.comments.push(newComment);
+
+      commentInputElement.value = "";
     });
-
-    this.comments.push(newComment);
-
-    commentInputElement.value = "";
-
-    this.postUtil.push(new PostUtilObj(newComment.postId, 0, commentInputElement.value));
 
   }
 

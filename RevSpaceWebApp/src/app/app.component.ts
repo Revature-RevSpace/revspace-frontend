@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginInfo } from './models/LoginInfo';
 import { LoginService } from './services/login.service';
 import { User } from './models/User';
+import { NewPostService } from './services/new-post.service';
 
 
 
@@ -24,7 +25,6 @@ export class AppComponent {
   getUserId(){
     let user = this.loginService.getLoginInfo().user;
     return user.userId;
-
   }
 }
 
