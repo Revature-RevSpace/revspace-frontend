@@ -3,22 +3,26 @@ import { Injectable } from '@angular/core';
 import { Credentials } from '../models/Credentials';
 import { LoginInfo } from '../models/LoginInfo';
 import { User } from '../models/User';
+import { BackendService } from './backend.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginServiceService {
+export class LoginService {
 
   constructor(
+    private backendService:BackendService,
     private http: HttpClient
   ) { }
 
   private loginInfo:LoginInfo = null;
+  private invalidLogin = false;
 
   /**
    * Requests login validation.
    * If request is successful, saves the user's auth token and user info
-   * @param credentials Credentials object containing a user object -- used to retrieve user's email and password
+   * @param username username
+   * @param password password
    */
   public login(username:string, password:string)
   {
@@ -26,14 +30,16 @@ export class LoginServiceService {
     const myHeaders:HttpHeaders = new HttpHeaders({
       'Authorization': authToken
     });
-    const request = this.http.get<User>("http://localhost:8080/login", {headers:myHeaders});
+    const request = this.http.get<User>(this.backendService.getBackendURL() + "/login", {headers:myHeaders});
     const result = request.subscribe(
       (response)=>{
-        this.loginInfo = new LoginInfo(response, authToken)
+        this.loginInfo = new LoginInfo(response, authToken);
+        this.invalidLogin = false;
       },
       ()=>
       {
         this.loginInfo = null;
+        this.invalidLogin = true;
       }
     )
   }
@@ -46,4 +52,23 @@ export class LoginServiceService {
   {
     return this.loginInfo;
   }
+
+  /**
+   * @returns true if the most recent login attempt was invalid, false otherwise
+   * (false if no login attemps yet in this session)
+   */
+  public isLoginInvalid()
+  {
+    return this.invalidLogin;
+  }
+
+  /**
+   * Sets the stored user object in loginInfo to the passed user object
+   * Does not change the authtoken
+   */
+  public setUserInfo(user: User) {
+    let authToken = this.loginInfo.authToken;
+    this.loginInfo = new LoginInfo(user, authToken);
+  }
+
 }

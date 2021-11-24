@@ -10,7 +10,7 @@ export class User {
     githubUsername: string;
     title: string;
     location: string;
-    aboutme: string;
+    aboutMe: string;
 
     constructor(userId: number,
         email: string,
@@ -20,7 +20,7 @@ export class User {
         revatureJoinDate: number,
         githubUsername: string,
         title: string,
-        location: string, aboutme: string,)
+        location: string, aboutMe: string,)
         {
             this.userId = userId;
             this.email = email;
@@ -31,7 +31,7 @@ export class User {
             this.githubUsername = githubUsername;
             this.title = title;
             this.location = location;
-            this.aboutme = aboutme;
+            this.aboutMe = aboutMe;
     }
 
  

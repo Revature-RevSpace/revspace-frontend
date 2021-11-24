@@ -4,6 +4,8 @@ import { Post } from '../models/Post';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {LoginServiceService} from './login-service.service';
+import { Observable } from 'rxjs';
+import { BackendService } from './backend.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,11 @@ import {LoginServiceService} from './login-service.service';
 export class PostHttpServiceService {
   constructor(private http: HttpClient, private loginService: LoginServiceService) { }
 
-  baseurl = 'http://localhost:8080/posts/';
+  constructor(
+    private backendService: BackendService,
+    private http: HttpClient
+    ) { }
+
 
   authToken: string = this.loginService.getLoginInfo().authToken;
   postHeaders = new HttpHeaders({ 
@@ -25,18 +31,18 @@ export class PostHttpServiceService {
 
     let authHeadersTen = new HttpHeaders({ 'Context-Type': 'application/json', 'Authorization': this.authToken, 'lastPostIdOnThePage': oldestIdString});
 
-    return this.http.get(`http://localhost:8080/posts`, {headers: authHeadersTen, observe:'response'});
+    return this.http.get(this.backendService.getBackendURL() + `/posts`, {headers: authHeadersTen, observe:'response'});
   }
 
    addPost(post: Post): Observable<Post> {
-    return this.http.post<Post>(this.baseurl, post, { headers: this.postHeaders  }).pipe(
+    return this.http.post<Post>(this.backendService.getBackendURL() + `/posts`, post, { headers: this.postHeaders  }).pipe(
       retry(1),
       catchError(this.errorHandl)
     );
   }
 
   getPostById(id: number): Observable<Post> {
-    return this.http.get<Post>(this.baseurl + id).pipe(
+    return this.http.get<Post>(this.backendService.getBackendURL() + `/posts/` + id).pipe(
       retry(1),
       catchError(this.errorHandl)
     );
@@ -45,14 +51,14 @@ export class PostHttpServiceService {
 
  
   updatePost(post: Post): Observable<Post> {
-    return this.http.put<Post>(this.baseurl, JSON.stringify(post),{ headers: this.postHeaders }).pipe(
+    return this.http.put<Post>(this.backendService.getBackendURL() + `/posts`, JSON.stringify(post),{ headers: this.postHeaders }).pipe(
       retry(1),
       catchError(this.errorHandl)
     );
   }
 
   deletePost(id: number): Observable<Post[]> {
-    return this.http.delete<Post[]>(this.baseurl + id,{ headers: this.postHeaders }).pipe(
+    return this.http.delete<Post[]>(this.backendService.getBackendURL() + `/posts/` + id,{ headers: this.postHeaders }).pipe(
       retry(1),
       catchError(this.errorHandl)
     );

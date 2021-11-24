@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { Credential } from 'src/app/models/Credential';
 import { UserService } from 'src/app/services/user.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-register-form',
@@ -31,9 +32,10 @@ export class RegisterFormComponent implements OnInit {
   noLastName: string = "Please Input Valid Last Name";
   noEmail: string  = "Please Input Valid Email";
   noDob: string = "Please Valid Input Date of Birth";
-  correctInfo: boolean;
- 
-
+  correctInfo: boolean = false;
+  invalidEmail:boolean = true;
+  invalidDob: boolean = true;
+  registerSuccess: string;
 
 
   
@@ -82,7 +84,8 @@ export class RegisterFormComponent implements OnInit {
       (response) => {
         console.log(response);
         this.userId = response.userId;
-        setTimeout(() => this.router.navigate([`viewprofile/ + ${this.userId}`]))  
+        this.registerSuccess = "You have successfully registered to RevSpace! Log In with your Email and Password"
+        setTimeout(() => this.router.navigate([''])) // Back to log-in  
       }
     )
   }
@@ -90,7 +93,7 @@ export class RegisterFormComponent implements OnInit {
   //Convert String DOB to Unix Timestamp
   dateToNum(userDob: string){
     let DOBDate = new Date(userDob);
-    let DOBNum = (DOBDate.getTime() / 1000);
+    let DOBNum = (DOBDate.getTime()); // Time in miliseconds
 
     return DOBNum;
   }

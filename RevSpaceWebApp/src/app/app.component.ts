@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { LoginInfo } from './models/LoginInfo';
-import { LoginServiceService } from './services/login-service.service';
+import { LoginService } from './services/login.service';
+import { User } from './models/User';
+
+
 
 @Component({
   selector: 'app-root',
@@ -9,9 +12,19 @@ import { LoginServiceService } from './services/login-service.service';
 })
 export class AppComponent {
   title = 'RevSpaceWebApp';
-  constructor(private loginService:LoginServiceService){}
+  constructor(private loginService:LoginService){}
   isLoggedIn()
   {
     return(this.loginService.getLoginInfo() != null);
   }
+  getUserName():string{
+    let user = this.loginService.getLoginInfo().user;
+    return user.firstName + " " + user.lastName;
+  }
+  getUserId(){
+    let user = this.loginService.getLoginInfo().user;
+    return user.userId;
+
+  }
 }
+

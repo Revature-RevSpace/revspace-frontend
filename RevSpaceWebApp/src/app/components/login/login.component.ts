@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LoginServiceService } from 'src/app/services/login-service.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import { LoginServiceService } from 'src/app/services/login-service.service';
 
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService:LoginServiceService) { }
+  constructor(private loginService:LoginService) { }
 
   ngOnInit(): void {
   }
@@ -22,5 +22,13 @@ export class LoginComponent implements OnInit {
   login()
   {
     this.loginService.login(this.username, this.password);
+  }
+
+  /**
+   * @returns whether the most recent login attempt was invalid (false if no login attempt this session)
+   */
+  isLoginInvalid():boolean
+  {
+    return this.loginService.isLoginInvalid();
   }
 }
