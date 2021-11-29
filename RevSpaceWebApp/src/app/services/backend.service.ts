@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,6 @@ export class BackendService {
    */
   public getBackendURL():string
   {
-    return "http://34.230.88.110:8081";
+    return environment.backendURL;
   }
 }
