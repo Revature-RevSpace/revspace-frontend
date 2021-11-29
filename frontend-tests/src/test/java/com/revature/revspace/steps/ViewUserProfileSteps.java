@@ -37,10 +37,13 @@ public class ViewUserProfileSteps {
 
     @When("user clicks on another user")
     public void user_clicks_on_another_user() {
-        throw new io.cucumber.java.PendingException();
+        WebElement userProfile = CucumberRunner.DRIVER.findElement(By.xpath("/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[1]/div/div/span[1]/p"));
+        userProfile.click();
     }
     @Then("user sees the other user profile displayed")
     public void user_sees_the_other_user_profile_displayed() {
-        throw new io.cucumber.java.PendingException();
+        WebElement userFirstname = CucumberRunner.DRIVER.findElement(By.xpath("/html/body/app-root/app-view-profile-component/div/div[2]/div/div[1]/div/h3"));
+        Assertions.assertEquals("Revature Information", userFirstname.getText());
+
     }
 }
