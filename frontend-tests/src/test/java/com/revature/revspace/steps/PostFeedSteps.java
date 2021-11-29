@@ -7,7 +7,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class PostFeedSteps {
@@ -23,54 +25,50 @@ public class PostFeedSteps {
         loginPage.inputPassword.sendKeys("Password1");
         loginPage.loginBtn.click();
     }
+
     @Then("User can view all posts from other users")
     public void user_can_view_all_posts_from_other_users() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        String currentUser = postFeedPage.currentUsername.getText().substring(7);
+
+        String firstPostCreator = postFeedPage.firstPostCreatorName.getText();
+
+        Assertions.assertNotEquals(currentUser, firstPostCreator);
     }
 
-//    @Given("User is on post feed page")
-//    public void user_is_on_post_feed_page() {
-//        // Write code here that turns the phrase above into concrete actions
-//        throw new io.cucumber.java.PendingException();
-//    }
     @When("User scrolls to bottom of page")
     public void user_scrolls_to_bottom_of_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @Then("User can view more posts that automatically populate")
-    public void user_can_view_more_posts_that_automatically_populate() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        for (int i = 0; i < 100; i++) {
+
+            driver.findElement(By.xpath("/html/body")).sendKeys(Keys.ARROW_DOWN);
+        }
     }
 
-//    @Given("User is on post feed page")
-//    public void user_is_on_post_feed_page() {
-//        // Write code here that turns the phrase above into concrete actions
-//        throw new io.cucumber.java.PendingException();
-//    }
+    @Then("User can view more posts that automatically populate")
+    public void user_can_view_more_posts_that_automatically_populate() {
+
+        Assertions.assertTrue(postFeedPage.eleventhPostDiv.isDisplayed());
+    }
+
     @When("User clicks on return-to-top button")
     public void user_clicks_on_return_to_top_button() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,350)", "");
         postFeedPage.goTopBtn.click();
     }
+
     @Then("User returns to the top of the page")
     public void user_returns_to_the_top_of_the_page() {
         Assertions.assertEquals("scroll-to-top",postFeedPage.goTopBtnDiv.getAttribute("class"));
     }
 
-//    @Given("User is on post feed page")
-//    public void user_is_on_post_feed_page() {
-//        // Write code here that turns the phrase above into concrete actions
-//        throw new io.cucumber.java.PendingException();
-//    }
     @When("User clicks the display-comments button on a post")
     public void user_clicks_the_display_comments_button_on_a_post() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
     @Then("Comments for that post are displayed")
     public void comments_for_that_post_are_displayed() {
         // Write code here that turns the phrase above into concrete actions
