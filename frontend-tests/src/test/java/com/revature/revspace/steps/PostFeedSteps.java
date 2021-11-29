@@ -62,7 +62,7 @@ public class PostFeedSteps {
     public void user_returns_to_the_top_of_the_page() {
         Assertions.assertEquals("scroll-to-top",postFeedPage.goTopBtnDiv.getAttribute("class"));
     }
-
+    
     @Then("Comments for that post are displayed")
     public void comments_for_that_post_are_displayed() {
 
