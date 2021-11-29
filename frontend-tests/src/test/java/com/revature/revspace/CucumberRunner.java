@@ -17,7 +17,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features="src/test/resources/features", glue="com.revature.revspace.steps")
+@CucumberOptions(features="src/test/resources/com.revature.revspace.features", glue="com.revature.revspace.steps")
 public class CucumberRunner
 {
 	private static final Logger LOGGER = LogManager.getLogger();
