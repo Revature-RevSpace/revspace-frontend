@@ -1,7 +1,7 @@
 Feature: The navbar is responsive and displayed
   Scenario: The navbar is displayed if the user is logged in
     Given User is on the mainpage
-    When User clicks the login button
+    When User logs in
     Then User sees navbar displayed
 
   Scenario: User can navigate to their profile
