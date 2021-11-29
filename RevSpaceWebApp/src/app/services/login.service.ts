@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Credentials } from '../models/Credentials';
 import { LoginInfo } from '../models/LoginInfo';
 import { User } from '../models/User';
@@ -12,7 +13,8 @@ export class LoginService {
 
   constructor(
     private backendService:BackendService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router:Router
   ) { }
 
   private loginInfo:LoginInfo = null;
@@ -35,11 +37,13 @@ export class LoginService {
       (response)=>{
         this.loginInfo = new LoginInfo(response, authToken);
         this.invalidLogin = false;
+        this.router.navigate(['postfeed']);
       },
       ()=>
       {
         this.loginInfo = null;
         this.invalidLogin = true;
+        this.router.navigate(['']);
       }
     )
   }
