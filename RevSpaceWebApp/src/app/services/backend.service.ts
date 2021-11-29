@@ -12,6 +12,6 @@ export class BackendService {
    */
   public getBackendURL():string
   {
-    return "http://localhost:8080";
+    return "http://34.230.88.110:8081";
   }
 }
