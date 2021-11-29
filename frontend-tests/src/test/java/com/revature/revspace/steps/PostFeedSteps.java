@@ -7,7 +7,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class PostFeedSteps {
@@ -27,20 +29,26 @@ public class PostFeedSteps {
     @Then("User can view all posts from other users")
     public void user_can_view_all_posts_from_other_users() {
 
+        String currentUser = postFeedPage.currentUsername.getText().substring(7);
 
-        Assertions.assertNotEquals(postFeedPage.currentUsername.getText(), postFeedPage.firstPostCreatorName.getText());
+        String firstPostCreator = postFeedPage.firstPostCreatorName.getText();
+
+        Assertions.assertNotEquals(currentUser, firstPostCreator);
     }
 
     @When("User scrolls to bottom of page")
     public void user_scrolls_to_bottom_of_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        for (int i = 0; i < 100; i++) {
+
+            driver.findElement(By.xpath("/html/body")).sendKeys(Keys.ARROW_DOWN);
+        }
     }
 
     @Then("User can view more posts that automatically populate")
     public void user_can_view_more_posts_that_automatically_populate() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        Assertions.assertTrue(postFeedPage.eleventhPostDiv.isDisplayed());
     }
 
     @When("User clicks on return-to-top button")
