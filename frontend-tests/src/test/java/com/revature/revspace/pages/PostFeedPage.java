@@ -10,12 +10,20 @@ public class PostFeedPage {
 
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-create-post/div/div/div/form/textarea")
     public WebElement newPostTextarea;
-
-    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-create-post/div/div/div/form/div/button[1]/img")
-    public WebElement newPostImageIcon;
+    
+    //input element
+    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-create-post/div/div/div/form/div/input")
+    public WebElement newPostImageInput;
+    
+    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-create-post/div/div/div/form/div/div/img")
+    public WebElement newPostImagePreview;
 
     @FindBy(id = "createPostBtn")
     public WebElement createPostBtn;
+    
+    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[2]/p")
+    public WebElement firstPostMsg;
+    
 
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]")
     public WebElement firstPostDiv;
@@ -67,6 +75,8 @@ public class PostFeedPage {
 
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[3]/span[1]/span[1]")
     public WebElement firstPostLikeCount;
+    
+    
 
 
 
