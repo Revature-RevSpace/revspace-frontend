@@ -80,6 +80,8 @@ public class PostFeedPage {
 
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[4]/span[1]/span[1]")
     public WebElement firstPostLikeCount;
+    
+    
 
 
     public PostFeedPage(WebDriver driver){
