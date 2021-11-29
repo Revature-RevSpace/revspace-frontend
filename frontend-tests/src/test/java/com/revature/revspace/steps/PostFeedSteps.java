@@ -6,6 +6,8 @@ import com.revature.revspace.pages.PostFeedPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 public class PostFeedSteps {
@@ -50,13 +52,13 @@ public class PostFeedSteps {
 //    }
     @When("User clicks on return-to-top button")
     public void user_clicks_on_return_to_top_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,350)", "");
+        postFeedPage.goTopBtn.click();
     }
     @Then("User returns to the top of the page")
     public void user_returns_to_the_top_of_the_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assertions.assertEquals("scroll-to-top",postFeedPage.goTopBtnDiv.getAttribute("class"));
     }
 
 //    @Given("User is on post feed page")
