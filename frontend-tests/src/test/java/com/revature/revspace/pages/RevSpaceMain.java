@@ -31,9 +31,18 @@ public class RevSpaceMain {
     @FindBy(id = "userConfirmPasswordValue")
     public WebElement regConfirmPassword;
 
-    @FindBy(xpath = "/html/body/app-root/app-register-form/div/div/div/div[3]/button[2]")
+    @FindBy(xpath = "/html/body/app-root/app-login/div[2]/app-register-form/div/div/div/div[3]/button[2]")
     public WebElement regButton;
-    
+
+    @FindBy(xpath = "/html/body/app-root/app-login/div[2]/app-register-form/button")
+    public WebElement regLoginButton;
+
+    @FindBy(xpath = "/html/body/app-root/app-login/div[2]/app-register-form/div/div/div/div[1]/h5")
+    public WebElement regHeader;
+    @FindBy(xpath = "/html/body/app-root/app-login/div[2]/app-register-form/div/div/div/div[2]/span")
+    public WebElement regPasswordError;
+    @FindBy(xpath = "/html/body/app-root/app-login/div[2]/app-register-form/h5")
+    public WebElement regSuccessStatement;
 
 
 

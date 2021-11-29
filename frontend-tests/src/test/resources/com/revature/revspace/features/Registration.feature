@@ -28,8 +28,7 @@ Feature: Registration Page
     And enters valid birthday
     And enters valid password
     And enters invalid confirms password
-    And clicks on register button
-    Then User has unsuccessfully registered
+    Then User sees unsuccessfully registered
 
   Scenario: User registers with invalid email
     Given User is on the registration page
@@ -38,11 +37,9 @@ Feature: Registration Page
     And enters valid birthday
     And enters valid password
     And enters valid confirms password
-    And clicks on register button
     Then User has unsuccessfully registered
 
   Scenario: User does not input anything
     Given User is on the registration page
     When User enters nothing
-    And clicks register button
     Then User has unsuccessfully registered
