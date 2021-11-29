@@ -59,6 +59,9 @@ public class PostFeedPage {
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[11]")
     public WebElement eleventhPostDiv;
 
+    @FindBy(xpath = "/html/body/app-root/app-top/div")
+    public WebElement goTopBtnDiv;
+
     @FindBy(xpath = "/html/body/app-root/app-top/div/button")
     public WebElement goTopBtn;
 
