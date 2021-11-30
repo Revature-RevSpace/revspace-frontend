@@ -1,15 +1,15 @@
-<p>post-feed works!</p>
-
 <!-- (Team Dylan) (gets its own component)
     First we have the write a new post div 
-
+    
 -->
+<app-create-post></app-create-post>
 
 <!-- Rest gets its own component-->
 <!-- (Team Tom)
     Then an ngFor for populating all the posts for what page we're on 
         - one of the divs inside of this div will be a collapsible for the comments
 -->
+<app-populate-feed></app-populate-feed>
 
 <!-- (Team Tom)
     Then an ngFor for populating all the comments
@@ -37,5 +37,3 @@
     Every post and comment will also have a button for liking
         - This can also just be added into the ngFors above
 -->
-
-    

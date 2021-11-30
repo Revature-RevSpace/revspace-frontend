@@ -16,10 +16,13 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

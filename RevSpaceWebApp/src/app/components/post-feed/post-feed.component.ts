@@ -17,28 +17,5 @@ export class PostFeedComponent implements OnInit {
 
   }
 
-  posts: Array<Post> = [];
-  comments: Array<Post> = [];
-  postUtil: Array<Object> = [];
-  user: User;
-
-  /*
-  postUtil is an array where each element is an object with the following attributes:
-    - postId
-    - number of likes
-    - how much it's indented on the template
-  */
-
-  
-  calculateLikes() {
-
-  }
-
-  createComment(commentId: number, parentId: number) {
-
-  }
-
-
-
 
 }

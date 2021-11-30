@@ -1,0 +1,33 @@
+<div >
+    <h1 id="Header" style="  text-align: center; ;">Welcome To RevSpace</h1>
+  </div>
+ 
+
+    <h3 style= "text-align: center;">Login with registered email</h3><br>    
+    <div style="text-align: center; margin-bottom: 5%;"  class="login">    
+        <label>
+            <b>
+                Email      
+            </b>    
+        </label> 
+        <br>   
+        <input type="text"  id="email" placeholder="Email" [(ngModel)]="username" (keydown.enter)=login()>    
+        <br>
+        <br>    
+        <label>
+            <b>
+                Password     
+            </b>    
+        </label>
+        <br>    
+        <input type="Password"  id="password" placeholder="Password" [(ngModel)]="password" (keydown.enter)=login()>    
+        <br>
+        <br>    
+        <input  type="button" id="login" value="Log In" (click)="login()">       
+        <!-- Registration Modal -->
+        <app-register-form></app-register-form>
+        <div *ngIf='isLoginInvalid()' class='invalid-login-div'>
+            <br>
+            <p>Invalid username and/or password</p>
+        </div>
+    </div>

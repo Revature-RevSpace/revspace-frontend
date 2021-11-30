@@ -4,22 +4,28 @@ export class Post {
 
     postId: number;
     creatorId: User;
+    body: string;
     image: string;
     date: number;
-    parentPost: Post
+    comment: boolean;
+    parentPost: Post;
 
 
   constructor(
-    postId: number, 
     creatorId: User, 
+    body: string,
     image: string, 
     date: number, 
-    parentPost: Post
+    comment: boolean,
+    parentPost?: Post,
+    postId?: number
 ) {
     this.postId = postId
     this.creatorId = creatorId
+    this.body = body
     this.image = image
     this.date = date
+    this.comment = comment
     this.parentPost = parentPost
   }
 

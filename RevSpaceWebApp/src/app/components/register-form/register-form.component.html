@@ -1,0 +1,55 @@
+<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #F26925; color: white; border-radius: 5px; margin: 5px;">
+    Register
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Register for RevSpace</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="userFirstName" class="col-form-label">First Name:</label>
+                <input type="text" class="form-control" id="userFirstName" placeholder = "First Name" [(ngModel)] = "userFirstName">
+                <span *ngIf = '!userFirstName; noFirstName'>{{noFirstName}}</span>
+            </div>
+            <div class="mb-3">
+              <label for="userLastName" class="col-form-label">Last Name:</label>
+              <input type="text" class="form-control" id="userLastName" placeholder = "Last Name" [(ngModel)] = "userLastName">
+              <span *ngIf = '!userLastName; noLastName'>{{noLastName}}</span>
+
+          </div>
+            <div class="mb-3">
+                <label for="userEmailValue" class="col-form-label">Email:</label>
+                <input type="email" class="form-control"id="userEmailValue" placeholder="example@revature.net" [(ngModel)] = "userEmail">
+                <span *ngIf = '!userEmail; noEmail'>{{noEmail}}</span>
+            </div>
+            <div class="mb-3">
+                <label for="userDOBValue" class="col-form-label">Date of Birth:</label>
+                <input type="text" class="form-control" id="userDOBValue" placeholder="dd/mm/yyyy" [(ngModel)] = "userDob">  
+                <span *ngIf = '!userDob; noDob'>{{noDob}}</span>
+            </div>
+            <div class="mb-3">
+                <label for="userPasswordValue" class="col-form-label">Password:</label>
+                <input type="password" class="form-control" id="userPasswordValue" [(ngModel)] = "userPassword">
+            </div>
+            <div class="mb-3">
+                <label for="userConfirmPasswordValue" class="col-form-label">Confirm Password:</label>
+                <input type="password" class="form-control" id="userConfirmPasswordValue" [(ngModel)] = "userConfirmPassword">
+            </div>
+            <span *ngIf = "userPassword != userConfirmPassword; differentPasswords">{{differentPasswords}}</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button  [disabled] = "!userFirstName || !userLastName || !userEmail || !userDob || !userPassword || !userConfirmPassword"
+            type="button" class="close btn btn-primary" data-bs-dismiss="modal" (click)= "Register()" >Register
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h5 *ngIf="registerSuccess" style="color: #F26925;">{{registerSuccess}}</h5>

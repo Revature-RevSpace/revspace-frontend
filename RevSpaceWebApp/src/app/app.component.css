@@ -1,0 +1,12 @@
+.nav-link:hover {
+    background-color: #F26925;
+    border-radius: 5px;
+    color: white !important;
+}
+.dropdown-toggle:hover {
+    background-color: #F26925;
+    border-radius: 5px;
+}
+.fullContents {
+    background-color: #FFFFFF;
+}
