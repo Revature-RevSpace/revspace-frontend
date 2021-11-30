@@ -30,13 +30,6 @@ public class CreatePostSteps {
 	public void user_uploads_an_image() {
 		    
 	    postFeedPage.newPostImageInput.sendKeys(imagePath);
-	    	try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
 	}
 	
 	@When("User clicks on post button")
