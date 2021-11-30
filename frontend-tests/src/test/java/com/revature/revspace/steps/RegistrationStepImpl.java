@@ -14,7 +14,7 @@ public class RegistrationStepImpl {
     //public static WebDriver driver = CucumberRunner.DRIVER;
     public static RevSpaceMain revSpaceMain = new RevSpaceMain(CucumberRunner.DRIVER);
     public static int increase = 0;
-    public static String email = "testing" + increase + "@gmail.com";
+    public static String email = System.currentTimeMillis() + increase + "@gmail.com";
 
     @Given("User is on the registration page")
     public void user_is_on_the_registration_page() {
@@ -39,7 +39,7 @@ public class RegistrationStepImpl {
         // Write code here that turns the phrase above into concrete actions
         revSpaceMain.regEmail.sendKeys(email);
         increase++;
-        email = "testing" + increase + "@gmail.com";
+        email = System.currentTimeMillis() + increase + "@gmail.com";
     }
 
     @When("enters valid birthday")
