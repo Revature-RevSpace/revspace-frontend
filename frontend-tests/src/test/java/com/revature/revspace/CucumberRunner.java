@@ -2,6 +2,7 @@ package com.revature.revspace;
 
 import com.revature.revspace.pages.LoginPage;
 import com.revature.revspace.pages.PostFeedPage;
+import com.revature.revspace.pages.EditUserProfilePage;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.apache.logging.log4j.LogManager;
@@ -26,6 +27,9 @@ public class CucumberRunner
 
 	public static final WebDriver DRIVER;
 	public static final String WEB_APP_URL;
+
+	public static EditUserProfilePage eupp;
+	public static LoginPage lp;
 
 	static
 	{
@@ -74,6 +78,7 @@ public class CucumberRunner
 
 		postFeedPage = new PostFeedPage(DRIVER);
 		loginPage = new LoginPage(DRIVER);
+		eupp = new EditUserProfilePage(DRIVER);
 	}
 
 	/**

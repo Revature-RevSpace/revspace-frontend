@@ -75,7 +75,7 @@
             <span *ngIf="aboutMeInput.length > 475" style="color:black;font-weight: bold;font-style: italic;"> About Me has a character limit of 1000 ({{aboutMeInput.length}}/1000) <br></span>   
 
         <button style="margin: .5%;" type="button" class="btn btn-success" id="edit-user-accept-changes-button" (click)="confirmUpdateProfile()"> Accept changes </button>
-        <button style="margin: .5%;" type="button" class="btn btn-danger" id="edit-user-cancel-changes-button" (click)="cancelUpdateProfile()"> Cancel changes </button>
+        <app-leaving-edit-alert></app-leaving-edit-alert>
         <span *ngIf="updateFailWarning" style="color:red"> Something isn't working correctly - please try again later <br></span> 
 
     

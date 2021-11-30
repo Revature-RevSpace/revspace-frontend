@@ -198,8 +198,16 @@ export class EditUserProfileComponent implements OnInit {
 
   //Reset the fields and return to the view user profile screen
   cancelUpdateProfile() {
-    this.resetInputFields();
-    this.router.navigate(["viewprofile/" + this.currentUser.userId]);
+    let leaveResponse: Boolean = false;
+
+    if(leaveResponse) {
+      this.router.navigate(["viewprofile/" + this.currentUser.userId]);
+    }
+
+    else {
+      // this.alertLeavingEditScreen();
+
+    }
   }
 
 }
