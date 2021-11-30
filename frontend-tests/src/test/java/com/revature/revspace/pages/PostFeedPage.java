@@ -34,20 +34,23 @@ public class PostFeedPage {
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[1]/div/div/span[1]/p")
     public WebElement firstPostCreatorName;
 
-    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[3]/span[1]")
+    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[4]/span[1]/span[2]")
     public WebElement firstPostLikeBtn;
 
-    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[3]/span[2]")
+    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[4]/span[2]/span")
     public WebElement firstPostShowCommentsBtn;
 
-    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[4]/div[1]/div[1]/input")
+    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[5]/div[1]/div[1]/input")
     public WebElement inputFirstPostCreateComment;
 
-    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[4]/div[1]/div[2]/button")
+    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[5]/div[1]/div[2]/button")
     public WebElement submitFirstPostNewCommentBtn;
 
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[4]/div[2]/div[1]")
     public WebElement firstPostFirstComment;
+
+    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[5]/div[2]/div[4]/div/small")
+    public WebElement firstPostNewestComment;
 
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[4]/div[2]/div[1]/div/div[2]/span[2]")
     public WebElement firstPostFirstCommentShowReplyInterfaceBtn;
@@ -73,7 +76,7 @@ public class PostFeedPage {
     @FindBy(xpath = "/html/body/app-root/app-top/div/button")
     public WebElement goTopBtn;
 
-    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[3]/span[1]/span[1]")
+    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[4]/span[1]/span[1]")
     public WebElement firstPostLikeCount;
     
     
