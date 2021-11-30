@@ -20,6 +20,7 @@ public class CreatePostSteps {
     public static String url = CucumberRunner.WEB_APP_URL;
     public static String postMsg = "Hi, how are you?";
     public static String imagePath = "C:\\Users\\tlath\\OneDrive\\Pictures\\spo.jpg";
+
 	
 	
 	@When("User enters a post")
