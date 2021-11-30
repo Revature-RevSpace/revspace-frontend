@@ -38,7 +38,7 @@ export class UserService {
   }
 
   editUser(id: number, change: User, myHeaders: HttpHeaders): Observable<User> {
-    return this.http.put<User>('http://localhost:8080/users/' + id, change, { headers: myHeaders });
+    return this.http.put<User>(this.backendService.getBackendURL() + '/users/' + id, change, { headers: myHeaders });
   }
   /*
   editUser(id: number, change: User, ): Observable<User> {
