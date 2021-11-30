@@ -23,7 +23,6 @@ public class PostFeedPage {
     
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[2]/p")
     public WebElement firstPostMsg;
-    
 
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]")
     public WebElement firstPostDiv;
@@ -46,7 +45,10 @@ public class PostFeedPage {
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[5]/div[1]/div[2]/button")
     public WebElement submitFirstPostNewCommentBtn;
 
-    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[4]/div[2]/div[1]")
+    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[5]")
+    public WebElement firstPostCommentCollapse;
+
+    @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[5]/div[2]/div[1]/div/small")
     public WebElement firstPostFirstComment;
 
     @FindBy(xpath = "/html/body/app-root/app-post-feed/app-populate-feed/div[1]/div/div/div/div[1]/div[5]/div[2]/div[4]/div/small")
