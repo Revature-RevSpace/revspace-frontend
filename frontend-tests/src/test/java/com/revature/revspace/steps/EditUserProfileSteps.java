@@ -149,7 +149,7 @@ public class EditUserProfileSteps {
         // initializing expected values
         String expectedFirstName = "Lloyd";
         String expectedLastName = "Irving";
-        String expectedGitHub = "username: melimartinez";
+        String expectedGitHub = "melimartinez";
         String expectedUserTitle = "Pega Developer";
         String expectedLocation = "Iselia, Sylvarant";
         String expectedAboutMe = "I really like Java and Angular!";
