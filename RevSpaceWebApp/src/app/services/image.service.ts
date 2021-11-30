@@ -20,7 +20,7 @@ export class ImageService {
  upload(file: File): Observable<string>{
    const formData = new FormData();
    formData.append('image', file);
-   return this.http.post<any>('/upload', formData, {params: {key:this.apiKey}})
+   return this.http.post<any>('https://api.imgbb.com/1/upload', formData, {params: {key:this.apiKey}})
    .pipe(map((response)=>response['data']['url']));      
  }
  
