@@ -14,7 +14,8 @@ Feature: As a User, I should have a post feed that displays other user's posts.
     When User clicks on return-to-top button
     Then User returns to the top of the page
 
+  #Flaky test! "User clicks on show comments button" is very flaky
   Scenario: Display-comments button works
     Given User is on post feed page
-    When User clicks the display-comments button on a post
+    When User clicks on show comments button
     Then Comments for that post are displayed

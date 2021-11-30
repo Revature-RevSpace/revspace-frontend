@@ -63,16 +63,19 @@ public class PostFeedSteps {
         Assertions.assertEquals("scroll-to-top",postFeedPage.goTopBtnDiv.getAttribute("class"));
     }
 
-    @When("User clicks the display-comments button on a post")
-    public void user_clicks_the_display_comments_button_on_a_post() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
     @Then("Comments for that post are displayed")
     public void comments_for_that_post_are_displayed() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        try {
+
+            Thread.sleep(1000);
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+        }
+
+        Assertions.assertEquals(postFeedPage.firstPostCommentCollapse.getAttribute("class"), "collapse show");
     }
 
 }
