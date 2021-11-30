@@ -87,31 +87,31 @@ public class EditUserProfilePage {
     @FindBy(id = "edit-user-accept-changes-button")
     public WebElement acceptButton;
 
-    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/span[1]")
+    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/div/div[1]/div[1]/span[1]")
     public WebElement firstNameWarning;
 
-    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/span[2]")
+    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/div/div[1]/div[1]/span[2]")
     public WebElement lastNameWarning;
 
-    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/span[4]")
+    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/div/div[2]/div[2]/span[1]")
     public WebElement githubWarning;
 
-    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/span[3]")
+    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/div/div[2]/div[1]/span[1]")
     public WebElement userTitleWarning;
 
-    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/span[5]")
+    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/div/div[2]/div[1]/span[2]")
     public WebElement locationWarning;
 
-    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/span[6]")
+    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/div/div[3]/span")
     public WebElement aboutMeWarning;
 
-    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/span[1]")
+    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/div/div[2]/div[1]/span")
     public WebElement joinDateWarning;
 
-    @FindBy(xpath = "//*[@id=\"birthday-warning\"]")
+    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/div/div[2]/div[1]/span")
     public WebElement birthdayWarning;
 
-    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/p/a")
+    @FindBy(xpath = "//*[@id=\"edit-user-profile-div\"]/div/div[2]/div[2]/p/a")
     public WebElement gitHubLink;
 
     @FindBy(id = "cancel-changes-button")

@@ -27,7 +27,7 @@ Feature: User can edit their profile
     And User accepts profile changes
     Then User is taken to the view their profile screen
     And All time field edits are present and correct
-
+#
   Scenario: User text input is limited to database varchar limits
     Given User completes log in process
     When User navigates to edit profile screen
@@ -41,7 +41,7 @@ Feature: User can edit their profile
     And User tries to set a birthday beyond 125 years
     Then User input is rejected
     And User is notified of birthday lower bound
-
+#
   Scenario: User birthday input is limited to the past
     Given User completes log in process
     When User navigates to edit profile screen

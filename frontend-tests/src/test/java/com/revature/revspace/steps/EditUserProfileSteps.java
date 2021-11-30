@@ -111,6 +111,17 @@ public class EditUserProfileSteps {
 
     @And("User accepts profile changes")
     public void userAcceptsProfileChanges() {
+
+        //to perform Scroll on application using Selenium
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,450)", "");
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         eupp.acceptButton.click();
     }
 
@@ -171,7 +182,7 @@ public class EditUserProfileSteps {
 
         // turns into [0]04/19/1967
         // eupp gives me []04/19/1967
-        String expectedBirthday = "4/19/1967";
+        String expectedBirthday = " 4/19/1967";
         String expectedJoinDate = "6/16/2005";
 
         // assertEquals(expectedBirthday, eupp.birthday.getText());
@@ -200,6 +211,7 @@ public class EditUserProfileSteps {
                 "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
                 "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
                 "ddddddzzzz");
+
 
         // hitting the 1,000 character limit on input fields
         eupp.aboutmeInput.sendKeys("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee" +
@@ -233,6 +245,10 @@ public class EditUserProfileSteps {
                 "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
                 "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
                 "dddddddd";
+
+        //to perform Scroll on application using Selenium
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,450)", "");
 
         // 1,000 character limit
         String expectedAboutMe = "I really like Java and Angular!eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee" +
@@ -283,20 +299,26 @@ public class EditUserProfileSteps {
     public void userInputIsRejected() {
         String expectedBirthdayWarning = "Birthday must be within 125 years ago and the present!";
 
+        //to perform Scroll on application using Selenium
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,450)", "");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         try {
             // this is subject to change !!!
             // we want to implement that warning shows up before user
             // presses "accept"
             eupp.acceptButton.click();
 
-            //to perform Scroll on application using Selenium
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("window.scrollBy(0,350)", "");
-
             // For some reason, the WebElement from the EditUserProfilePage is not
             // being recognized despite the fact that it clearly shows during
             // automation testing. For this reason, using this method to get the text within <span></span>
-            WebElement spanWarning = driver.findElement(By.xpath("//*[@id=\"birthday-warning\"]"));
+            WebElement spanWarning = driver.findElement(By.xpath("//*[@id=\"edit-user-profile-div\"]/div/div[2]/div[1]/span"));
             String spanWarningText = spanWarning.getText();
 
 
@@ -329,20 +351,26 @@ public class EditUserProfileSteps {
         // automation testing. For this reason, using this method to get the text within <span></span>
         // String spanWarning = driver.findElement(By.xpath("//*[@id=\"birthday-warning\"]")).getText();
 
+        //to perform Scroll on application using Selenium
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,450)", "");
+
         try {
-            WebElement spanWarning = driver.findElement(By.xpath("//*[@id=\"birthday-warning\"]"));
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // this is subject to change !!!
+        // we want to implement that warning shows up before user
+        // presses "accept"
+        eupp.acceptButton.click();
+
+        try {
+            WebElement spanWarning = driver.findElement(By.xpath("//*[@id=\"edit-user-profile-div\"]/div/div[2]/div[1]/span"));
             String spanWarningText = spanWarning.getText();
 
             driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-
-            //to perform Scroll on application using Selenium
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("window.scrollBy(0,350)", "");
-
-            // this is subject to change !!!
-            // we want to implement that warning shows up before user
-            // presses "accept"
-            eupp.acceptButton.click();
 
             // make sure error message has populated display lower bound
             assertEquals(expectedBirthdayWarning, spanWarningText);
@@ -389,6 +417,16 @@ public class EditUserProfileSteps {
     public void userIsNotifiedOfJoinDateLowerBound() {
         String expectedJoinDateWarning = "Revature Join Date must be between 2003 and the present!";
 
+        //to perform Scroll on application using Selenium
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,450)", "");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // this is subject to change !!!
         // we want to implement that warning shows up before user
         // presses "accept"
@@ -410,6 +448,16 @@ public class EditUserProfileSteps {
     @Then("User is notified of join date upper bound")
     public void userIsNotifiedOfJoinDateUpperBound() {
         String expectedJoinDateWarning = "Revature Join Date must be between 2003 and the present!";
+
+        //to perform Scroll on application using Selenium
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,450)", "");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // this is subject to change !!!
         // we want to implement that warning shows up before user
@@ -485,6 +533,17 @@ public class EditUserProfileSteps {
 
     @And("User clicks cancel changes button")
     public void userClicksCancelChangesButton() {
+
+        //to perform Scroll on application using Selenium
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,450)", "");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         eupp.cancelButton.click();
         eupp.stayButton.click();
     }
@@ -502,6 +561,16 @@ public class EditUserProfileSteps {
 
     @And("User attempts to navigate away from edit profile screen")
     public void userAttemptsToNavigateAwayFromEditProfileScreen() {
+        //to perform Scroll on application using Selenium
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,450)", "");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         eupp.cancelButton.click();
     }
 
