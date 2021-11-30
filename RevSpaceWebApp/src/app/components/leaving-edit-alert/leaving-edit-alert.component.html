@@ -1,0 +1,24 @@
+<button id="cancel-changes-button" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin: .5%;" class="btn btn-danger">
+    Cancel changes
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel" style="color:black">Are you sure you want to leave</h4>
+        </div>
+        <div class="modal-body">
+            <h6 id="lose-changes-warning" style="color:black">Your changes will be dismissed if you do!</h6>
+        </div>
+        <div class="modal-footer">
+          <button id="stay-button" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Stay</button>
+          <button id="leave-button" type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="confirmLeaveUpdateProfile()">Leave</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+
