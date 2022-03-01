@@ -18,8 +18,7 @@ import { DatePipe } from './pipes/date.pipe';
 
 import { EditUserProfileComponent } from './components/edit-user-profile/edit-user-profile.component';
 import { LeavingEditAlertComponent } from './components/leaving-edit-alert/leaving-edit-alert.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
-
+import { ChangePasswordComponentComponent } from './components/change-password-component/change-password-component.component';
 
 
 @NgModule({
@@ -35,7 +34,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     DatePipe,
     EditUserProfileComponent,
     LeavingEditAlertComponent,
-    SearchBarComponent
+    ChangePasswordComponentComponent
   ],
   
   imports: [
