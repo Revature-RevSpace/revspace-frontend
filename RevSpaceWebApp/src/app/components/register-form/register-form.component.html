@@ -29,7 +29,7 @@
             </div>
             <div class="mb-3">
                 <label for="userDOBValue" class="col-form-label">Date of Birth:</label>
-                <input type="text" class="form-control" id="userDOBValue" placeholder="dd/mm/yyyy" [(ngModel)] = "userDob">  
+                <input type="text" class="form-control" id="userDOBValue" placeholder="mm/dd/yyyy" [(ngModel)] = "userDob">  
                 <span *ngIf = '!userDob; noDob'>{{noDob}}</span>
             </div>
             <div class="mb-3">
