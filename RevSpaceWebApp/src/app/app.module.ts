@@ -18,6 +18,7 @@ import { DatePipe } from './pipes/date.pipe';
 
 import { EditUserProfileComponent } from './components/edit-user-profile/edit-user-profile.component';
 import { LeavingEditAlertComponent } from './components/leaving-edit-alert/leaving-edit-alert.component';
+import { ChangePasswordComponentComponent } from './components/change-password-component/change-password-component.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { LeavingEditAlertComponent } from './components/leaving-edit-alert/leavi
     TopComponent,
     DatePipe,
     EditUserProfileComponent,
-    LeavingEditAlertComponent
+    LeavingEditAlertComponent,
+    ChangePasswordComponentComponent
   ],
   
   imports: [
