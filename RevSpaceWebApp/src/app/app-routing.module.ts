@@ -10,7 +10,7 @@ import { ChangePasswordComponentComponent } from './components/change-password-c
 
 const routes: Routes = [
   {path: '', component:PostFeedComponent},
-  { path: 'postfeed', component: PostFeedComponent },
+  {path: 'postfeed', component: PostFeedComponent},
   {path: 'viewprofile/:userId', component: ViewProfileComponentComponent},
   {path: 'editprofile', component: EditUserProfileComponent},
   {path: 'changePassword', component: ChangePasswordComponentComponent}
