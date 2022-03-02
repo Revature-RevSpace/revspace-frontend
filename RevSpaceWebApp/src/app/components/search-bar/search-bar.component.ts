@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-bar',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor() { }
+  searchText:FormControl;
+  
+  User=[{}];
 
+  constructor() {  
+  }
   ngOnInit(): void {
+    
   }
 
 }
