@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-
+import { outputAst } from '@angular/compiler';
+import { Component, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
+import{Router,NavigationExtras} from '@angular/router';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
@@ -8,9 +10,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor(private route: Router, private actRoute: ActivatedRoute) { }
+  searchText:FormControl;
+  
+  User=[{}];
 
+  constructor(private router:Router) {}
   ngOnInit(): void {
+    
+  }
+  getAllUser(result:any){
+    const navigationExtras :NavigationExtras={
+      queryParams:{
+        result: JSON.stringify(result)
+      }
+    }
+    this.router.navigate(['search-detail'], navigationExtras);
   }
 
   // searchEmail(email: string){

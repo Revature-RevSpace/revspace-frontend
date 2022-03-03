@@ -14,6 +14,12 @@
           <a class="nav-link active" routerLink="postfeed">Post Feed</a>
         </li>
       </ul>
+
+
+      <div class="center">
+        <app-search-bar> </app-search-bar>
+      </div>
+
       <!-- if user is logged in this will disabled -->
       <!--drop down for user profile-->
       <div class="dropdown" style="margin-right: 2%;">
@@ -30,6 +36,7 @@
       </div>
 
     </div>
+
   </div>
 </nav>
 <app-login *ngIf="!isLoggedIn()"></app-login>
