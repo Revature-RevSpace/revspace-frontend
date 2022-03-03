@@ -1,1 +1,15 @@
-<p>search-bar works!</p>
+
+
+<div clss="container">
+      <div class="row">
+      <div class="col-md-12">
+      <input  class="form-control" type="text" name="search" placeholder="Search.."  [(ngModel)]="searchText" autocomplete="off"/>
+        </div>
+        <div *ngFor="let result od data" (click)="getAllUser(result)" style="cursor:pointer">
+            <div class = "card card-body mb-1">
+             <h4>{{result.title}}</h4>
+            <small class="text-primary">{{result.description}}</small>
+            </div>
+        </div>
+        </div>
+      </div>
