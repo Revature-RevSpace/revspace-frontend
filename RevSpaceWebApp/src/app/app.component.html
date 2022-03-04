@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light "
-  style="padding: 1% 2%; background-color: #B9B9BA;font-family: Futura-Std-Book;">
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-light " style="padding: 1% 2%; background-color: #B9B9BA;font-family: Futura-Std-Book;"  >
 
   <div class="container-fluid" style="color: black;">
     <a class="navbar-brand" routerLink="postfeed" href="" style="font-weight: bold;"><img alt="image"
@@ -43,5 +43,6 @@
 <router-outlet *ngIf="isLoggedIn()"></router-outlet>
 
 <app-top style="position: sticky; left: 90%; top: 90%;"></app-top>
-
+<!-- <button (click)="toggleDarkTheme()">Toggle dark theme</button> -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+</body>
