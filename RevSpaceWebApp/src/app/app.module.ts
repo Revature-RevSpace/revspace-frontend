@@ -36,7 +36,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     DatePipe,
     EditUserProfileComponent,
     LeavingEditAlertComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ChangePasswordComponentComponent
   ],
   
   imports: [
