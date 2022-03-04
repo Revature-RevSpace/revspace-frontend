@@ -26,7 +26,7 @@ export class AppComponent {
     let user = this.loginService.getLoginInfo().user;
     return user.userId;
   }
-      User=[{}]; 
+      // User=[{}]; 
   
   /* getAllUser():string{
  let user =this.loginService.getLoginInfo().user;

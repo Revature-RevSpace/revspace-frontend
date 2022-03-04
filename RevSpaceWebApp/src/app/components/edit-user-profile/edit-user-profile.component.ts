@@ -161,13 +161,13 @@ export class EditUserProfileComponent implements OnInit {
       this.currentUser.userId, 
       this.currentUser.email, 
       this.firstNameInput,
-      this.lastNameInput,
-      birthdayNumber,
-      joinDateNumber,
+      this.lastNameInput,        
       this.githubUsernameInput,
       this.titleInput,
       this.locationInput,
-      this.aboutMeInput
+      this.aboutMeInput,
+      birthdayNumber,  
+      joinDateNumber     
       );
 
 
