@@ -46,4 +46,7 @@ export class UserService {
   }
   */
 
+  changePassword(email:string): Observable<User>{
+    return this.http.post<User>(this.backendService.getBackendURL() + '/users/password', email, {headers: this.headers });
+  }
 }

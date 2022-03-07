@@ -11,6 +11,8 @@ import{Router,NavigationExtras} from '@angular/router';
 export class SearchBarComponent implements OnInit {
 
   searchText:FormControl;
+
+  search = "";
   
   User=[{}];
 
@@ -27,4 +29,17 @@ export class SearchBarComponent implements OnInit {
     this.router.navigate(['search-detail'], navigationExtras);
   }
 
+  // searchEmail(email: string){
+  //   this.actRoute.queryParams.subscribe(data =>{
+  //     email = data.email;
+  //     console.log(data);
+  //   });
+  // }
+
+
+  onKeyUp(x) { // appending the updated value to the variable
+    
+  }
+  
 }
+
