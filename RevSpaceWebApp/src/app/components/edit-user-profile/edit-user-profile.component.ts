@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login.service';
 import { User } from 'src/app/models/User';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-edit-user-profile',
@@ -15,7 +16,7 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 export class EditUserProfileComponent implements OnInit, DoCheck {
 
 
-  constructor(private userService: UserService, private loginService: LoginService, private router: Router, private cpCom: ChangePasswordComponent) {
+  constructor(private userService: UserService, private loginService: LoginService, private router: Router) {
 
   }
   ngDoCheck(): void {
@@ -102,7 +103,7 @@ export class EditUserProfileComponent implements OnInit, DoCheck {
 
     //Get information for the current user
     this.currentUser = this.loginService.getLoginInfo().user;
-    this.currentCred.user = this.currentUser;
+    // this.currentCred.user = this.loginService.getLoginInfo().user;
 
     //Set the input tag values to the user's current info
     this.firstNameInput = this.currentUser.firstName;
@@ -192,12 +193,12 @@ export class EditUserProfileComponent implements OnInit, DoCheck {
       joinDateNumber
     );
 
-    if (updatedUser.firstName) {
-      updatedUser.firstName = this.currentUser.firstName
-    }
-    if (updatedUser.lastName) {
-      updatedUser.lastName = this.currentUser.lastName
-    }
+    // if (updatedUser.firstName) {
+    //   updatedUser.firstName = this.currentUser.firstName
+    // }
+    // if (updatedUser.lastName) {
+    //   updatedUser.lastName = this.currentUser.lastName
+    // }
 
 
     //Get authentication information
@@ -218,7 +219,7 @@ export class EditUserProfileComponent implements OnInit, DoCheck {
           // this.router.navigate(["viewprofile/" + response.userId]);
           this.toggleEdit();
           // if(){
-
+          // this.cpCom.submitPassword(this.cpCom.passwordForm);     
           // }
         } else {
           //If we get a null response something went wrong in the backend

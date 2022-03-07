@@ -39,7 +39,7 @@ export class PopulateFeedComponent implements OnInit {
   postUtil: Array<PostUtilObj> = this.newPostService.postUtil;
   lastLoadTime: number = 0;
   like: Like;
-  allLikes: Array<Like>;
+  allLikes: Array<Like> = [];
   user: User = this.loginService.getLoginInfo().user;
 
   /*
