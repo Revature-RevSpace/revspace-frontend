@@ -10,12 +10,3 @@
 .fullContents {
     background-color: #FFFFFF;
 }
-.fa-solid fa-bell{
-        outline:none;
-        font-size: 27px;
-        font-weight: 550;
-        color:rgb(242, 105, 38);
-        /* cursor:pointer; */
-        /* z-index: 222;  */
-        background-color: transparent;
-    }
