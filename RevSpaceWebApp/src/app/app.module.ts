@@ -11,15 +11,16 @@ import { LoginComponent } from './components/login/login.component';
 import { PostFeedComponent } from './components/post-feed/post-feed.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { PopulateFeedComponent } from './components/populate-feed/populate-feed.component';
-import { ViewProfileComponentComponent } from './components/view-profile-component/view-profile-component.component';
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { TopComponent } from './components/top/top.component';
 import { ImageService } from './services/image.service';
 import { DatePipe } from './pipes/date.pipe';
 
 import { EditUserProfileComponent } from './components/edit-user-profile/edit-user-profile.component';
 import { LeavingEditAlertComponent } from './components/leaving-edit-alert/leaving-edit-alert.component';
-import { ChangePasswordComponentComponent } from './components/change-password-component/change-password-component.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 
@@ -29,7 +30,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     PostFeedComponent,
     CreatePostComponent,
     PopulateFeedComponent,
-    ViewProfileComponentComponent,
+    ViewProfileComponent,
     RegisterFormComponent,
     LoginComponent,
     TopComponent,
@@ -37,7 +38,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     EditUserProfileComponent,
     LeavingEditAlertComponent,
     SearchBarComponent,
-    ChangePasswordComponentComponent
+    ChangePasswordComponent,
+    ForgotPasswordComponent
   ],
   
   imports: [

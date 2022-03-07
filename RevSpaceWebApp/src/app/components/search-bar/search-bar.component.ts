@@ -11,6 +11,8 @@ import{Router,NavigationExtras} from '@angular/router';
 export class SearchBarComponent implements OnInit {
 
   searchText:FormControl;
+
+  search = "";
   
   User=[{}];
 
@@ -34,4 +36,10 @@ export class SearchBarComponent implements OnInit {
   //   });
   // }
 
+
+  onKeyUp(x) { // appending the updated value to the variable
+    
+  }
+  
 }
+

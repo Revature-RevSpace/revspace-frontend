@@ -30,6 +30,10 @@ export class SearchBarService {
     return this.http.get<User>(this.backendService.getBackendURL() + `/users/search/name`, { headers: this.searchHeader, params: searchparams });
   }
 
+  getAllUser(): Observable<User> {
+    return this.http.get<User>(this.backendService.getBackendURL() + `/users/all`, { headers: this.searchHeader });
+  }
+
   errorHandl(error: { error: { message: string; }; status: any; message: any; }) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
