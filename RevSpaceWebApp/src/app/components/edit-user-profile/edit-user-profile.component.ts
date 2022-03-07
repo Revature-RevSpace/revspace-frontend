@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { Credential } from 'src/app/models/Credential';
 import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login.service';
 import { User } from 'src/app/models/User';
@@ -25,6 +25,7 @@ export class EditUserProfileComponent implements OnInit {
 
   //Logged in user information
   currentUser: User;
+  currentCred: Credential;
 
   //Used to store the string values
   firstNameInput: string = "";
@@ -81,6 +82,7 @@ export class EditUserProfileComponent implements OnInit {
 
     //Get information for the current user
     this.currentUser = this.loginService.getLoginInfo().user;
+    this.currentCred.user = this.currentUser;
 
     //Set the input tag values to the user's current info
     this.firstNameInput = this.currentUser.firstName;

@@ -3,7 +3,6 @@ import { Component, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
 import{Router,NavigationExtras} from '@angular/router';
-import { User } from 'src/app/models/User';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
@@ -12,17 +11,15 @@ import { User } from 'src/app/models/User';
 export class SearchBarComponent implements OnInit {
 
   searchText:FormControl;
-  
-  search = "";
-  userlist: User[]=[];
 
-  // User=[{}];
+  search = "";
+  
+  User=[{}];
 
   constructor(private router:Router) {}
   ngOnInit(): void {
     
   }
-
   getAllUser(result:any){
     const navigationExtras :NavigationExtras={
       queryParams:{
@@ -32,15 +29,6 @@ export class SearchBarComponent implements OnInit {
     this.router.navigate(['search-detail'], navigationExtras);
   }
 
-  onKeyUp(x) { // appending the updated value to the variable
-    
-  }
-
-  navToProfile(user:User)
-  {
-    this.router.navigate(['viewprofile/' + user.userId]);
-  }
-
   // searchEmail(email: string){
   //   this.actRoute.queryParams.subscribe(data =>{
   //     email = data.email;
@@ -48,4 +36,10 @@ export class SearchBarComponent implements OnInit {
   //   });
   // }
 
+
+  onKeyUp(x) { // appending the updated value to the variable
+    
+  }
+  
 }
+
