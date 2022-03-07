@@ -15,13 +15,13 @@ export class ChangePasswordComponent implements OnInit {
   correctPass = true;
 
   passwordForm = new FormGroup({
-    email: new FormControl(this.eComp.currentUser.email),
-    oldPassword: new FormControl(this.eComp.currentCred.password),
+    email: new FormControl(''),
+    oldPassword: new FormControl(''),
     newPassword: new FormControl(''),
     confirmPassword: new FormControl(''),
-    id: new FormControl(this.eComp.currentUser.userId)
+    id: new FormControl('')
   })
-  
+
   constructor(private route: Router, private uServ: UserService, private eComp: EditUserProfileComponent, private lServ: LoginService) { }
 
   ngOnInit(): void {
@@ -30,11 +30,12 @@ export class ChangePasswordComponent implements OnInit {
   submitPassword(pass: FormGroup) {
     let password = pass.get("newPassword").value;
     let cpassword = pass.get("confirmPassword").value;
+    pass.setValue({email: this.eComp.currentUser.email, oldPassword: this.eComp.currentCred.password, id: this.eComp.currentUser.userId})
 
     if (password === cpassword) {
       this.uServ.changePassword(JSON.stringify(pass.value)).subscribe(
         response => {
-          this.lServ.setUserInfo(response);
+          this.route.navigate([""]);
         }
       )
     }
