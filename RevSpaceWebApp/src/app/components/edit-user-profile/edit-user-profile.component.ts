@@ -15,12 +15,10 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 export class EditUserProfileComponent implements OnInit, DoCheck {
 
 
-  constructor(private userService: UserService, private loginService: LoginService, private router: Router, private cpCom: ChangePasswordComponent) {
+  constructor(private userService: UserService, private loginService: LoginService, private router: Router) {
 
   }
   ngDoCheck(): void {
-    // this.resetInputFields();
-    console.log("changes");
     if (this.loginService.getLoginInfo().user != this.currentUser) {
       this.resetInputFields();
     }
@@ -68,7 +66,6 @@ export class EditUserProfileComponent implements OnInit, DoCheck {
 
   //Toggle on and off edit
   toggleEdit() {
-    console.log("button click");
     this.isEditable = !this.isEditable;
     this.isViewable = !this.isViewable;
   }
@@ -102,7 +99,7 @@ export class EditUserProfileComponent implements OnInit, DoCheck {
 
     //Get information for the current user
     this.currentUser = this.loginService.getLoginInfo().user;
-    this.currentCred.user = this.currentUser;
+    //this.currentCred.user = this.currentUser;
 
     //Set the input tag values to the user's current info
     this.firstNameInput = this.currentUser.firstName;
@@ -192,12 +189,12 @@ export class EditUserProfileComponent implements OnInit, DoCheck {
       joinDateNumber
     );
 
-    if (updatedUser.firstName) {
-      updatedUser.firstName = this.currentUser.firstName
-    }
-    if (updatedUser.lastName) {
-      updatedUser.lastName = this.currentUser.lastName
-    }
+    // if (updatedUser.firstName) {
+    //   updatedUser.firstName = this.currentUser.firstName
+    // }
+    // if (updatedUser.lastName) {
+    //   updatedUser.lastName = this.currentUser.lastName
+    // }
 
 
     //Get authentication information
