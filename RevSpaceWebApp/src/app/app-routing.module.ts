@@ -6,14 +6,14 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import {ViewProfileComponent} from './components/view-profile/view-profile.component';
 import { LoginComponent } from './components/login/login.component';
 import { EditUserProfileComponent } from './components/edit-user-profile/edit-user-profile.component';
-import { ChangePasswordComponentComponent } from './components/change-password-component/change-password-component.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const routes: Routes = [
   {path: '', component:PostFeedComponent},
   {path: 'postfeed', component: PostFeedComponent},
   {path: 'viewprofile/:userId', component: ViewProfileComponent},
   {path: 'editprofile', component: EditUserProfileComponent},
-  {path: 'changePassword', component: ChangePasswordComponentComponent}
+  {path: 'changePassword', component: ChangePasswordComponent}
   
 ];
 
