@@ -3,7 +3,7 @@
 <div clss="container">
       <div class="row">
       <div class="col-md-12">
-      <input  class="form-control" type="text" name="search" placeholder="Search.."  [(ngModel)]="searchText" autocomplete="off" (keyup)="onKeyUp(search)"/>
+      <input  class="form-control" type="text" name="search" placeholder="Search.."  [(ngModel)]="searchText" autocomplete="off"/>
         </div>
         <!-- <div *ngFor="let result of User" (click)="getAllUser(result)" style="cursor:pointer">
             <div class = "card card-body mb-1">
@@ -11,9 +11,5 @@
             <small class="text-primary">{{result.description}}</small>
             </div> 
         </div> -->
-        <select>
-          <option value="none">none</option>
-          <!-- <option *ngFor="let user of userlist" value="{{user.firstName}} {{user.lastName}}" (click)="navToProfile(user)" >{{user.firstName}} {{user.lastName}}</option> -->
-        </select>
         </div>
       </div>
