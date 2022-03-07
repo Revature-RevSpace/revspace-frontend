@@ -18,6 +18,8 @@ export class ViewProfileComponentComponent implements OnInit {
 
   // user:User= new User(1,'email','Ryan','Schlientz',120395,2017,'https://github.com/Revature-RevSpace/revspace-application','Senior Trainer','West Virginia',"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
   user: User;
+  followExists: boolean = false;
+  userSame: boolean = false;
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -64,14 +66,35 @@ export class ViewProfileComponentComponent implements OnInit {
     this.userHTTP.followUser(this.user.userId, this.loginUser.getLoginInfo().user, myHeaders).subscribe(
       (response) => {
         if(null != response) {
+          this.followExists = true;
           //As long as the response isn't null, the operation succeeded
           //Set the user info in the front end to the new data (to avoid an extra backend call)
           //Go the user profile page
+          this.sleep(200);
           this.router.navigate(["viewprofile/" + this.user.userId]);
       }
     });
 
   }
+
+  // userExists(user, userid){
+  //   if(this.user.userId = userid){
+  //     this.userExists = true;
+  //   }
+  // }
+
+  followToggle(){
+    for(let test in this.user.followers) {
+      this.followExists = this.user.userId == test.
+    }
+
+
+  }
+
+//Follow Button shouldn't appear if on logged in users profile page
+
+
+//Follow Button should toggle follow/unfollow and change accordingly
 
 
 }
