@@ -40,7 +40,6 @@ import { LeavingEditAlertComponent } from './components/leaving-edit-alert/leavi
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
   ],
   providers: [ImageService],
   bootstrap: [AppComponent]
