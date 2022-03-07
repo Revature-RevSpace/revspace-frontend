@@ -29,7 +29,7 @@ export class ChangePasswordComponentComponent implements OnInit{
 
   public changePassword(userForm:FormGroup){
     console.log("change");
-    this.router.navigate(['/change-password-component'])
+    this.router.navigate(['/login'])
     let user = JSON.stringify(userForm.value);
     this.ChangePasswordService.changePassword(user).subscribe(
       response =>{
