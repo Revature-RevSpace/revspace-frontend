@@ -20,8 +20,6 @@ export class EditUserProfileComponent implements OnInit, DoCheck {
 
   }
   ngDoCheck(): void {
-    // this.resetInputFields();
-    console.log("changes");
     if (this.loginService.getLoginInfo().user != this.currentUser) {
       this.resetInputFields();
     }
@@ -69,7 +67,6 @@ export class EditUserProfileComponent implements OnInit, DoCheck {
 
   //Toggle on and off edit
   toggleEdit() {
-    console.log("button click");
     this.isEditable = !this.isEditable;
     this.isViewable = !this.isViewable;
   }
@@ -104,6 +101,7 @@ export class EditUserProfileComponent implements OnInit, DoCheck {
     //Get information for the current user
     this.currentUser = this.loginService.getLoginInfo().user;
     // this.currentCred.user = this.loginService.getLoginInfo().user;
+    //this.currentCred.user = this.currentUser;
 
     //Set the input tag values to the user's current info
     this.firstNameInput = this.currentUser.firstName;

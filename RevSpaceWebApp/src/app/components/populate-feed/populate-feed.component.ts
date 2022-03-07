@@ -122,7 +122,7 @@ export class PopulateFeedComponent implements OnInit {
         // this.getPostUtilObj(likePost).starStyle = "fas fa-star";
         
       }
-      console.log(this.postUtil);
+      
     }
   }
 
