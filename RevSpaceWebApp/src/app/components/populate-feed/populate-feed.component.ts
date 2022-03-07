@@ -175,7 +175,7 @@ export class PopulateFeedComponent implements OnInit {
 
   getPostUtilObj(post: Post): PostUtilObj {
 
-    return this.postUtil.filter(obj => {return obj.postId == post.postId})[0]
+    return this.postUtil.filter(obj => {return obj.postId == post.postId})[0];
   }
 
   appendComments() {
