@@ -18,15 +18,24 @@ export class NotificationsService{
         private http: HttpClient
         ) { }
     
-        authToken: string = this.loginService.getLoginInfo().authToken;
-        postHeaders = new HttpHeaders({ 
-          'Context-Type': 'application/json',
-          'Authorization': this.authToken
-         });
+
 
 
       addNotifications(notiModel: NotificationsModel): Observable<NotificationsModel> {
-        return this.http.post<NotificationsModel>(this.backendService.getBackendURL() + '/notifications', notiModel , { headers: this.postHeaders });
+        let authToken: string = this.loginService.getLoginInfo().authToken;
+        let postHeaders = new HttpHeaders({ 
+          'Context-Type': 'application/json',
+          'Authorization': authToken
+         });
+        return this.http.post<NotificationsModel>(this.backendService.getBackendURL() + '/notifications', notiModel , { headers: postHeaders });
+      }
+      getNotifications(userId:string):Observable<NotificationsModel[]>{
+        let authToken: string = this.loginService.getLoginInfo().authToken;
+        let postHeaders = new HttpHeaders({ 
+          'Context-Type': 'application/json',
+          'Authorization': authToken
+         });
+        return this.http.get<NotificationsModel[]>(this.backendService.getBackendURL() + '/notifications/' + userId , { headers: postHeaders });
       }
 
 }

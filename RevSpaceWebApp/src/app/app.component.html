@@ -24,8 +24,7 @@
           </svg>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item">noti 1</a></li>
-          <li><a class="dropdown-item">noti 2 </a></li>
+          <li *ngFor="let task of notificationsList"><a class="dropdown-item"></a>{{task.message}}</li>
         </ul>
       </div>
       <!-- if user is logged in this will disabled -->
