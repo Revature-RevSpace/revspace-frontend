@@ -22,10 +22,10 @@ export class User {
         title: string,
         location: string, 
         aboutMe: string,
-        followers?: User[],
-        following?: User[],
         birthday?: number,
-        revatureJoinDate?: number)
+        revatureJoinDate?: number,
+        followers?: User[],
+        following?: User[])
         {
             this.userId = userId;
             this.email = email;

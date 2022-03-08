@@ -186,17 +186,10 @@ export class EditUserProfileComponent implements OnInit, DoCheck {
       this.githubUsernameInput,
       this.titleInput,
       this.locationInput,
-      this.aboutMeInput,
-      birthdayNumber,
-      joinDateNumber
-    );
-
-    // if (updatedUser.firstName) {
-    //   updatedUser.firstName = this.currentUser.firstName
-    // }
-    // if (updatedUser.lastName) {
-    //   updatedUser.lastName = this.currentUser.lastName
-    // }
+      this.aboutMeInput, 
+      birthdayNumber, 
+      joinDateNumber     
+      );
 
 
     //Get authentication information
