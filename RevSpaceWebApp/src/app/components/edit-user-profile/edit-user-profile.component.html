@@ -70,7 +70,7 @@
                 <br>
             </div>
         </div>   
-        <app-change-password></app-change-password>
+        
         <div style="background-color: #F26925;border-radius: 10px;padding: 2%;color: white;">
             <!-- aboutme varchar(1000) not null default '' -->
             <h3 style="font-style: italic;">About me</h3>
@@ -81,10 +81,9 @@
             <br>
             <span *ngIf="aboutMeInput.length > 475" style="color:black;font-weight: bold;font-style: italic;"> About Me has a character limit of 1000 ({{aboutMeInput.length}}/1000) <br></span>   
 
-        <button style="margin: .5%;" type="button" class="btn btn-success" id="edit-user-accept-changes-button" (click)="confirmUpdateProfile()"> Accept changes </button>
-        <app-leaving-edit-alert></app-leaving-edit-alert>
+        <button *ngIf="isEditable" style="margin: .5%;" type="button" class="btn btn-success" id="edit-user-accept-changes-button" (click)="confirmUpdateProfile()"> Accept changes </button>
+        <app-leaving-edit-alert *ngIf="isEditable"></app-leaving-edit-alert>
         <span *ngIf="updateFailWarning" style="color:red"> Something isn't working correctly - please try again later <br></span> 
-
-    
     </div>
+    <app-change-password *ngIf="isEditable"></app-change-password>
 </div>
