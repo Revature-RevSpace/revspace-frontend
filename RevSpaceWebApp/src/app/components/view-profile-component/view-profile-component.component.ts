@@ -77,24 +77,40 @@ export class ViewProfileComponentComponent implements OnInit {
 
   }
 
+  unfollow() {
+    const authToken:string = this.loginUser.getLoginInfo().authToken;
+    const myHeaders:HttpHeaders = new HttpHeaders({
+    'Authorization': authToken
+      });
+    this.userHTTP.followUser(this.user.userId, this.loginUser.getLoginInfo().user, myHeaders).subscribe(
+      (response) => {
+        if(null != response) {
+          this.followExists = false;
+          //As long as the response isn't null, the operation succeeded
+          //Set the user info in the front end to the new data (to avoid an extra backend call)
+          //Go the user profile page
+          this.sleep(200);
+          this.router.navigate(["viewprofile/" + this.user.userId]);
+      }
+    });
+
+  }
+
   // userExists(user, userid){
   //   if(this.user.userId = userid){
   //     this.userExists = true;
   //   }
   // }
 
-  followToggle(){
-    for(let test in this.user.followers) {
-      this.followExists = this.user.userId == test.
-    }
 
-
+  public isFollowing(userid){
+    this.user.userId = userid;
   }
 
-//Follow Button shouldn't appear if on logged in users profile page
+  public isntFollowing(userid){
+    this.user.userId != userid;
+  }
 
-
-//Follow Button should toggle follow/unfollow and change accordingly
 
 
 }

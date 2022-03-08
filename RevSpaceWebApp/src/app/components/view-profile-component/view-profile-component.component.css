@@ -22,3 +22,21 @@
    padding: 0;
    border: 2px solid black;
  }
+
+ .followup{
+    color: green;
+    background-color: red;
+    color: #fff;
+   line-height: 42px;
+   padding: 0;
+   border: 2px solid rgb(255, 255, 255);
+}
+
+.unfollow{
+    color: red;
+    background-color: green;
+    color: #fff;
+   line-height: 42px;
+   padding: 0;
+   border: 2px solid rgb(255, 255, 255);
+}
