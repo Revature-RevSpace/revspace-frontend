@@ -10,6 +10,8 @@ import { NewPostService } from 'src/app/services/new-post.service';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { LiteralExpr } from '@angular/compiler';
+import { NotificationsService } from 'src/app/services/notifications.service';
+import { NotificationsModel } from 'src/app/models/Notifications';
 
 @Component({
   selector: 'app-populate-feed',
@@ -22,6 +24,7 @@ export class PopulateFeedComponent implements OnInit {
               private likeHttpService: LikeHttpServiceService,
               private newPostService: NewPostService,
               private loginService: LoginService,
+              private notificationService:NotificationsService,
               private router:Router,
               @Inject(DOCUMENT) private document: Document) { }
 
@@ -40,6 +43,8 @@ export class PopulateFeedComponent implements OnInit {
   lastLoadTime: number = 0;
   like: Like;
   allLikes: Array<Like>;
+  stringmessage:string;
+  notificationModel:NotificationsModel;
   user: User = this.loginService.getLoginInfo().user;
 
   /*
@@ -133,21 +138,31 @@ export class PopulateFeedComponent implements OnInit {
   }
 
   likePost(curPost: Post) {
-
     if (!this.alreadyLiked(curPost)){
-
       // this.likeHttpService.likePost();
 
     this.getPostUtilObj(curPost).numLikes ++;
     this.getPostUtilObj(curPost).starStyle = "fas fa-star";
     this.like = new Like(this.loginService.getLoginInfo().user, curPost);
+    this.stringmessage = this.user.firstName + " " + this.user.lastName + " has liked this";
+    console.log(this.stringmessage);
+    this.notificationModel = new NotificationsModel(this.stringmessage, curPost.creatorId);
+    console.log(this.notificationModel)
+    this.notificationService.addNotifications(this.notificationModel).subscribe(
+      response =>{
+        console.log("worked")
+      },
+      error =>{
+        console.log("failed")
+      }
+    );
     console.log(this.like);
     // console.log(this.pclArray);
-    this.likeHttpService.likePost(this.like).subscribe(
+    /* this.likeHttpService.likePost(this.like).subscribe(
       (response)=>{console.log(response)
         this.like = null;
       }
-    )
+    ) */
       
     }
   }
@@ -175,7 +190,7 @@ export class PopulateFeedComponent implements OnInit {
 
   getPostUtilObj(post: Post): PostUtilObj {
 
-    return this.postUtil.filter(obj => {return obj.postId == post.postId})[0]
+    return this.postUtil.filter(obj => {return obj.postId == post.postId})[0];
   }
 
   appendComments() {
