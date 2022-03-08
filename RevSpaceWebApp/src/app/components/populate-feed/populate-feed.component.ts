@@ -57,11 +57,9 @@ export class PopulateFeedComponent implements OnInit {
   nextTen(oldestId: number){
     this.likeHttpService.getAllLikes().subscribe(data => {
       this.allLikes = data;
-      console.log(data);
       this.postHttpService.getTenPosts(oldestId).subscribe(
         (response) => {
   
-          console.log(response);
   
           if(response.status == 200){ //Okay
             
@@ -69,7 +67,6 @@ export class PopulateFeedComponent implements OnInit {
   
             this.populateArrays(this.pclArray);
   
-            console.log(this.pclArray);
   
           }else if (response.status == 204){ //No more posts to display
             
@@ -92,7 +89,6 @@ export class PopulateFeedComponent implements OnInit {
 
       let newPostUtilObj = new PostUtilObj(newPost.postId, 0, "");
 
-      console.log(this.postUtil.filter(obj => {return obj.postId == newPostUtilObj.postId}));
       let duplicatePosts = (this.postUtil.filter(obj => {return obj.postId == newPostUtilObj.postId}).length);
 
       if(duplicatePosts == 0) {
@@ -112,7 +108,6 @@ export class PopulateFeedComponent implements OnInit {
     }  
 
     this.calculateLikes(this.pclArray[2]);
-    console.log(this.pclArray[2]);
   }
 
   calculateLikes(likesArray: Array<Post>) {
@@ -133,7 +128,6 @@ export class PopulateFeedComponent implements OnInit {
         // this.getPostUtilObj(likePost).starStyle = "fas fa-star";
         
       }
-      console.log(this.postUtil);
     }
   }
 
@@ -144,10 +138,9 @@ export class PopulateFeedComponent implements OnInit {
     this.getPostUtilObj(curPost).numLikes ++;
     this.getPostUtilObj(curPost).starStyle = "fas fa-star";
     this.like = new Like(this.loginService.getLoginInfo().user, curPost);
-    this.stringmessage = this.user.firstName + " " + this.user.lastName + " has liked this";
-    console.log(this.stringmessage);
-    this.notificationModel = new NotificationsModel(this.stringmessage, curPost.creatorId);
-    console.log(this.notificationModel)
+    this.stringmessage = this.user.firstName + " " + this.user.lastName + " has liked " + curPost.body;
+    this.notificationModel = new NotificationsModel(this.stringmessage, curPost.creatorId.userId);
+      console.log(this.notificationModel)
     this.notificationService.addNotifications(this.notificationModel).subscribe(
       response =>{
         console.log("worked")
@@ -158,11 +151,11 @@ export class PopulateFeedComponent implements OnInit {
     );
     console.log(this.like);
     // console.log(this.pclArray);
-    /* this.likeHttpService.likePost(this.like).subscribe(
+    this.likeHttpService.likePost(this.like).subscribe(
       (response)=>{console.log(response)
         this.like = null;
       }
-    ) */
+    )
       
     }
   }
@@ -231,11 +224,21 @@ export class PopulateFeedComponent implements OnInit {
 
   submitComment(parentPost: Post) {
 
-    console.log(this.getPostUtilObj(parentPost).potentialComment);
 
     let commentInput = this.document.getElementById("commentInput" + parentPost.postId);
 
     let commentInputElement = commentInput as HTMLInputElement;
+    this.stringmessage = this.user.firstName + " " + this.user.lastName + " has commented on your post/comment " + parentPost.body;
+    this.notificationModel = new NotificationsModel(this.stringmessage, parentPost.creatorId.userId);
+    console.log(this.notificationModel);
+    this.notificationService.addNotifications(this.notificationModel).subscribe(
+      response =>{
+        console.log("worked")
+      },
+      error =>{
+        console.log("failed")
+      }
+    );
 
     let newComment = new Post(this.user, commentInputElement.value, null, 
                     new Date().getTime(), true, parentPost);
