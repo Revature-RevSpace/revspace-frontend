@@ -43,6 +43,7 @@ export class AppComponent implements AfterViewChecked {
         if (response != null){
         this.notificationsList = response;
         let no = this.notificationsList;
+        console.log(this.notificationsList.length)
         console.log(no)
       }
       },
