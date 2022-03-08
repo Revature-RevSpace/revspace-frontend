@@ -11,8 +11,8 @@ export class User {
     title: string;
     location: string;
     aboutMe: string;
-    followers?: number[];
-    following?: number[];
+    followers?: User[];
+    following?: User[];
 
     constructor(userId: number,
         email: string,
@@ -24,8 +24,8 @@ export class User {
         title: string,
         location: string, 
         aboutMe: string,
-        followers?: number[],
-        following?: number[])
+        followers?: User[],
+        following?: User[])
         {
             this.userId = userId;
             this.email = email;
