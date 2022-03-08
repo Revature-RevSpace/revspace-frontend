@@ -39,7 +39,7 @@ export class PopulateFeedComponent implements OnInit {
   postUtil: Array<PostUtilObj> = this.newPostService.postUtil;
   lastLoadTime: number = 0;
   like: Like;
-  allLikes: Array<Like>;
+  allLikes: Array<Like> = [];
   user: User = this.loginService.getLoginInfo().user;
 
   /*
@@ -52,19 +52,14 @@ export class PopulateFeedComponent implements OnInit {
   nextTen(oldestId: number){
     this.likeHttpService.getAllLikes().subscribe(data => {
       this.allLikes = data;
-      console.log(data);
       this.postHttpService.getTenPosts(oldestId).subscribe(
         (response) => {
-  
-          console.log(response);
   
           if(response.status == 200){ //Okay
             
             this.pclArray = response.body;
   
             this.populateArrays(this.pclArray);
-  
-            console.log(this.pclArray);
   
           }else if (response.status == 204){ //No more posts to display
             
@@ -87,7 +82,6 @@ export class PopulateFeedComponent implements OnInit {
 
       let newPostUtilObj = new PostUtilObj(newPost.postId, 0, "");
 
-      console.log(this.postUtil.filter(obj => {return obj.postId == newPostUtilObj.postId}));
       let duplicatePosts = (this.postUtil.filter(obj => {return obj.postId == newPostUtilObj.postId}).length);
 
       if(duplicatePosts == 0) {
@@ -107,7 +101,7 @@ export class PopulateFeedComponent implements OnInit {
     }  
 
     this.calculateLikes(this.pclArray[2]);
-    console.log(this.pclArray[2]);
+
   }
 
   calculateLikes(likesArray: Array<Post>) {
@@ -128,7 +122,7 @@ export class PopulateFeedComponent implements OnInit {
         // this.getPostUtilObj(likePost).starStyle = "fas fa-star";
         
       }
-      console.log(this.postUtil);
+      
     }
   }
 
