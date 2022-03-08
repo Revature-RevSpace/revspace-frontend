@@ -25,9 +25,12 @@ export class SearchDetailsComponent implements OnInit {
     if(searchResult.includes(this.emstr)){
       this.sServ.searchUserByEmail(searchResult).subscribe()
     }else if(searchResult.includes(this.spstr)){
-
+      let name = searchResult.split(" ", 2);
+      // let fname = name.findIndex(0)
+      // this.sServ.searchUserByName(name, name.indexOf(1)).subscribe()
     }else{
 
+      // this.sServ.searchUserByName(searchResult).subscribe()
     }
   }
 
