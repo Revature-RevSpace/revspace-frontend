@@ -26,5 +26,15 @@ export class AppComponent {
     let user = this.loginService.getLoginInfo().user;
     return user.userId;
   }
-}
+      // User=[{}]; 
+  
+  /* getAllUser():string{
+ let user =this.loginService.getLoginInfo().user;
+ return user.firstName+" "+ user.lastName;
+  } */
 
+  /* toggleDarkTheme(): void {
+    document.body.classList.toggle('dark-theme');
+} */
+
+}

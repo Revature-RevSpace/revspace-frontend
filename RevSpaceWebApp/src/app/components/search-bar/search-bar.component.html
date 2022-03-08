@@ -1,0 +1,20 @@
+<div clss="container">
+  <div class="row">
+    <div class="col-md-12">
+      <input class="form-control" type="text" name="search" placeholder="Search Friends" [(ngModel)]="searchText"  class="search-icon" autocomplete="off"(keyup)="onKeyUp(search)" > <button><i class=" fa fa-search"></i></button>
+      <!-- autocomplete="off" (keyup)="onKeyUp(search)" /><button><i class="fa fa-search"></i></button>-->
+      
+      <select>
+        <option value="none"></option>
+       <!-- <option *ngFor="let user of userlist" value="{{user.firstName}} {{user.lastName}}" (click)="navToProfile(user)" >{{user.firstName}} {{user.lastName}}</option> -->
+      </select> 
+    </div>
+    <!-- <div *ngFor="let result of User" (click)="getAllUser(result)" style="cursor:pointer">
+          <div class = "card card-body mb-1">
+           <h4>{{result.title}}</h4>
+          <small class="text-primary">{{result.description}}</small>
+          </div> 
+      </div> -->
+
+  </div>
+</div>

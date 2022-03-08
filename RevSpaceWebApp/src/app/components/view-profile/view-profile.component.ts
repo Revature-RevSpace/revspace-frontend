@@ -6,11 +6,11 @@ import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
-  selector: 'app-view-profile-component',
-  templateUrl: './view-profile-component.component.html',
-  styleUrls: ['./view-profile-component.component.css']
+  selector: 'app-view-profile',
+  templateUrl: './view-profile.component.html',
+  styleUrls: ['./view-profile.component.css']
 })
-export class ViewProfileComponentComponent implements OnInit {
+export class ViewProfileComponent implements OnInit {
 
   // to get to this component the path would be viewprofile/:userid
 
