@@ -20,18 +20,18 @@ export class SearchBarService {
     'Authorization': this.authToken
   });
 
-  searchUserByEmail(email: string): Observable<User> {
+  searchUserByEmail(email: string): Observable<User[]> {
     const searchparams = new HttpParams().set('email', email);
-    return this.http.get<User>(this.backendService.getBackendURL() + `/users/search/email`, { headers: this.searchHeader, params: searchparams });
+    return this.http.get<User[]>(this.backendService.getBackendURL() + `/users/search/email`, { headers: this.searchHeader, params: searchparams });
   }
 
-  searchUserByName(firstname: string, lastname: string): Observable<User> {
+  searchUserByName(firstname: string, lastname: string): Observable<User[]> {
     const searchparams = new HttpParams().set('firstname', firstname).set('lastname', lastname);
-    return this.http.get<User>(this.backendService.getBackendURL() + `/users/search/name`, { headers: this.searchHeader, params: searchparams });
+    return this.http.get<User[]>(this.backendService.getBackendURL() + `/users/search/name`, { headers: this.searchHeader, params: searchparams });
   }
 
-  getAllUser(): Observable<User> {
-    return this.http.get<User>(this.backendService.getBackendURL() + `/users/all`, { headers: this.searchHeader });
+  getAllUser(): Observable<User[]> {
+    return this.http.get<User[]>(this.backendService.getBackendURL() + `/users/all`, { headers: this.searchHeader });
   }
 
   errorHandl(error: { error: { message: string; }; status: any; message: any; }) {
