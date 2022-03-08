@@ -38,7 +38,7 @@ export class EditUserProfileComponent implements OnInit, DoCheck {
 
   //Logged in user information
   currentUser: User;
-  currentCred: Credential;
+  // currentCred: Credential;
 
   //Used to store the string values
   firstNameInput: string = "";
@@ -101,7 +101,7 @@ export class EditUserProfileComponent implements OnInit, DoCheck {
     //Get information for the current user
     this.currentUser = this.loginService.getLoginInfo().user;
     // this.currentCred.user = this.loginService.getLoginInfo().user;
-    //this.currentCred.user = this.currentUser;
+    // this.currentCred.user = this.currentUser;
 
     //Set the input tag values to the user's current info
     this.firstNameInput = this.currentUser.firstName;

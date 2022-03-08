@@ -5,6 +5,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 import { EditUserProfileComponent } from '../edit-user-profile/edit-user-profile.component';
 import { Credential } from 'src/app/models/Credential';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-change-password',
@@ -15,7 +16,8 @@ export class ChangePasswordComponent implements OnInit {
 
   correctPass = true;
 
-  // currentCred: Credential;
+  currentUser: User;
+  currentCred: Credential;
 
   passwordForm = new FormGroup({
     email: new FormControl(''),
@@ -25,16 +27,17 @@ export class ChangePasswordComponent implements OnInit {
     id: new FormControl('')
   })
 
-  constructor(private route: Router, private uServ: UserService, private eComp: EditUserProfileComponent, private lServ: LoginService) { }
+  constructor(private route: Router, private uServ: UserService, private lServ: LoginService) { }
 
   ngOnInit(): void {
-    // this.currentCred.user = this.lServ.getLoginInfo().user
+    this.currentCred.user = this.lServ.getLoginInfo().user
+    this.currentUser = this.lServ.getLoginInfo().user
   }
 
   public submitPassword(pass: FormGroup) {
     let password = pass.get("newPassword").value;
     let cpassword = pass.get("confirmPassword").value;
-    pass.setValue({email: this.eComp.currentUser.email, oldPassword: this.eComp.currentCred.password, id: this.eComp.currentUser.userId})
+    pass.setValue({email: this.currentUser.email, oldPassword: this.currentCred.password, id: this.currentUser.userId})
 
     if (password === cpassword) {
       this.uServ.changePassword(JSON.stringify(pass.value)).subscribe(
