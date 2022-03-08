@@ -37,7 +37,7 @@ export class ChangePasswordComponent implements OnInit {
   public submitPassword(pass: FormGroup) {
     let password = pass.get("newPassword").value;
     let cpassword = pass.get("confirmPassword").value;
-    pass.setValue({email: this.currentUser.email, oldPassword: this.currentCred.password, id: this.currentUser.userId})
+    pass.setValue({'email': this.currentUser.email, 'newPassword': password, 'oldPassword': this.currentCred.password, 'id': this.currentUser.userId})
 
     if (password === cpassword) {
       this.uServ.changePassword(JSON.stringify(pass.value)).subscribe(
