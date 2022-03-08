@@ -1,7 +1,7 @@
 <div clss="container">
   <div class="row">
     <div class="col-md-12">
-      <input class="form-control" type="text" name="search" placeholder="Search Friends" [(ngModel)]="searchText"  class="search-icon" autocomplete="off" (keyup)="onKeyUp(search)" > <button><i class=" fa fa-search"></i></button>
+      <input class="form-control" type="text" name="search" placeholder="Search Friends" [(ngModel)]="searchText"  class="search-icon" autocomplete="off"> <button (click)="searchUsers()"><i class=" fa fa-search"></i></button>
       <!-- autocomplete="off" (keyup)="onKeyUp(search)" /><button><i class="fa fa-search"></i></button>-->
       
       <!-- <select>
