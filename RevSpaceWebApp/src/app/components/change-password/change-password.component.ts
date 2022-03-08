@@ -33,7 +33,6 @@ export class ChangePasswordComponent implements OnInit {
   constructor(private route: Router, private uServ: UserService, private lServ: LoginService) { }
 
   ngOnInit(): void {
-    //this.currentCred.user = this.lServ.getLoginInfo().user
     this.currentUser = this.lServ.getLoginInfo().user
   }
 
@@ -41,7 +40,6 @@ export class ChangePasswordComponent implements OnInit {
     pass = this.passwordForm;
     this.password = pass.get("newPassword").value;
     this.cpassword = pass.get("confirmPassword").value;
-    //pass.setValue({'email': this.currentUser.email, 'newPassword': this.password, 'oldPassword': this.passwordForm.get("oldPassword").value, 'id': this.currentUser.userId})
     let changePasswordJSON = {
       email: this.currentUser.email,
       oldPassword: pass.get("oldPassword").value,

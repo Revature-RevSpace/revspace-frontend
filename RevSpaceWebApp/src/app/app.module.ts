@@ -20,7 +20,6 @@ import { EditUserProfileComponent } from './components/edit-user-profile/edit-us
 import { LeavingEditAlertComponent } from './components/leaving-edit-alert/leaving-edit-alert.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { SearchDetailsComponent } from './components/search-details/search-details.component';
 
 
@@ -40,7 +39,6 @@ import { SearchDetailsComponent } from './components/search-details/search-detai
     LeavingEditAlertComponent,
     SearchBarComponent,
     ChangePasswordComponent,
-    ForgotPasswordComponent,
     SearchDetailsComponent
   ],
   
