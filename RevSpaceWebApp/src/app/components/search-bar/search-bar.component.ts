@@ -26,7 +26,7 @@ export class SearchBarComponent implements OnInit {
         result: JSON.stringify(result)
       }
     }
-    this.router.navigate(['search-detail'], navigationExtras);
+    this.router.navigate(['search-details'], navigationExtras);
   }
 
   // searchEmail(email: string){
@@ -40,6 +40,6 @@ export class SearchBarComponent implements OnInit {
   onKeyUp(x) { // appending the updated value to the variable
     
   }
-  
+
 }
 

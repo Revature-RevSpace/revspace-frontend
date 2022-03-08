@@ -7,13 +7,15 @@ import {ViewProfileComponent} from './components/view-profile/view-profile.compo
 import { LoginComponent } from './components/login/login.component';
 import { EditUserProfileComponent } from './components/edit-user-profile/edit-user-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { SearchDetailsComponent } from './components/search-details/search-details.component';
 
 const routes: Routes = [
   {path: '', component:PostFeedComponent},
   {path: 'postfeed', component: PostFeedComponent},
   {path: 'viewprofile/:userId', component: ViewProfileComponent},
   {path: 'editprofile', component: EditUserProfileComponent},
-  {path: 'changePassword', component: ChangePasswordComponent}
+  {path: 'changePassword', component: ChangePasswordComponent},
+  {path: 'search-details', component: SearchDetailsComponent }
   
 ];
 
