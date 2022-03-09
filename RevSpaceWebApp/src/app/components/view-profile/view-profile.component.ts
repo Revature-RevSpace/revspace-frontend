@@ -29,6 +29,7 @@ export class ViewProfileComponent implements OnInit, OnChanges {
         console.log(response);
         this.user = response;
         console.log(this.followExists);
+
         if(this.user.followers.includes(this.loginUser.getLoginInfo().user)){
         this.followExists = true;
       }else{
@@ -44,6 +45,11 @@ export class ViewProfileComponent implements OnInit, OnChanges {
   userSame: boolean = false;
 
   ngOnInit(): void {
+    if(this.user == this.loginUser.getLoginInfo().user){
+      this.userSame = true;
+    }else{
+        this.userSame = false;
+    }
     const authToken:string = this.loginUser.getLoginInfo().authToken;
     const myHeaders:HttpHeaders = new HttpHeaders({
       'Authorization': authToken
@@ -90,12 +96,14 @@ export class ViewProfileComponent implements OnInit, OnChanges {
           //As long as the response isn't null, the operation succeeded
           //Set the user info in the front end to the new data (to avoid an extra backend call)
           //Go the user profile page
-          this.sleep(200);
-          this.router.navigate(["viewprofile/" + this.user.userId]);
+          this.sleep(1200);
+          this.router.navigate(["postfeed"]);
       }
     });
 
   }
+
+  // + this.user.userId
 
 
   //need to add this to INIT
