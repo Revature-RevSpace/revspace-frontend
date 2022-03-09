@@ -26,6 +26,10 @@ export class UserService {
     return this.http.get<User>(this.backendService.getBackendURL() + '/users/email/' + email);
   }
 
+  getPasswordByEmail(email: string, myHeaders: HttpHeaders): Observable<string>{
+    return this.http.get<string>(this.backendService.getBackendURL() + '/users/password/' + email, {headers: myHeaders});
+  }
+
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.backendService.getBackendURL() + '/users');
   }
