@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgToastService } from 'ng-angular-popup';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { LoginService } from 'src/app/services/login.service';
 
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService:LoginService) { }
+  constructor(private loginService:LoginService, private toast: NgToastService) { }
 
   ngOnInit(): void {
   }

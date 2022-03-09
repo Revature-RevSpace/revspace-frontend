@@ -18,6 +18,7 @@ import { DatePipe } from './pipes/date.pipe';
 
 import { EditUserProfileComponent } from './components/edit-user-profile/edit-user-profile.component';
 import { LeavingEditAlertComponent } from './components/leaving-edit-alert/leaving-edit-alert.component';
+import { NgToastModule } from 'ng-angular-popup';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { LeavingEditAlertComponent } from './components/leaving-edit-alert/leavi
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    NgToastModule
   ],
   providers: [ImageService],
   bootstrap: [AppComponent]

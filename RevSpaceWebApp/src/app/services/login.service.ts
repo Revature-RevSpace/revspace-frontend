@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { Credentials } from '../models/Credentials';
 import { LoginInfo } from '../models/LoginInfo';
 import { User } from '../models/User';
@@ -14,7 +15,8 @@ export class LoginService {
   constructor(
     private backendService:BackendService,
     private http: HttpClient,
-    private router:Router
+    private router:Router,
+    private toast: NgToastService
   ) { }
 
   private loginInfo:LoginInfo = null;
@@ -37,12 +39,14 @@ export class LoginService {
       (response)=>{
         this.loginInfo = new LoginInfo(response, authToken);
         this.invalidLogin = false;
+        this.toast.success({detail:"Success Message", summary:"Login Successfully, Welcome", duration:2500})
         this.router.navigate(['postfeed']);
       },
       ()=>
       {
         this.loginInfo = null;
         this.invalidLogin = true;
+        this.toast.error({detail:"Error Message", summary:"Login Failed, Try Again", duration:2500})
         this.router.navigate(['']);
       }
     )
