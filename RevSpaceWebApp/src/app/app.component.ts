@@ -6,6 +6,8 @@ import { NewPostService } from './services/new-post.service';
 import { NotificationsService } from './services/notifications.service';
 import { NotificationsModel } from './models/Notifications';
 import { Router } from '@angular/router';
+import { interval, Observable, timer } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 
@@ -14,15 +16,17 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewChecked {
+export class AppComponent implements OnInit {
   title = 'RevSpaceWebApp';
   notificationsList: NotificationsModel[] = [];
   constructor(private loginService: LoginService, private notiService: NotificationsService, private router: Router) { }
-  ngAfterViewChecked(): void {
-    if (this.router.url != "/") {
+  ngOnInit(): void {
+    timer(0, 5000).pipe(map(() => {
+      // console.log("timer triggered");
       this.getNotification();
-    }
+    })).subscribe()
   }
+
   isLoggedIn() {
     return (this.loginService.getLoginInfo() != null);
   }
@@ -36,24 +40,27 @@ export class AppComponent implements AfterViewChecked {
   }
 
   getNotification() {
-    let user = this.loginService.getLoginInfo().user;
-    let id = user.userId;
-    this.notiService.getNotifications(JSON.stringify(id)).subscribe(
-      response => {
-        if (response != null){
-        this.notificationsList = response;
-        let no = this.notificationsList;
-        console.log(no)
-      }
-      },
-      error => {
-        console.log("failed");
-      }
-    )
+    if (this.router.url != "/") {
+      let user = this.loginService.getLoginInfo().user;
+      let id = user.userId;
+
+      this.notiService.getNotifications(JSON.stringify(id)).subscribe(
+        response => {
+          if (response != null) {
+            this.notificationsList = response;
+            let no = this.notificationsList;
+            console.log(no)
+          }
+        },
+        error => {
+          console.log("failed");
+        }
+      )
+    }
   }
 }
 
-  /* toggleDarkTheme(): void {
-    document.body.classList.toggle('dark-theme');
+/* toggleDarkTheme(): void {
+  document.body.classList.toggle('dark-theme');
 } */
 
