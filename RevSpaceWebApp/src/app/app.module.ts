@@ -41,7 +41,6 @@ import { NgToastModule } from 'ng-angular-popup';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
     NgToastModule
   ],
   providers: [ImageService],

@@ -39,7 +39,7 @@ export class LoginService {
       (response)=>{
         this.loginInfo = new LoginInfo(response, authToken);
         this.invalidLogin = false;
-        this.toast.success({detail:"Success Message", summary:"Login Successfully", duration:2500})
+        this.toast.success({detail:"Success Message", summary:"Login Successfully, Welcome", duration:2500})
         this.router.navigate(['postfeed']);
       },
       ()=>
