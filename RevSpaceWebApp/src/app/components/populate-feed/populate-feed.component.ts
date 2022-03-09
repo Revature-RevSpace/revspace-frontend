@@ -10,6 +10,8 @@ import { NewPostService } from 'src/app/services/new-post.service';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { LiteralExpr } from '@angular/compiler';
+import { NotificationsService } from 'src/app/services/notifications.service';
+import { NotificationsModel } from 'src/app/models/Notifications';
 
 @Component({
   selector: 'app-populate-feed',
@@ -22,6 +24,7 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
               private likeHttpService: LikeHttpServiceService,
               private newPostService: NewPostService,
               private loginService: LoginService,
+              private notificationService:NotificationsService,
               private router:Router,
               @Inject(DOCUMENT) private document: Document) { }
   ngOnChanges(changes: SimpleChanges): void {
@@ -48,6 +51,8 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
   lastLoadTime: number = 0;
   like: Like;
   allLikes: Array<Like> = [];
+  stringmessage:string;
+  notificationModel:NotificationsModel;
   user: User = this.loginService.getLoginInfo().user;
 
   /*
@@ -60,19 +65,16 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
   nextTen(oldestId: number){
     this.likeHttpService.getAllLikes().subscribe(data => {
       this.allLikes = data;
-      //console.log(data);
       this.postHttpService.getTenPosts(oldestId).subscribe(
         (response) => {
-          console.log("POST")
-          // console.log(response);
+  
   
           if(response.status == 200){ //Okay
             
             this.pclArray = response.body;
             console.log(this.pclArray);
             this.populateArrays(this.pclArray);
-
-            console.log(this.pclArray);
+  
   
           }else if (response.status == 204){ //No more posts to display
             
@@ -95,7 +97,6 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
 
       let newPostUtilObj = new PostUtilObj(newPost.postId, 0, "");
 
-      console.log(this.postUtil.filter(obj => {return obj.postId == newPostUtilObj.postId}))
       let duplicatePosts = (this.postUtil.filter(obj => {return obj.postId == newPostUtilObj.postId}).length);
 
       if(duplicatePosts == 0) {
@@ -145,15 +146,24 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
   }
 
   likePost(curPost: Post) {
-
     if (!this.alreadyLiked(curPost)){
-
       // this.likeHttpService.likePost();
 
     this.getPostUtilObj(curPost).numLikes ++;
     this.getPostUtilObj(curPost).starStyle = "fas fa-star";
     this.like = new Like(this.loginService.getLoginInfo().user, curPost);
-    //console.log(this.like);
+    this.stringmessage = this.user.firstName + " " + this.user.lastName + " has liked " + curPost.body;
+    this.notificationModel = new NotificationsModel(this.stringmessage, curPost.creatorId.userId);
+      console.log(this.notificationModel)
+    this.notificationService.addNotifications(this.notificationModel).subscribe(
+      response =>{
+        console.log("worked")
+      },
+      error =>{
+        console.log("failed")
+      }
+    );
+    console.log(this.like);
     // console.log(this.pclArray);
     this.likeHttpService.likePost(this.like).subscribe(
       (response)=>{console.log(response)
@@ -187,7 +197,7 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
 
   getPostUtilObj(post: Post): PostUtilObj {
 
-    return this.postUtil.filter(obj => {return obj.postId == post.postId})[0]
+    return this.postUtil.filter(obj => {return obj.postId == post.postId})[0];
   }
 
   appendComments() {
@@ -228,11 +238,21 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
 
   submitComment(parentPost: Post) {
 
-    //console.log(this.getPostUtilObj(parentPost).potentialComment);
 
     let commentInput = this.document.getElementById("commentInput" + parentPost.postId);
 
     let commentInputElement = commentInput as HTMLInputElement;
+    this.stringmessage = this.user.firstName + " " + this.user.lastName + " has commented on your post/comment " + parentPost.body;
+    this.notificationModel = new NotificationsModel(this.stringmessage, parentPost.creatorId.userId);
+    console.log(this.notificationModel);
+    this.notificationService.addNotifications(this.notificationModel).subscribe(
+      response =>{
+        console.log("worked")
+      },
+      error =>{
+        console.log("failed")
+      }
+    );
 
     let newComment = new Post(this.user, commentInputElement.value, null, 
                     new Date().getTime(), true, parentPost);

@@ -15,14 +15,21 @@ export class SearchBarComponent implements OnInit {
 
   searchText:string;
 
+  userlist: User[] = [];
+
   result: User[] = [];
 
   emstr = "@";
   spstr = " ";
 
-  constructor(private router:Router, private sServ: SearchBarService) {}
+  constructor(private router:Router, private sServ: SearchBarService, private uServ: UserService) {}
   ngOnInit(): void {
-    
+    // this.uServ.getAllUsers().subscribe(
+    //   response => {
+    //     console.log(response);
+    //     this.userlist = response;
+    //   }
+    // )
   }
 
   // getAllUser(result:any){

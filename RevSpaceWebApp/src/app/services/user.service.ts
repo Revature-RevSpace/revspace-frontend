@@ -31,7 +31,7 @@ export class UserService {
   }
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.backendService.getBackendURL() + '/users');
+    return this.http.get<User[]>(this.backendService.getBackendURL() + '/users/all');
   }
 
   // A credential is created with a new User inside of it.
