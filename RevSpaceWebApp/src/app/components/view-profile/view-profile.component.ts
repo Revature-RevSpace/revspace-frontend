@@ -4,6 +4,7 @@ import { User } from 'src/app/models/User';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-view-profile',
@@ -32,7 +33,7 @@ export class ViewProfileComponent implements OnInit, OnChanges {
 
         if(this.user.followers.includes(this.loginUser.getLoginInfo().user)){
         this.followExists = true;
-      }else{
+        }else{
           this.followExists = false;
         }
       }
@@ -41,15 +42,12 @@ export class ViewProfileComponent implements OnInit, OnChanges {
 
   // user:User= new User(1,'email','Ryan','Schlientz',120395,2017,'https://github.com/Revature-RevSpace/revspace-application','Senior Trainer','West Virginia',"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
   user: User;
+  loggedUser: User = this.loginUser.getLoginInfo().user;
   followExists = true;
-  userSame: boolean = false;
+  userSame: boolean;
+
 
   ngOnInit(): void {
-    if(this.user == this.loginUser.getLoginInfo().user){
-      this.userSame = true;
-    }else{
-        this.userSame = false;
-    }
     const authToken:string = this.loginUser.getLoginInfo().authToken;
     const myHeaders:HttpHeaders = new HttpHeaders({
       'Authorization': authToken
@@ -59,24 +57,38 @@ export class ViewProfileComponent implements OnInit, OnChanges {
     console.log(userid);
     this.userHTTP.getUserById(userid,myHeaders).subscribe(
       (response)=> {
-        console.log(response);
         this.user = response;
+        console.log(this.loggedUser);
+        console.log(this.user);
         for(let followerList of this.user.followers){
           if(followerList == this.loginUser.getLoginInfo().user){
             this.followExists = true;
           }else{
             this.followExists = false;
               console.log(this.followExists);
+            };
+          } 
+            
+            if(this.loggedUser.userId == userid){
+              this.userSame = false;
+            }else{
+              this.userSame = true;
             }
+          
         }
-      })
+    )
     }
 
-  async init() {
-    console.log(1);
-    await this.sleep(1000);
-    console.log(2);
-  }
+    //creating method to change boolean value initialized above
+    //need to check if loggedUser is same as user on the view-profile page
+    //if the user is the same as the loggedUser, don't display follow button
+
+    //setting up async and sleep to use for promise later on
+    async init() {
+      console.log(1);
+      await this.sleep(1000);
+      console.log(2);
+    }
   
   sleep(ms) {
     return new Promise((resolve) => {
@@ -84,6 +96,9 @@ export class ViewProfileComponent implements OnInit, OnChanges {
     });
   }
 
+  //this follow method is for follow AND unfollow
+  //the method toggles the button on the frontend to display "follow" or "unfollow" given whether 
+  //or not the followers list for the profile page contains the loggedUser
   follow() {
     const authToken:string = this.loginUser.getLoginInfo().authToken;
     const myHeaders:HttpHeaders = new HttpHeaders({
@@ -96,21 +111,11 @@ export class ViewProfileComponent implements OnInit, OnChanges {
           //As long as the response isn't null, the operation succeeded
           //Set the user info in the front end to the new data (to avoid an extra backend call)
           //Go the user profile page
-          this.sleep(1200);
+          //putting long sleep here in order to give time for backend to populate the postfeed properly
+          this.sleep(1200); 
           this.router.navigate(["postfeed"]);
       }
     });
 
   }
-
-  // + this.user.userId
-
-
-  //need to add this to INIT
-  // userExists(user, userid){
-  //   if(this.user.userId = userid){
-  //     this.userExists = true;
-  //   }
-  // }
-
-  }
+}
