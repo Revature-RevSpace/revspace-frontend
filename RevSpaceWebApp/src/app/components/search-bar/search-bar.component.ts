@@ -48,6 +48,7 @@ export class SearchBarComponent implements OnInit {
           this.result = response;
           this.sServ.searchedUsers = response;
           this.router.navigate(['search-details']);
+          this.searchText = "";
         }
       )
     }else if(this.searchText.includes(this.spstr)){
@@ -59,6 +60,7 @@ export class SearchBarComponent implements OnInit {
           this.result = response;
           this.sServ.searchedUsers = response;
           this.router.navigate(['search-details']);
+          this.searchText = "";
         }
       )
     }else {
