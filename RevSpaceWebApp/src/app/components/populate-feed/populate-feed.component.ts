@@ -27,8 +27,7 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     let num: number = 0;
     for(let propname in changes){
-      console.log("change " + num + ' ' + propname);
-      num++;
+      console.log("changes = " + propname);
     }
   }
 
