@@ -11,7 +11,6 @@ import { LoginComponent } from './components/login/login.component';
 import { PostFeedComponent } from './components/post-feed/post-feed.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { PopulateFeedComponent } from './components/populate-feed/populate-feed.component';
-import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { TopComponent } from './components/top/top.component';
 import { ImageService } from './services/image.service';
 import { DatePipe } from './pipes/date.pipe';
@@ -22,6 +21,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchDetailsComponent } from './components/search-details/search-details.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 
 
 
@@ -31,8 +31,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     PostFeedComponent,
     CreatePostComponent,
     PopulateFeedComponent,
-    ViewProfileComponent,
     RegisterFormComponent,
+    ViewProfileComponent,
     LoginComponent,
     TopComponent,
     DatePipe,

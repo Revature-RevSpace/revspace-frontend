@@ -5,12 +5,14 @@ export class User {
     email: string;
     firstName: string;
     lastName: string;
-    birthday:  number;
-    revatureJoinDate: number;
     githubUsername: string;
     title: string;
     location: string;
     aboutMe: string;
+    birthday?:  number;
+    revatureJoinDate?: number;
+    followers?: User[];
+    following?: User[];
 
     constructor(userId: number,
         email: string,
@@ -18,10 +20,12 @@ export class User {
         lastName: string,       
         githubUsername: string,
         title: string,
-        location: string,
+        location: string, 
         aboutMe: string,
         birthday?: number,
-        revatureJoinDate?: number)
+        revatureJoinDate?: number,
+        followers?: User[],
+        following?: User[])
         {
             this.userId = userId;
             this.email = email;
@@ -32,6 +36,8 @@ export class User {
             this.title = title;
             this.location = location;
             this.aboutMe = aboutMe;
+            this.followers = followers;
+            this.following = following;
             this.revatureJoinDate = revatureJoinDate;
     }
 
