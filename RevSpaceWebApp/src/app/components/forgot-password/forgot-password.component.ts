@@ -21,6 +21,8 @@ export class ForgotPasswordComponent implements OnInit {
     id: new FormControl('')
   });
 
+  /* The problem we were expirenceing with this component is the user is not yet logged in and we cant find that users password if they are not loggeed in */
+
   constructor(private route: Router, private uServ: UserService, private lServ: LoginService) { }
 
   ngOnInit(): void {

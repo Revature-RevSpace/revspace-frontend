@@ -15,6 +15,9 @@ import { User } from 'src/app/models/User';
 export class ChangePasswordComponent implements OnInit {
 
   correctPass = true;
+  password: String;
+  cpassword: String;
+  differentPasswords: String = "Passwords do not match";
 
   currentUser: User;
   currentCred: Credential;
@@ -30,19 +33,26 @@ export class ChangePasswordComponent implements OnInit {
   constructor(private route: Router, private uServ: UserService, private lServ: LoginService) { }
 
   ngOnInit(): void {
-    this.currentCred.user = this.lServ.getLoginInfo().user
     this.currentUser = this.lServ.getLoginInfo().user
   }
 
   public submitPassword(pass: FormGroup) {
-    let password = pass.get("newPassword").value;
-    let cpassword = pass.get("confirmPassword").value;
-    pass.setValue({email: this.currentUser.email, oldPassword: this.currentCred.password, id: this.currentUser.userId})
+    pass = this.passwordForm;
+    this.password = pass.get("newPassword").value;
+    this.cpassword = pass.get("confirmPassword").value;
+    let changePasswordJSON = {
+      email: this.currentUser.email,
+      oldPassword: pass.get("oldPassword").value,
+      newPassword: this.password,
+      confirmPassword: this.cpassword,
+      id: this.currentUser.userId
+    }
 
-    if (password === cpassword) {
-      this.uServ.changePassword(JSON.stringify(pass.value)).subscribe(
+    if (this.password === this.cpassword) {
+      this.uServ.changePassword(JSON.stringify(changePasswordJSON)).subscribe(
         response => {
           this.lServ.setUserInfo(response);
+          this.route.navigate(["postfeed"]);
         }
       )
     }

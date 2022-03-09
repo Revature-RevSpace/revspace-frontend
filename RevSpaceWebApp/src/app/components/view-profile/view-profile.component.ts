@@ -20,14 +20,12 @@ export class ViewProfileComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const routeParams = this.route.snapshot.paramMap;
     const userid = Number(routeParams.get('userId'));
-    console.log(userid);
     const authToken:string = this.loginUser.getLoginInfo().authToken;
     const myHeaders:HttpHeaders = new HttpHeaders({
       'Authorization': authToken
     });
     this.userHTTP.getUserById(userid,myHeaders).subscribe(
       (response)=> {
-        console.log(response);
         this.user = response;
         console.log(this.followExists);
 

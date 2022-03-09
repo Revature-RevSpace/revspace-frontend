@@ -10,6 +10,8 @@ import { LoginService } from './login.service';
 })
 export class SearchBarService {
 
+  public searchedUsers: User[]=[];
+
   constructor(private http: HttpClient,
     private loginService: LoginService,
     private backendService: BackendService) { }
