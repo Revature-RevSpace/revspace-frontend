@@ -100,22 +100,29 @@ export class ViewProfileComponent implements OnInit, OnChanges {
   //the method toggles the button on the frontend to display "follow" or "unfollow" given whether 
   //or not the followers list for the profile page contains the loggedUser
   follow() {
+    this.followRequest();
+    // this.userHTTP.followUser(this.user.userId, this.loginUser.getLoginInfo().user, myHeaders).subscribe(
+    //   (response) => {
+    //     if(null != response) {
+    //       this.followExists != this.followExists;
+    //       //As long as the response isn't null, the operation succeeded
+    //       //Set the user info in the front end to the new data (to avoid an extra backend call)
+    //       //Go the user profile page
+    //       //putting long sleep here in order to give time for backend to populate the postfeed properly
+    //       // this.sleep(1200);
+    //       this.router.navigate(["postfeed"]);
+    //   }
+    // });
+
+  }
+
+  async followRequest(){
     const authToken:string = this.loginUser.getLoginInfo().authToken;
     const myHeaders:HttpHeaders = new HttpHeaders({
     'Authorization': authToken
       });
-    this.userHTTP.followUser(this.user.userId, this.loginUser.getLoginInfo().user, myHeaders).subscribe(
-      (response) => {
-        if(null != response) {
-          this.followExists != this.followExists;
-          //As long as the response isn't null, the operation succeeded
-          //Set the user info in the front end to the new data (to avoid an extra backend call)
-          //Go the user profile page
-          //putting long sleep here in order to give time for backend to populate the postfeed properly
-          this.sleep(1200); 
-          this.router.navigate(["postfeed"]);
-      }
-    });
-
+    let response = await this.userHTTP.followUser(this.user.userId, this.loginUser.getLoginInfo().user, myHeaders).toPromise();
+    this.followExists != this.followExists;
+    this.router.navigate(["postfeed"]);
   }
 }
