@@ -44,11 +44,13 @@ export class UserService {
   followUser(id: number, change: User, myHeaders: HttpHeaders): Observable<User> {
     return this.http.put<User>(this.backendService.getBackendURL() + '/follow/' + id, change, { headers: myHeaders });
   }
-
   /*
   editUser(id: number, change: User, ): Observable<User> {
     return this.http.put<User>(this.backendService.getBackendURL() + 'users/' + id, change, { headers: this.headers });
   }
   */
 
+  changePassword(email:string): Observable<User>{
+    return this.http.post<User>(this.backendService.getBackendURL() + '/users/password', email, { headers: this.headers });
+  }
 }

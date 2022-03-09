@@ -32,11 +32,13 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-
-    // this.posts = [];
-    // this.comments = [];
-    // this.postUtil = [];
+    console.log("onInit");
+    console.log(this.posts);
+    this.posts = [];
+    this.comments = [];
+    this.postUtil = [];
     this.nextTen(0);
+    //this.posts = this.newPostService.posts;
   }
 
   pclArray: Array<Array<Post>> = [];
@@ -45,7 +47,7 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
   postUtil: Array<PostUtilObj> = this.newPostService.postUtil;
   lastLoadTime: number = 0;
   like: Like;
-  allLikes: Like[];
+  allLikes: Array<Like> = [];
   user: User = this.loginService.getLoginInfo().user;
 
   /*
@@ -61,16 +63,16 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
       //console.log(data);
       this.postHttpService.getTenPosts(oldestId).subscribe(
         (response) => {
-  
-          //console.log(response);
+          console.log("POST")
+          // console.log(response);
   
           if(response.status == 200){ //Okay
             
             this.pclArray = response.body;
-  
+            console.log(this.pclArray);
             this.populateArrays(this.pclArray);
-  
-            //console.log(this.pclArray);
+
+            console.log(this.pclArray);
   
           }else if (response.status == 204){ //No more posts to display
             
@@ -93,27 +95,31 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
 
       let newPostUtilObj = new PostUtilObj(newPost.postId, 0, "");
 
-      console.log(this.postUtil.filter(obj => {return obj.postId == newPostUtilObj.postId}));
+      console.log(this.postUtil.filter(obj => {return obj.postId == newPostUtilObj.postId}))
       let duplicatePosts = (this.postUtil.filter(obj => {return obj.postId == newPostUtilObj.postId}).length);
 
       if(duplicatePosts == 0) {
         this.postUtil.push(new PostUtilObj(newPost.postId, 0, ""));
-
+        
         this.posts.push(newPost);
       }
+
 
       //console.log(newPost.creatorId.firstName);
     }
 
-    for (let newComment of this.pclArray[1]) {
+    console.log("ACTUAL POST")
+    console.log(this.posts)
+
+    for (let newComment of pclArray[1]) {
 
       this.postUtil.push(new PostUtilObj(newComment.postId, 0, ""));
 
       this.comments.push(newComment);
     }  
 
-    this.calculateLikes(this.pclArray[2]);
-    //console.log(this.pclArray[2]);
+    this.calculateLikes(pclArray[2]);
+
   }
 
   calculateLikes(likesArray: Array<Post>) {
@@ -134,7 +140,7 @@ export class PopulateFeedComponent implements OnInit, OnChanges {
         // this.getPostUtilObj(likePost).starStyle = "fas fa-star";
         
       }
-      //console.log(this.postUtil);
+      
     }
   }
 

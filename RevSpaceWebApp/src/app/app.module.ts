@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 
@@ -11,13 +11,18 @@ import { LoginComponent } from './components/login/login.component';
 import { PostFeedComponent } from './components/post-feed/post-feed.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { PopulateFeedComponent } from './components/populate-feed/populate-feed.component';
-import { ViewProfileComponentComponent } from './components/view-profile-component/view-profile-component.component';
 import { TopComponent } from './components/top/top.component';
 import { ImageService } from './services/image.service';
 import { DatePipe } from './pipes/date.pipe';
 
 import { EditUserProfileComponent } from './components/edit-user-profile/edit-user-profile.component';
 import { LeavingEditAlertComponent } from './components/leaving-edit-alert/leaving-edit-alert.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { SearchDetailsComponent } from './components/search-details/search-details.component';
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
+
 
 
 @NgModule({
@@ -26,13 +31,17 @@ import { LeavingEditAlertComponent } from './components/leaving-edit-alert/leavi
     PostFeedComponent,
     CreatePostComponent,
     PopulateFeedComponent,
-    ViewProfileComponentComponent,
     RegisterFormComponent,
+    ViewProfileComponent,
     LoginComponent,
     TopComponent,
     DatePipe,
     EditUserProfileComponent,
-    LeavingEditAlertComponent
+    LeavingEditAlertComponent,
+    SearchBarComponent,
+    ChangePasswordComponent,
+    ForgotPasswordComponent,
+    SearchDetailsComponent
   ],
   
   imports: [
@@ -40,6 +49,7 @@ import { LeavingEditAlertComponent } from './components/leaving-edit-alert/leavi
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule
   ],
   providers: [ImageService],
