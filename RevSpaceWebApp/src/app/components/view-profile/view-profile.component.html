@@ -12,9 +12,9 @@
                             Title:
                             <span>{{user.title}}</span>
                             <br>
-                            Revature Join Date: <span *ngIf="user.revatureJoinDate"> {{user.revatureJoinDate | newDate}}</span>
+                            Revature Join Date: <span *ngIf="user.revatureJoinDate"> {{(user.revatureJoinDate | newDate)}}</span>
                             <br>
-                            Birthday: <span *ngIf="user.birthday"> {{user.birthday | newDate}}</span>
+                            Birthday: <span *ngIf="user.birthday"> {{(user.birthday | newDate)}}</span>
                             <br>
                             Location:
                             <span>{{user.location}}</span>
@@ -36,6 +36,8 @@
                      </div>
               </div>
        </div>
+       <br>
+       <br>
        <div style="margin: 1% 5%;background-color: #F26925;padding: 3%;border-radius: 10px;color:white;">
               <h3 style="font-style: italic;">About Me</h3>
               <p>
@@ -44,5 +46,8 @@
        </div>
        <div style="margin: 1% 5%;background-color: #F26925;padding: 3%;border-radius: 10px;">
               <h1 style="text-align: center;color:white;">Posts</h1>
+       </div>
+       <div *ngIf="userSame">
+       <button class="followButton btn-6" (click)='follow()'><span>{{followExists ? 'Follow':'Unfollow'}}</span></button>
        </div>
 </div>

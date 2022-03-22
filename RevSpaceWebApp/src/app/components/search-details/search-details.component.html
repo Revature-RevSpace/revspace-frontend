@@ -1,0 +1,16 @@
+<div>
+    <table style="margin-left:50px" class="table table-striped table-white" id="search">
+        <thead>
+            <tr>
+                <th scope="col">User's Name</th>
+                <th scope="col">User's Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userList">
+                <td><a [routerLink]="['/viewprofile', getUserId(user)]">{{user.firstName}} {{user.lastName}}</a></td>
+                <td><a [routerLink]="['/viewprofile', getUserId(user)]">{{user.email}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

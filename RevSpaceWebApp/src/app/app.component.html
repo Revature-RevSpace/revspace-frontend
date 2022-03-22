@@ -1,36 +1,59 @@
-  <nav class="navbar navbar-expand-lg navbar-light " style="padding: 1% 2%; background-color: #B9B9BA;font-family: Futura-Std-Book;"  >
+<nav class="navbar navbar-expand-lg navbar-light "
+  style="padding: 1% 2%; background-color: #B9B9BA;font-family: Futura-Std-Book;">
 
-    <div class="container-fluid" style="color: black;">
-      <a class="navbar-brand" routerLink= "postfeed" href="" style="font-weight: bold;"><img alt="image" src="./assets/img/revaturelogo.png" height="40" width="auto" ></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div *ngIf="isLoggedIn()" class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item" style="margin:10px;">
-            <a class="nav-link active" routerLink="postfeed">Post Feed</a>
-          </li>
-        </ul>
-        <!-- if user is logged in this will disabled -->
-        <!--drop down for user profile-->
-        <div class="dropdown" style="margin-right: 2%;">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Hello, {{getUserName()}}
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" [routerLink] = "['/viewprofile', getUserId()]">View Your Profile</a></li>
-              <li><a class="dropdown-item" [routerLink] = "['/editprofile']">Edit Your Profile</a></li>
-              <li><a class="dropdown-item" href="index.html">Logout</a></li>
-            </ul>
-          </div>
-        
+  <div class="container-fluid" style="color: black;">
+    <a class="navbar-brand" routerLink="postfeed" href="" style="font-weight: bold;"><img alt="image"
+        src="./assets/img/revaturelogo.png" height="40" width="auto"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div *ngIf="isLoggedIn()" class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" style="margin:10px;">
+          <a class="nav-link active" routerLink="postfeed">Post Feed</a>
+        </li>
+      </ul>
+
+
+      <div class="center">
+        <app-search-bar></app-search-bar>
       </div>
+
+      <div class="dropdown" style="margin-right: 2%;">
+        <button class="btn btn-secondary " type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell"
+            viewBox="0 0 16 16">
+            <path
+              d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+          </svg>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li *ngFor="let task of notificationsList"><a class="dropdown-item"></a>{{task.message}}</li>
+        </ul>
+      </div>
+      <!-- if user is logged in this will disabled -->
+      <!--drop down for user profile-->
+      <div class="dropdown" style="margin-right: 2%;">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Hello, {{getUserName()}}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <!-- <li><a class="dropdown-item" [routerLink]="['/viewprofile', getUserId()]">View Your Profile</a></li> -->
+          <li><a class="dropdown-item" [routerLink]="['/editprofile']">Profile</a></li>
+          <li><a class="dropdown-item" [routerLink]="['/changePassword']">Change Password</a></li>
+          <li><a class="dropdown-item" href="index.html">Logout</a></li>
+        </ul>
+      </div>
+
     </div>
-  </nav>
+  </div>
+</nav>
 <app-login *ngIf="!isLoggedIn()"></app-login>
 <router-outlet *ngIf="isLoggedIn()"></router-outlet>
 
 <app-top style="position: sticky; left: 90%; top: 90%;"></app-top>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-

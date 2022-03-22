@@ -25,9 +25,14 @@
         <br>    
         <input  type="button" id="login" value="Log In" (click)="login()">       
         <!-- Registration Modal -->
+        
         <app-register-form></app-register-form>
         <div *ngIf='isLoginInvalid()' class='invalid-login-div'>
             <br>
             <p>Invalid username and/or password</p>
         </div>
+        <br>       
     </div>
+    
+       
+        

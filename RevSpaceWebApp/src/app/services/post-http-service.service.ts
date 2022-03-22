@@ -31,8 +31,9 @@ export class PostHttpServiceService {
 
     let authHeadersTen = new HttpHeaders({ 'Context-Type': 'application/json', 'Authorization': this.authToken, 'lastPostIdOnThePage': oldestIdString});
 
-    return this.http.get(this.backendService.getBackendURL() + `/posts`, {headers: authHeadersTen, observe:'response'});
+    return this.http.get<any>(this.backendService.getBackendURL() + `/full/posts/` + this.loginService.getLoginInfo().user.userId, {headers: authHeadersTen, observe:'response'});
   }
+
 
    addPost(post: Post): Observable<Post> {
     return this.http.post<Post>(this.backendService.getBackendURL() + `/posts`, post, { headers: this.postHeaders  }).pipe(

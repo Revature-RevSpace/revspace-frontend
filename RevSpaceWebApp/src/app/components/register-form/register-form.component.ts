@@ -78,11 +78,10 @@ export class RegisterFormComponent implements OnInit {
   createUser(){
 
     this.userDOBNum = this.dateToNum(this.userDob);
-    let newUser: User = new User(0, this.userEmail, this.userFirstName, this.userLastName, this.userDOBNum, null, '', '', '', '');
+    let newUser: User = new User(0, this.userEmail, this.userFirstName, this.userLastName, '', '', '', '', this.userDOBNum, null);
     let newCredential: Credential = new Credential(newUser, this.userPassword);
     this.userHttp.addUser(newCredential).subscribe (
       (response) => {
-        console.log(response);
         this.userId = response.userId;
         this.registerSuccess = "You have successfully registered to RevSpace! Log In with your Email and Password"
         setTimeout(() => this.router.navigate([''])) // Back to log-in  

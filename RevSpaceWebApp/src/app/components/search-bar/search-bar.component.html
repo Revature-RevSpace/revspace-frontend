@@ -1,0 +1,11 @@
+<div clss="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- <select>
+       <option *ngFor="let user of userlist" value="{{user.firstName}} {{user.lastName}}">{{user.firstName}} {{user.lastName}}</option> 
+      </select>  -->
+      <input class="form-control" type="text" name="search" placeholder="Search Friends" [(ngModel)]="searchText"  class="search-icon" autocomplete="off"> <button (click)="searchUsers()"><i class=" fa fa-search"></i></button>
+      <!-- autocomplete="off" (keyup)="onKeyUp(search)" /><button><i class="fa fa-search"></i></button>-->
+    </div>
+  </div>
+</div>
